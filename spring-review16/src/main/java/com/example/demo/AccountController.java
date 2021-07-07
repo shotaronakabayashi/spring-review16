@@ -7,8 +7,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AccountController {
 
+	//トップページを表示
 	@RequestMapping ("/index")
 	public ModelAndView index (ModelAndView mv) {
+
+
 
 
 		mv.setViewName("index");
