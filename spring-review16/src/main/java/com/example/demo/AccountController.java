@@ -16,7 +16,7 @@ public class AccountController {
 
 
 
-		mv.setViewName("index");
+		mv.setViewName("top");
 		return mv;
 	}
 
@@ -37,7 +37,7 @@ public class AccountController {
 	public ModelAndView adduser2 (ModelAndView mv) {
 
 
-		mv.setViewName("index");
+		mv.setViewName("top");
 		return mv;
 	}
 
@@ -56,7 +56,7 @@ public class AccountController {
 	@PostMapping("login")
 	public ModelAndView login2 (ModelAndView mv) {
 
-		mv.setViewName("index");
+		mv.setViewName("top");
 		return mv;
 	}
 
@@ -78,7 +78,7 @@ public class AccountController {
 	public ModelAndView addStore2 (ModelAndView mv) {
 
 
-		mv.setViewName("index");
+		mv.setViewName("top");
 		return mv;
 	}
 
