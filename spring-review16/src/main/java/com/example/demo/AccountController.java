@@ -79,7 +79,7 @@ public class AccountController {
 	}
 
 	//ログイン情報を入力してログインボタンが押された
-	@PostMapping("login")
+	@PostMapping("/login")
 	public ModelAndView login2(
 			@RequestParam("nickname") String nickname,
 			@RequestParam("password") String password,
@@ -102,6 +102,7 @@ public class AccountController {
 				if (password.equals(account.getPassword() ) ){
 
 					session.setAttribute("account", account);
+					mv.addObject("nickname", nickname);
 					mv.setViewName("top");
 				} else {
 					mv.addObject("message", "ニックネームとパスワードが一致しません。");
@@ -113,7 +114,6 @@ public class AccountController {
 				mv.setViewName("login");
 			}
 		}
-
 		return mv;
 	}
 
@@ -127,24 +127,5 @@ public class AccountController {
 		mv.setViewName("top");
 		return mv;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
