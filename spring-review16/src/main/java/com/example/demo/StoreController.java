@@ -80,11 +80,13 @@ public class StoreController {
 	//メニュー情報が入力されて登録するが押された
 	@RequestMapping("/addmenu")
 	public ModelAndView addmenu2 (
-			@RequestParam("code") int code,
+			@RequestParam("menucode") int code,
 			@RequestParam ("menuname") String menuname,
 			@RequestParam("menuprice") int menuprice,
 			@RequestParam("count") int count,
 			ModelAndView mv ) {
+
+
 
 		//何回メニューを登録したか
 		count++;
