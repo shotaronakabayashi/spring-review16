@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -52,5 +53,50 @@ public class StoreController {
 		mv.setViewName("top");
 		return mv;
 	}
+
+
+	//メニュー追加がクリックされた
+	@GetMapping("/addmenu")
+	public ModelAndView addmenu(ModelAndView mv ) {
+
+		int count = 0;
+		mv.addObject("count", count);
+		mv.setViewName("addmenu");
+		return mv;
+	}
+
+
+	//メニュー情報が入力されて登録するが押された
+	@PostMapping("/addmenu")
+	public ModelAndView addmenu2 (
+			@RequestParam ("menuname") String menuname,
+			@RequestParam("menuprice") int menuprice,
+			@RequestParam("count") int count,
+			ModelAndView mv ) {
+
+		count++;
+
+		mv.addObject("count", count);
+		mv.setViewName("addmenu");
+		return mv;
+	}
+
+
+
+
+	//写真追加
+	@RequestMapping("/addpicture")
+	public ModelAndView addpicture (
+
+			ModelAndView mv) {
+
+
+		return mv;
+	}
+
+
+
+
+
 
 }
