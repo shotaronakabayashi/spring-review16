@@ -43,19 +43,23 @@ public class StoreController {
 			@RequestParam ("message") String message,
 			ModelAndView mv) {
 
+		int count = 0;		//何回メニューを登録したかの初期値
+
 		int time = 100*time1 + 10*time2 + time3;
 		int scean = 100*scean3 + 10*scean2 + scean3;
 
-		Store store = new Store(name, categorycode1, categorycode2, categorycode3, address, tel, budget, time,scean,message);
 		//追加
+		Store store = new Store(name, categorycode1, categorycode2, categorycode3, address, tel, budget, time,scean,message);
 		storeRepository.saveAndFlush(store);
 
+		mv.addObject("count", count);
 		mv.setViewName("addmenu");
 		return mv;
 	}
 
+
 	//メニュー情報が入力されて登録するが押された
-	@PostMapping("/addmenu")
+	@RequestMapping("/addmenu")
 	public ModelAndView addmenu2 (
 			@RequestParam ("menuname") String menuname,
 			@RequestParam("menuprice") int menuprice,
