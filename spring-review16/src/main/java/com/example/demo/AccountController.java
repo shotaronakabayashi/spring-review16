@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -29,10 +28,7 @@ public class AccountController {
 	//トップページを表示
 	@RequestMapping("/")
 	public ModelAndView index(ModelAndView mv) {
-
-		List<Account> list = accountRepository.findAll();
-
-		mv.addObject("list", list);
+		session.invalidate();
 
 		mv.setViewName("top");
 		return mv;
@@ -121,10 +117,7 @@ public class AccountController {
 	@RequestMapping("/logout")
 	public ModelAndView logout(ModelAndView mv) {
 
-		session.invalidate();
-
-		mv.setViewName("top");
-		return mv;
+		return index(mv);
 	}
 
 }
