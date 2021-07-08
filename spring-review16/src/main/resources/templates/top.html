@@ -6,16 +6,19 @@
 </head>
 <body>
 <h1>TABETELL</h1>
-<div th:if="${nickname == ''}">
+<div th:if="${nickname == null}">
 ようこそゲストさん<br>
 </div>
-<div th:if="${nickname != ''}">
+
+<div th:unless="${nickname == null}">
 ようこそ<a th:text="${nickname}"></a>さん<br>
 </div>
 
 
 <a href="/login">ログイン</a>
-<a>　</a>
+<a> </a>
+<a href="/logout">ログアウト</a>
+<a> </a>
 <a href="/adduser">新規登録</a><br>
 <a href="/addstore">お店登録</a>
 
