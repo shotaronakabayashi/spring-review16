@@ -8,6 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class StoreController {
 
+
+
 	//店舗登録をクリックされた
 	@GetMapping("/addstore")
 	public ModelAndView addStore(ModelAndView mv) {
