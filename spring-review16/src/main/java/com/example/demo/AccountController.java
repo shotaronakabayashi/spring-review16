@@ -107,7 +107,8 @@ public class AccountController {
 					mv.addObject("message", "ニックネームとパスワードが一致しません。");
 					mv.setViewName("login");
 				}
-			} else {
+			}
+			else {
 				mv.addObject("message", "ニックネームとパスワードが一致しません。");
 				mv.setViewName("login");
 			}
