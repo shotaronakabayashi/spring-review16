@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+
 
 @Controller
 public class StoreController {
@@ -58,7 +62,15 @@ public class StoreController {
 		Store store = new Store(name, categorycode1, categorycode2, categorycode3, address, tel, budget, time,scean,message);
 		storeRepository.saveAndFlush(store);
 
-		mv.addObject("code", store.getCode());
+		//コードの取得
+		Store store2 = null;
+		Optional<Store> list = storeRepository.findByName(name);
+		if (list.isEmpty() == false) {
+			store2 = list.get();
+		}
+
+
+		mv.addObject("code", store2.getCode());
 		mv.addObject("count", count);
 		mv.setViewName("addmenu");
 		return mv;
