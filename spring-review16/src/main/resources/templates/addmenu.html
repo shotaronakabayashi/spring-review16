@@ -9,13 +9,7 @@
 <h2>メニュー登録</h2>
 <br>
 
-<div th:if="${count == null}">
-0:メニュー登録完了
-</div>
-
-<div th:if="${count == null}">
 <a th:text="${count}"></a>:メニュー登録完了<br>
-</div>
 
 <form action="/addmenu" method="POST">
 <input type="hidden" value="${count}" name="count">
