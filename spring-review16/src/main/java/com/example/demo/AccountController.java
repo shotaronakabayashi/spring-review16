@@ -66,6 +66,8 @@ public class AccountController {
 
 		mv.setViewName("login");
 		return mv;
+
+
 	}
 
 	//ログイン情報を入力してログインボタンが押された
