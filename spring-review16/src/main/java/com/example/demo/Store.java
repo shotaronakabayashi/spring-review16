@@ -26,7 +26,7 @@ public class Store {
 	private int budget;
 	private int time;
 	private int scean;
-	private String messege;
+	private String message;
 	private int rank;
 
 
@@ -34,7 +34,7 @@ public class Store {
 	public Store () {
 	}
 
-	public Store (String name, int categorycode1, int categorycode2, int categorycode3, String address, String tel, int budget, int time, int scene) {
+	public Store (String name, int categorycode1, int categorycode2, int categorycode3, String address, String tel, int budget, int time, int scene, String message) {
 		this.name = name;
 		this.categorycode1 = categorycode1;
 		this.categorycode2 = categorycode2;
@@ -44,6 +44,7 @@ public class Store {
 		this.budget = budget;
 		this.time = time;
 		this.scean = scene;
+		this.message = message;
 	}
 
 
@@ -135,11 +136,11 @@ public class Store {
 	}
 
 	public String getMessege() {
-		return messege;
+		return message;
 	}
 
 	public void setMessege(String messege) {
-		this.messege = messege;
+		this.message = messege;
 	}
 
 	public int getRank() {

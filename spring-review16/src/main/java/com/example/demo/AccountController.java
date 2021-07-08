@@ -106,4 +106,34 @@ public class AccountController {
 		}
 		return mv;
 	}
+
+
+	//ログアウト
+	@RequestMapping("/logout")
+	public ModelAndView logout(ModelAndView mv) {
+
+
+		mv.setViewName("top");
+		return mv;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

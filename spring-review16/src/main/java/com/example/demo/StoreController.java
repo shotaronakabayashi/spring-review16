@@ -27,16 +27,25 @@ public class StoreController {
 	@PostMapping("/addstore")
 	public ModelAndView addStore2(
 			@RequestParam ("name") String name,
-			@RequestParam ("categorycode1") String categorycode1,
-			@RequestParam ("categorycode2") String categorycode2,
-			@RequestParam ("categorycode3") String categorycode3,
+			@RequestParam ("categorycode1") int categorycode1,
+			@RequestParam ("categorycode2") int categorycode2,
+			@RequestParam ("categorycode3") int categorycode3,
 			@RequestParam ("address") String address,
 			@RequestParam ("tel") String tel,
-			@RequestParam ("budget") String budget,
+			@RequestParam ("budget") int budget,
+			@RequestParam("time1") int time1,
+			@RequestParam("time2") int time2,
+			@RequestParam("time3") int time3,
+			@RequestParam("scean1") int scean1,
+			@RequestParam("scean2") int scean2,
+			@RequestParam("scean3") int scean3,
 			@RequestParam ("message") String message,
 			ModelAndView mv) {
 
-		Store store = new Store();
+		int time = 100*time1 + 10*time2 + time3;
+		int scean = 100*scean3 + 10*scean2 + scean3;
+
+		Store store = new Store(name, categorycode1, categorycode2, categorycode3, address, tel, budget, time,scean,message);
 		//追加
 		storeRepository.saveAndFlush(store);
 
