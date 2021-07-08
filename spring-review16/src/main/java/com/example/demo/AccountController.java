@@ -28,7 +28,7 @@ public class AccountController {
 	//トップページを表示
 	@RequestMapping("/")
 	public ModelAndView index(ModelAndView mv) {
-		session.invalidate();
+
 
 		mv.setViewName("top");
 		return mv;
@@ -117,7 +117,9 @@ public class AccountController {
 	@RequestMapping("/logout")
 	public ModelAndView logout(ModelAndView mv) {
 
-		return index(mv);
+		session.invalidate();
+		mv.setViewName("top");
+		return mv;
 	}
 
 }
