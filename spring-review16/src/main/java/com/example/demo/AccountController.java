@@ -3,6 +3,8 @@ package com.example.demo;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,10 @@ public class AccountController {
 
 	@Autowired
 	StoreRepository storeRepository;
+
+	@Autowired
+	HttpSession session;
+
 
 	//トップページを表示
 	@RequestMapping("/")
@@ -79,6 +85,7 @@ public class AccountController {
 			@RequestParam("password") String password,
 			ModelAndView mv) {
 
+
 		//未入力の場合のエラー処理
 		if (nickname == null || nickname.length() == 0 || password == null || password.length() == 0) {
 			mv.addObject("message", "ニックネームとパスワードを入力してください");
@@ -93,7 +100,8 @@ public class AccountController {
 				account = list.get();
 
 				if (password.equals(account.getPassword() ) ){
-					mv.addObject("nickname", nickname);
+
+					session.setAttribute("account", account);
 					mv.setViewName("top");
 				} else {
 					mv.addObject("message", "ニックネームとパスワードが一致しません。");
@@ -104,6 +112,7 @@ public class AccountController {
 				mv.setViewName("login");
 			}
 		}
+
 		return mv;
 	}
 
@@ -112,6 +121,7 @@ public class AccountController {
 	@RequestMapping("/logout")
 	public ModelAndView logout(ModelAndView mv) {
 
+		session.invalidate();
 
 		mv.setViewName("top");
 		return mv;
