@@ -32,6 +32,8 @@ public class AccountController {
 		return mv;
 	}
 
+
+
 	// 新規会員登録がクリックされた
 	@GetMapping("/adduser")
 	public ModelAndView adduser(ModelAndView mv) {
@@ -60,14 +62,14 @@ public class AccountController {
 		return mv;
 	}
 
+
+
 	//ログインがクリックされた
 	@GetMapping("/login")
 	public ModelAndView login(ModelAndView mv) {
 
 		mv.setViewName("login");
 		return mv;
-
-
 	}
 
 	//ログイン情報を入力してログインボタンが押された
@@ -77,7 +79,6 @@ public class AccountController {
 			@RequestParam("password") String password,
 			ModelAndView mv) {
 
-		int flag=0;
 		//未入力の場合のエラー処理
 		if (nickname == null || nickname.length() == 0 || password == null || password.length() == 0) {
 			mv.addObject("message", "ニックネームとパスワードを入力してください");

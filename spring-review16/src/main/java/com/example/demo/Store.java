@@ -18,20 +18,37 @@ public class Store {
 	private int code;
 
 	private String name;
-	private String address;
-	private String tel;
 	private int categorycode1;
 	private int categorycode2;
 	private int categorycode3;
+	private String address;
+	private String tel;
+	private int budget;
 	private int time;
 	private int scean;
-	private int budget;
 	private String messege;
 	private int rank;
 
-	public Store () {
 
+	//コンストラクタ
+	public Store () {
 	}
+
+	public Store (String name, int categorycode1, int categorycode2, int categorycode3, String address, String tel, int budget, int time, int scene) {
+		this.name = name;
+		this.categorycode1 = categorycode1;
+		this.categorycode2 = categorycode2;
+		this.categorycode3 = categorycode3;
+		this.address = address;
+		this.tel = tel;
+		this.budget = budget;
+		this.time = time;
+		this.scean = scene;
+	}
+
+
+
+
 
 	public Store (int code) {
 
