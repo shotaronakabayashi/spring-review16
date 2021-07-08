@@ -97,7 +97,7 @@ public class AccountController {
 
 				if (password.equals(account.getPassword() ) ){
 
-					session.setAttribute("account", account);
+					session.setAttribute("nickname", account.getNickname());
 					mv.setViewName("top");
 				} else {
 					mv.addObject("message", "ニックネームとパスワードが一致しません。");
