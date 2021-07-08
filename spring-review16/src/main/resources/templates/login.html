@@ -5,10 +5,10 @@
 <title>ログイン</title>
 </head>
 <body>
-<a href="/top">Top</a>
+<a href="/">Top</a>
 <form action="/login" method="post">
     <input type="text" name="nickname" placeholder="ニックネーム">
-	<input type="text" name="email" placeholder="メールアドレス">
+	<input type="text" name="password" placeholder="パスワード">
 	<input type="submit" value="ログイン">
 	<br>
 	<span th:text="${message}" style="color:red"></span>
