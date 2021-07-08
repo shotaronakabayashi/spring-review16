@@ -8,13 +8,26 @@
 <a href="/">Top</a>
 <h2>メニュー登録</h2>
 <br>
-<form action="/addstore" method="POST">
+
+<div th:if="${count == null}">
+0:メニュー登録完了
+</div>
+
+<div th:if="${count == null}">
+<a th:text="${count}"></a>:メニュー登録完了<br>
+</div>
+
+<form action="/addmenu" method="POST">
+<input type="hidden" value="${count}" name="count">
+<input type="hidden" value="${menucode}" name="menucode">
 
 <a>メニュー名　　　　 　  </a><input type="text" name="menuname">
 
 <a>値段　</a><input type="text" name="categorycode1">
+<a>　</a>
 
 <input type="submit" value="メニュー登録へ">
 </form>
+<a href="/">終了</a>
 </body>
 </html>
