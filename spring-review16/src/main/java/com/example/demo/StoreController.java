@@ -34,24 +34,28 @@ public class StoreController {
 			@RequestParam ("address") String address,
 			@RequestParam ("tel") String tel,
 			@RequestParam ("budget") int budget,
-			@RequestParam("time1") int time1,
-			@RequestParam("time2") int time2,
-			@RequestParam("time3") int time3,
-			@RequestParam("scean1") int scean1,
-			@RequestParam("scean2") int scean2,
-			@RequestParam("scean3") int scean3,
+			@RequestParam(name = "time1", defaultValue="0") int time1,
+			@RequestParam(name = "time2", defaultValue="0") int time2,
+			@RequestParam(name = "time3", defaultValue="0") int time3,
+			@RequestParam(name = "scean1", defaultValue="0") int scean1,
+			@RequestParam(name = "scean2", defaultValue="0") int scean2,
+			@RequestParam(name = "scean3", defaultValue="0") int scean3,
 			@RequestParam ("message") String message,
 			ModelAndView mv) {
 
 		int count = 0;		//何回メニューを登録したかの初期値
 
-		int time = 100*time1 + 10*time2 + time3;
-		int scean = 100*scean3 + 10*scean2 + scean3;
+		String time0 = ""+ time1 + time2 + time3;
+		String scean0 = "" + 100*scean3 + 10*scean2 + scean3;
+
+		int time = Integer.parseInt(time0);
+		int scean = Integer.parseInt(scean0);
 
 		//追加
 		Store store = new Store(name, categorycode1, categorycode2, categorycode3, address, tel, budget, time,scean,message);
 		storeRepository.saveAndFlush(store);
 
+		mv.addObject("code", store.getCode());
 		mv.addObject("count", count);
 		mv.setViewName("addmenu");
 		return mv;
@@ -67,6 +71,9 @@ public class StoreController {
 			ModelAndView mv ) {
 
 		count++;
+
+
+
 
 		mv.addObject("count", count);
 		mv.setViewName("addmenu");
