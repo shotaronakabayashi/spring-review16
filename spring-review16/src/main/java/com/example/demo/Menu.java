@@ -1,9 +1,16 @@
 package com.example.demo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="menu")
 public class Menu {
 
 
 	//フィールド
+	@Id
 	private int menucode;
 	private String menuname;
 	private int menuprice;

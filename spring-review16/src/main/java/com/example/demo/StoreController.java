@@ -50,21 +50,9 @@ public class StoreController {
 		//追加
 		storeRepository.saveAndFlush(store);
 
-		mv.setViewName("top");
-		return mv;
-	}
-
-
-	//メニュー追加がクリックされた
-	@GetMapping("/addmenu")
-	public ModelAndView addmenu(ModelAndView mv ) {
-
-		int count = 0;
-		mv.addObject("count", count);
 		mv.setViewName("addmenu");
 		return mv;
 	}
-
 
 	//メニュー情報が入力されて登録するが押された
 	@PostMapping("/addmenu")
