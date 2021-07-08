@@ -14,6 +14,9 @@ public class StoreController {
 	@Autowired
 	StoreRepository storeRepository;
 
+	@Autowired
+	MenuRepository menurepository;
+
 
 
 	//店舗登録をクリックされた
@@ -46,7 +49,7 @@ public class StoreController {
 		int count = 0;		//何回メニューを登録したかの初期値
 
 		String time0 = ""+ time1 + time2 + time3;
-		String scean0 = "" + 100*scean3 + 10*scean2 + scean3;
+		String scean0 = "" + scean3 + scean2 + scean3;
 
 		int time = Integer.parseInt(time0);
 		int scean = Integer.parseInt(scean0);
@@ -65,16 +68,21 @@ public class StoreController {
 	//メニュー情報が入力されて登録するが押された
 	@RequestMapping("/addmenu")
 	public ModelAndView addmenu2 (
+			@RequestParam("code") int code,
 			@RequestParam ("menuname") String menuname,
 			@RequestParam("menuprice") int menuprice,
 			@RequestParam("count") int count,
 			ModelAndView mv ) {
 
+		//何回メニューを登録したか
 		count++;
 
+		//メニューを登録
+		Menu menu = new Menu(code, menuname, menuprice);
 
+		menurepository.saveAndFlush(menu);
 
-
+		mv.addObject("code", code);
 		mv.addObject("count", count);
 		mv.setViewName("addmenu");
 		return mv;
