@@ -7,12 +7,12 @@
 <body>
 <h1>TABETELL</h1>
 
-<div th:if="${nickname == null}">
+<div th:if="${session.nickname == null}">
 ようこそゲストさん<br>
 </div>
 
-<div th:unless="${nickname == null}">
-ようこそ<a th:text="${nickname}"></a>さん<br>
+<div th:unless="${session.nickname == null}">
+ようこそ<a th:text="${session.nickname}"></a>さん<br>
 </div>
 
 <a href="/login">ログイン</a>
