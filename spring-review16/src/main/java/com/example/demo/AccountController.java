@@ -28,6 +28,9 @@ public class AccountController {
 	//トップページを表示
 	@RequestMapping("/")
 	public ModelAndView index(ModelAndView mv) {
+		
+		
+		
 
 
 		mv.setViewName("top");
