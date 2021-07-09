@@ -10,4 +10,6 @@ public interface StoreRepository extends JpaRepository<Store, Integer>{
 
 	List<Store> findByNameLike(String keyword);
 
+	List<Store> findByCategory(String categorycode1);
+
 }
