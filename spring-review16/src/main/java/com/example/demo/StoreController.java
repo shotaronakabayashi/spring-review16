@@ -104,6 +104,8 @@ public class StoreController {
 	}
 
 
+	
+	
 	//写真追加をするがクリックされた
 	@GetMapping("/addpicture")
 	public ModelAndView addpicture (
