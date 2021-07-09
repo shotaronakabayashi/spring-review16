@@ -3,18 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <title>写真登録</title>
-<style>
-#preview img {
-  width: 200px;
-  margin: 10px;
-  border: solid 1px silver;
-}
-</style>
 </head>
 <body>
 <a href="/">Top</a>
 <h2>写真登録</h2>
 <br>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+
+$(function(){
+	  $('#myfile').change(function(e){
+	    //ファイルオブジェクトを取得する
+	    var file = e.target.files[0];
+	    var reader = new FileReader();
+
+	    //画像でない場合は処理終了
+	    if(file.type.indexOf("image") < 0){
+	      alert("画像ファイルを指定してください。");
+	      return false;
+	    }
+
+	    //アップロードした画像を設定する
+	    reader.onload = (function(file){
+	      return function(e){
+	        $("#img1").attr("src", e.target.result);
+	        $("#img1").attr("title", file.name);
+	      };
+	    })(file);
+	    reader.readAsDataURL(file);
+
+	  });
+	});
+
+</script>
+
+
 <a th:text="${code}"></a>
 <a th:text="${count}"></a>:枚写真登録完了<br>
 
@@ -22,54 +45,37 @@
 <input type="hidden" th:value="${count}" th:name="count">
 <input type="hidden" th:value="${code}" th:name="code">
 
-<a>ファイル選択　　　 　 </a> <input type="file" name="pictureurl" enctype="multipart/form-data" accept="image/jpeg, image/png" required>
-
-
+<a>ファイル選択　　　 　 </a> <input type="file" id="myfile" accept="image/jpeg" required>
+<br>
+<img id="img1" style="width:300px;height:300px;"/>
 
 <script>
-function previewFile(file) {
-	  // プレビュー画像を追加する要素
-	  const preview = document.getElementById('preview');
+function getBase64(){
+  //img要素オブジェクトを取得する
+  var obj = document.getElementById("img1");
 
-	  // FileReaderオブジェクトを作成
-	  const reader = new FileReader();
+  //canvas要素を生成してimg要素を反映する
+  var cvs = document.createElement('canvas');
+  cvs.width  = obj.width;
+  cvs.height = obj.height;
+  var ctx = cvs.getContext('2d');
+  ctx.drawImage(obj, 0, 0);
 
-	  // ファイルが読み込まれたときに実行する
-	  reader.onload = function (e) {
-	    const imageUrl = e.target.result; // 画像のURLはevent.target.resultで呼び出せる
-	    const img = document.createElement("img"); // img要素を作成
-	    img.src = imageUrl; // 画像のURLをimg要素にセット
-	    preview.appendChild(img); // #previewの中に追加
-	  }
+  //canvas要素をBase64化する
+  var data = cvs.toDataURL("image/jpeg");
 
-	  // いざファイルを読み込む
-	  reader.readAsDataURL(file);
-	}
-
-
-	// <input>でファイルが選択されたときの処理
-	const fileInput = document.getElementById('pictureurl');
-	const handleFileSelect = () => {
-	  const files = fileInput.files;
-	  for (let i = 0; i < files.length; i++) {
-	    previewFile(files[i]);
-	  }
-	}
-	fileInput.addEventListener('change', handleFileSelect);
-
-	// ファイルデータ
-	const file = document.getElementById("pictureurl").files[0];
-	// フォームデータを作成
-	const formData = new FormData();
-	// avatarというフィールド名でファイルを追加
-	formData.append("avatar", file);
-	// アップロード
-	fetch("/addpicture", { method: "POST", body: formData });
+  //d1要素に書き出す
+  document.getElementById("d1").innerText = data;
+  document.getElementById("pictureurl").value = data;
+}
+</script>
+<script>
 </script>
 
-
-
- <div id="preview"></div>
+<input type="button" id="btn1" value="ボタン" onclick="getBase64();">
+<div id="d1">
+</div><br>
+<input type="text" id="pictureurl" name="pictureurl">
 
 <input type="submit" value="写真を投稿する">
 </form>
