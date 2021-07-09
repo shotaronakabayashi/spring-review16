@@ -8,7 +8,7 @@
 <a href="/">Top</a>
 <h2>店舗登録</h2>
 <br>
-<form action="/addstore" method="POST">
+<form method="POST">
 
 <a>店舗名　　　　 　  </a><input type="text" name="name"><br>
 
@@ -49,9 +49,8 @@
                      　　
 <a>メッセージ</a><br><textarea name="message" cols="40" rows="8"></textarea><br>
 
-<a href="/addpicture">お店の写真を追加</a><br>
-
-<input type="submit" value="メニュー登録へ">
+　<input type="submit" onclick="multipleaction('/addpicture')" value="a">写真を登録する方はこちら
+  <input type="submit" onclick="multipleaction('/addstore')" value="b">メニュー登録へ
 </form>
 </body>
 </html>
