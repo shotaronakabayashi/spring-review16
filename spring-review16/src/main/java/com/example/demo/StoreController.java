@@ -80,23 +80,21 @@ public class StoreController {
 	//メニュー情報が入力されて登録するが押された
 	@RequestMapping("/addmenu")
 	public ModelAndView addmenu2 (
-			@RequestParam("menucode") int code,
+			@RequestParam("menucode") int menucode,
 			@RequestParam ("menuname") String menuname,
 			@RequestParam("menuprice") int menuprice,
 			@RequestParam("count") int count,
 			ModelAndView mv ) {
 
-
-
 		//何回メニューを登録したか
 		count++;
 
 		//メニューを登録
-		Menu menu = new Menu(code, menuname, menuprice);
+		Menu menu = new Menu(menucode, menuname, menuprice);
 
 		menurepository.saveAndFlush(menu);
 
-		mv.addObject("code", code);
+		mv.addObject("menucode", menucode);
 		mv.addObject("count", count);
 		mv.setViewName("addmenu");
 		return mv;
