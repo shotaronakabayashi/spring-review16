@@ -104,18 +104,49 @@ public class StoreController {
 	}
 
 
-	
-	
+
+
 	//写真追加をするがクリックされた
 	@GetMapping("/addpicture")
 	public ModelAndView addpicture (
+			@RequestParam ("name") String name,
+			@RequestParam ("categorycode1") String categorycode1,
+			@RequestParam ("categorycode2") String categorycode2,
+			@RequestParam ("categorycode3") String categorycode3,
+			@RequestParam ("address") String address,
+			@RequestParam ("tel") String tel,
+			@RequestParam ("budget") int budget,
+			@RequestParam(name = "time1", defaultValue="0") int time1,
+			@RequestParam(name = "time2", defaultValue="0") int time2,
+			@RequestParam(name = "time3", defaultValue="0") int time3,
+			@RequestParam(name = "scean1", defaultValue="0") int scean1,
+			@RequestParam(name = "scean2", defaultValue="0") int scean2,
+			@RequestParam(name = "scean3", defaultValue="0") int scean3,
+			@RequestParam ("message") String message,
 			@RequestParam("menucode") int picturecode,
 			ModelAndView mv) {
 
+		//何枚写真を送ったか
 		int count = 0;
 
-		mv.addObject("count", count);
+		//入力されたデータを返す
 		mv.addObject("code", picturecode);
+		mv.addObject("name",name );
+		mv.addObject("category1", categorycode1);
+		mv.addObject("category2", categorycode2);
+		mv.addObject("categorycode3", categorycode3);
+		mv.addObject("address", address);
+		mv.addObject("tel", tel);
+		mv.addObject("budget", budget);
+		mv.addObject("time1", time1);
+		mv.addObject("time2", time2);
+		mv.addObject("time3", time3);
+		mv.addObject("scean1", scean1);
+		mv.addObject("scean2", scean2);
+		mv.addObject("scean3", scean3);
+		mv.addObject("message", message);
+
+		mv.addObject("count", count);
 		mv.setViewName("addpicture");
 		return mv;
 	}
