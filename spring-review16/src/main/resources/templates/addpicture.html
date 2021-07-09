@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>写真登録</title>
+</head>
+<body>
+<a href="/">Top</a>
+<h2>写真登録</h2>
+<br>
+<a th:text="${code}"></a>
+<a th:text="${count}"></a>:枚写真登録完了<br>
+
+<form action="/addmenu" method="POST">
+<input type="hidden" th:value="${count}" th:name="count">
+<input type="hidden" th:value="${code}" th:name="menucode">
+
+<a>ファイル選択　　　 　 </a> <input type="file" name="example" accept="image/jpeg, image/png">
+
+<input type="submit" value="写真を投稿する">
+</form>
+<a href="/">終了</a>
+</body>
+</html>

@@ -2,21 +2,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>メニュー登録</title>
+<title>店舗登録</title>
 </head>
 <body>
 <a href="/">Top</a>
-<h2>メニュー登録</h2>
+<h2>店舗登録</h2>
 <br>
 <form action="/addstore" method="POST">
 
 <a>店舗名　　　　 　  </a><input type="text" name="name"><br>
 
-<a>店舗カテゴリー1　</a><input type="text" name="categorycode1"><br>
+<a>雰囲気 　</a><input type="checkbox" name="time1" value="わいわい">わいわい　　
+                     <input type="checkbox" name="time2" value="落ち着いた">落ち着いた　　
+                     <input type="checkbox" name="time3" value="おしゃれ">おしゃれ<br>
+                     <input type="checkbox" name="time1" value="昔ながらの">昔ながらの　　
+                     <input type="checkbox" name="time2" value="古民家">古民家　　
+                     <input type="checkbox" name="time3" value="隠れ家">隠れ家<br>
 
-<a>店舗カテゴリー2　</a><input type="text" name="categorycode2"><br>
 
-<a>店舗カテゴリー3　</a><input type="text" name="categorycode3"><br>
+<a>カテゴリー　</a><input type="checkbox" name="time1" value="和食">和食　　
+                     <input type="checkbox" name="time2" value="中華">中華　　
+                     <input type="checkbox" name="time3" value="イタリアン">イタリアン<br>
+                     <input type="checkbox" name="time1" value="ジャンクフード">ジャンクフード　　
+                     <input type="checkbox" name="time2" value="ファストフード">ファストフード　　
+                     <input type="checkbox" name="time3" value="ラーメン">ラーメン<br>
+                      <input type="checkbox" name="time1" value="すし">すし　　
+                     <input type="checkbox" name="time2" value="焼肉">焼肉　　
+                     <input type="checkbox" name="time3" value="定食">定食<br>
+
+
+<a>こだわり　</a><input type="text" name="categorycode3"><br>
 
 <a>住所　　　　　 　 </a><input type="text" name="address"><br>
 
@@ -33,6 +48,8 @@
                      <input type="checkbox" name="scean3" value="1">友人<br>
                      　　
 <a>メッセージ</a><br><textarea name="message" cols="40" rows="8"></textarea><br>
+
+<a href="/addpicture">お店の写真を追加</a><br>
 
 <input type="submit" value="メニュー登録へ">
 </form>
