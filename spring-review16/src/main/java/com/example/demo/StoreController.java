@@ -25,6 +25,7 @@ public class StoreController {
 	PictureRepository pictureRepository;
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//店舗登録をクリックされた
 	@GetMapping("/addstore")
@@ -34,7 +35,9 @@ public class StoreController {
 		return mv;
 	}
 
+
 	//店舗情報が入力されて登録ボタンが押された
+	//メニュー登録画面への遷移
 	@PostMapping("/addstore")
 	public ModelAndView addStore2(
 			@RequestParam ("name") String name,
@@ -75,21 +78,23 @@ public class StoreController {
 
 		mv.addObject("code", store2.getCode());
 		mv.addObject("count", count);
-		mv.setViewName("addmenu");
+		mv.setViewName("addmenu");				//メニュー登録画面に遷移
 		return mv;
 	}
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	//遷移後のメニューページ
 	//メニュー情報が入力されて登録するが押された
 	@RequestMapping("/addmenu")
 	public ModelAndView addmenu2 (
-			@RequestParam("menucode") int menucode,
+			@RequestParam("code") int menucode,
 			@RequestParam ("menuname") String menuname,
 			@RequestParam("menuprice") int menuprice,
 			@RequestParam("count") int count,
 			ModelAndView mv ) {
 
-		//何回メニューを登録したか
+		//何回メニューを登録したかのカウント変数
 		count++;
 
 		//メニューを登録
@@ -104,48 +109,19 @@ public class StoreController {
 	}
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	//メニュー登録画面から写真も追加するがクリックされた
 
-	//写真追加をするがクリックされた
 	@PostMapping("/addpicture")
 	public ModelAndView addpicture (
-			@RequestParam ("name") String name,
-			@RequestParam ("categorycode1") String categorycode1,
-			@RequestParam ("categorycode2") String categorycode2,
-			@RequestParam ("categorycode3") String categorycode3,
-			@RequestParam ("address") String address,
-			@RequestParam ("tel") String tel,
-			@RequestParam ("budget") int budget,
-			@RequestParam(name = "time1", defaultValue="0") int time1,
-			@RequestParam(name = "time2", defaultValue="0") int time2,
-			@RequestParam(name = "time3", defaultValue="0") int time3,
-			@RequestParam(name = "scean1", defaultValue="0") int scean1,
-			@RequestParam(name = "scean2", defaultValue="0") int scean2,
-			@RequestParam(name = "scean3", defaultValue="0") int scean3,
-			@RequestParam ("message") String message,
-			@RequestParam("menucode") int picturecode,
+			@RequestParam("code") int picturecode,
 			ModelAndView mv) {
 
 		//何枚写真を送ったか
 		int count = 0;
 
-		//入力されたデータを返す
 		mv.addObject("code", picturecode);
-		mv.addObject("name",name );
-		mv.addObject("category1", categorycode1);
-		mv.addObject("category2", categorycode2);
-		mv.addObject("categorycode3", categorycode3);
-		mv.addObject("address", address);
-		mv.addObject("tel", tel);
-		mv.addObject("budget", budget);
-		mv.addObject("time1", time1);
-		mv.addObject("time2", time2);
-		mv.addObject("time3", time3);
-		mv.addObject("scean1", scean1);
-		mv.addObject("scean2", scean2);
-		mv.addObject("scean3", scean3);
-		mv.addObject("message", message);
-
 		mv.addObject("count", count);
 		mv.setViewName("addpicture");
 		return mv;
@@ -155,7 +131,7 @@ public class StoreController {
 	//写真情報が入力されて登録ボタンが押された
 	@PostMapping("/addpicture/new")
 	public ModelAndView addpicture2 (
-			@RequestParam("picturecode") int picturecode,
+			@RequestParam("code") int picturecode,
 			@RequestParam("pictureurl") String pictureurl,
 			@RequestParam("count") int count,
 			ModelAndView mv) {
