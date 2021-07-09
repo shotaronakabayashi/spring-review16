@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>メニュー登録</title>
@@ -22,7 +22,7 @@
 
 <input type="submit" value="メニュー登録へ">
 </form>
-<a href="/addpicture">写真を登録する方はこちら</a>
+<a th:href="'/addpicture/'+${code}">写真を登録する方はこちら</a>
 <a href="/">終了</a>
 </body>
 </html>
