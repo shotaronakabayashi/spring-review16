@@ -19,7 +19,10 @@ public class StoreController {
 	StoreRepository storeRepository;
 
 	@Autowired
-	MenuRepository menurepository;
+	MenuRepository menuRepository;
+
+	@Autowired
+	PictureRepository pictureRepository;
 
 
 
@@ -92,7 +95,7 @@ public class StoreController {
 		//メニューを登録
 		Menu menu = new Menu(menucode, menuname, menuprice);
 
-		menurepository.saveAndFlush(menu);
+		menuRepository.saveAndFlush(menu);
 
 		mv.addObject("code", menucode);
 		mv.addObject("count", count);
@@ -101,21 +104,59 @@ public class StoreController {
 	}
 
 
-
-
-	//写真追加
-	@RequestMapping("/addpicture")
+	//写真追加をするがクリックされた
+	@GetMapping("/addpicture")
 	public ModelAndView addpicture (
-
+			@RequestParam("menucode") int picturecode,
 			ModelAndView mv) {
 
+		int count = 0;
 
+		mv.addObject("count", count);
+		mv.addObject("code", picturecode);
+		mv.setViewName("addpicture");
+		return mv;
+	}
+
+
+	//写真情報が入力されて登録ボタンが押された
+	public ModelAndView addpicture2 (
+			@RequestParam("picturecode") int picturecode,
+			@RequestParam("pictureurl") String pictureurl,
+			@RequestParam("count") int count,
+			ModelAndView mv) {
+
+		Picture picture = new Picture(picturecode, pictureurl);
+
+		pictureRepository.saveAndFlush(picture);
+
+		count++;
+
+		mv.addObject("code", picturecode);
+		mv.addObject("count", count);
+		mv.setViewName("addpicture");
 		return mv;
 	}
 
 
 
 
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
