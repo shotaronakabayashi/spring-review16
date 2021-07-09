@@ -18,9 +18,9 @@ public class Store {
 	private int code;
 
 	private String name;
-	private int categorycode1;
-	private int categorycode2;
-	private int categorycode3;
+	private String categorycode1;
+	private String categorycode2;
+	private String categorycode3;
 	private String address;
 	private String tel;
 	private int budget;
@@ -34,7 +34,7 @@ public class Store {
 	public Store () {
 	}
 
-	public Store (String name, int categorycode1, int categorycode2, int categorycode3, String address, String tel, int budget, int time, int scene, String message) {
+	public Store (String name, String categorycode1, String categorycode2, String categorycode3, String address, String tel, int budget, int time, int scene, String message) {
 		this.name = name;
 		this.categorycode1 = categorycode1;
 		this.categorycode2 = categorycode2;
@@ -87,27 +87,27 @@ public class Store {
 		this.tel = tel;
 	}
 
-	public int getCategorycode1() {
+	public String getCategorycode1() {
 		return categorycode1;
 	}
 
-	public void setCategorycode1(int categorycode1) {
+	public void setCategorycode1(String categorycode1) {
 		this.categorycode1 = categorycode1;
 	}
 
-	public int getCategorycode2() {
+	public String getCategorycode2() {
 		return categorycode2;
 	}
 
-	public void setCategorycode2(int categorycode2) {
+	public void setCategorycode2(String categorycode2) {
 		this.categorycode2 = categorycode2;
 	}
 
-	public int getCategorycode3() {
+	public String getCategorycode3() {
 		return categorycode3;
 	}
 
-	public void setCategorycode3(int categorycode3) {
+	public void setCategorycode3(String categorycode3) {
 		this.categorycode3 = categorycode3;
 	}
 
