@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -113,9 +114,9 @@ public class StoreController {
 
 	//メニュー登録画面から写真も追加するがクリックされた
 
-	@GetMapping("/addpicture")
+	@GetMapping("/addpicture/{code}")
 	public ModelAndView addpicture (
-			@RequestParam("code") int picturecode,
+			@PathVariable(name = "code") int picturecode,
 			ModelAndView mv) {
 
 		//何枚写真を送ったか
