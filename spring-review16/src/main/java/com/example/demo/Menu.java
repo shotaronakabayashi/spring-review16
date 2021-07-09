@@ -37,6 +37,10 @@ public class Menu {
 	}
 
 
+	public Menu (int code) {
+
+	}
+
 	//セッター・ゲッター
 
 
