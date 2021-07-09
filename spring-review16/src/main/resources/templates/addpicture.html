@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>写真登録</title>
+<style>
+#preview img {
+  width: 200px;
+  margin: 10px;
+  border: solid 1px silver;
+}
+</style>
 </head>
 <body>
 <a href="/">Top</a>
@@ -11,14 +18,62 @@
 <a th:text="${code}"></a>
 <a th:text="${count}"></a>:枚写真登録完了<br>
 
-<form action="/addmenu" method="POST">
+<form action="/addpicture" method="POST">
 <input type="hidden" th:value="${count}" th:name="count">
 <input type="hidden" th:value="${code}" th:name="code">
 
-<a>ファイル選択　　　 　 </a> <input type="file" name="example" accept="image/jpeg, image/png">
+<a>ファイル選択　　　 　 </a> <input type="file" name="pictureurl" enctype="multipart/form-data" accept="image/jpeg, image/png" required>
+
+
+
+<script>
+function previewFile(file) {
+	  // プレビュー画像を追加する要素
+	  const preview = document.getElementById('preview');
+
+	  // FileReaderオブジェクトを作成
+	  const reader = new FileReader();
+
+	  // ファイルが読み込まれたときに実行する
+	  reader.onload = function (e) {
+	    const imageUrl = e.target.result; // 画像のURLはevent.target.resultで呼び出せる
+	    const img = document.createElement("img"); // img要素を作成
+	    img.src = imageUrl; // 画像のURLをimg要素にセット
+	    preview.appendChild(img); // #previewの中に追加
+	  }
+
+	  // いざファイルを読み込む
+	  reader.readAsDataURL(file);
+	}
+
+
+	// <input>でファイルが選択されたときの処理
+	const fileInput = document.getElementById('pictureurl');
+	const handleFileSelect = () => {
+	  const files = fileInput.files;
+	  for (let i = 0; i < files.length; i++) {
+	    previewFile(files[i]);
+	  }
+	}
+	fileInput.addEventListener('change', handleFileSelect);
+
+	// ファイルデータ
+	const file = document.getElementById("pictureurl").files[0];
+	// フォームデータを作成
+	const formData = new FormData();
+	// avatarというフィールド名でファイルを追加
+	formData.append("avatar", file);
+	// アップロード
+	fetch("/addpicture", { method: "POST", body: formData });
+</script>
+
+
+
+ <div id="preview"></div>
 
 <input type="submit" value="写真を投稿する">
 </form>
 <a href="/">終了</a>
+
 </body>
 </html>
