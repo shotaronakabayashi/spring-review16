@@ -19,19 +19,12 @@ public class AccountController {
 	AccountRepository accountRepository;
 
 	@Autowired
-	StoreRepository storeRepository;
-
-	@Autowired
 	HttpSession session;
 
 
 	//トップページを表示
 	@RequestMapping("/")
 	public ModelAndView index(ModelAndView mv) {
-
-
-
-
 
 		mv.setViewName("top");
 		return mv;

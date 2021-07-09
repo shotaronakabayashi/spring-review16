@@ -133,7 +133,7 @@ public class StoreController {
 	@PostMapping("/addpicture")
 	public ModelAndView addpicture2 (
 			@RequestParam("code") int picturecode,
-			@RequestParam("pictureurl") String pictureurl,
+			@RequestParam("pictureurl") byte pictureurl,
 			@RequestParam("count") int count,
 			ModelAndView mv) {
 

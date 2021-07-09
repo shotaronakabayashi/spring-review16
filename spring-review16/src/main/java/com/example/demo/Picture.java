@@ -17,7 +17,7 @@ public class Picture {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int code;
 	private int picturecode;
-	private String pictureurl;
+	private byte pictureurl;
 
 
 	//コンストラクタ
@@ -25,7 +25,7 @@ public class Picture {
 
 	}
 
-	public Picture (int picturecode, String pictureurl) {
+	public Picture (int picturecode, byte pictureurl) {
 		this.picturecode = picturecode;
 		this.pictureurl = pictureurl;
 	}
@@ -44,10 +44,10 @@ public class Picture {
 	public void setPicturecode(int picturecode) {
 		this.picturecode = picturecode;
 	}
-	public String getPictureurl() {
+	public byte getPictureurl() {
 		return pictureurl;
 	}
-	public void setPictureurl(String pictureurl) {
+	public void setPictureurl(byte pictureurl) {
 		this.pictureurl = pictureurl;
 	}
 
