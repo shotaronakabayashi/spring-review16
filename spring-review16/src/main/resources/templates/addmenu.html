@@ -13,7 +13,7 @@
 
 <form action="/addmenu" method="POST">
 <input type="hidden" th:value="${count}" th:name="count">
-<input type="hidden" th:value="${code}" th:name="menucode">
+<input type="hidden" th:value="${code}" th:name="code">
 
 <a>メニュー名　　　　 　  </a><input type="text" name="menuname"><br>
 
@@ -22,6 +22,7 @@
 
 <input type="submit" value="メニュー登録へ">
 </form>
+<a href="/addpicture">写真を登録する方はこちら</a>
 <a href="/">終了</a>
 </body>
 </html>

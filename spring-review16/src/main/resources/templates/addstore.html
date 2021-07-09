@@ -8,49 +8,48 @@
 <a href="/">Top</a>
 <h2>店舗登録</h2>
 <br>
-<form method="POST">
+<form action="/addstore" method="POST">
 
-<a>店舗名　　　　 　  </a><input type="text" name="name" th:value="${name}"><br>
+<a>店舗名　　　　 　  </a><input type="text" name="name"><br>
 
-<a>雰囲気 　</a><p>  <input type="radio" name="categorycode1" value="わいわい" th:checked="${categorycode1} == 'わいわい'">わいわい　　
-                     <input type="radio" name="categorycode1" value="落ち着いた" th:checked="${categorycode1} == '落ち着いた'">落ち着いた　　
-                     <input type="radio" name="categorycode1" value="おしゃれ" th:checked="${categorycode1} == 'おしゃれ'">おしゃれ
-                     <input type="radio" name="categorycode1" value="昔ながらの" th:checked="${categorycode1} == '昔ながらの　'">昔ながらの　　
-                     <input type="radio" name="categorycode1" value="古民家" th:checked="${categorycode1} == '古民家'">古民家　　
-                     <input type="radio" name="categorycode1" value="隠れ家" th:checked="${categorycode1} == '隠れ家'">隠れ家
+<a>雰囲気 　</a><p>  <input type="radio" name="categorycode1" value="わいわい">わいわい　　
+                     <input type="radio" name="categorycode1" value="落ち着いた">落ち着いた　　
+                     <input type="radio" name="categorycode1" value="おしゃれ">おしゃれ
+                     <input type="radio" name="categorycode1" value="昔ながらの">昔ながらの　　
+                     <input type="radio" name="categorycode1" value="古民家">古民家　　
+                     <input type="radio" name="categorycode1" value="隠れ家">隠れ家
                 </p>
 
-<a>カテゴリー　</a><p><input type="radio" name="categorycode2" value="和食" th:checked="${categorycode2} == '和食'">和食　　
-                     <input type="radio" name="categorycode2" value="中華" th:checked="${categorycode2} == '中華'">中華　　
-                     <input type="radio" name="categorycode2" value="イタリアン" th:checked="${categorycode2} == 'イタリアン'">イタリアン
-                     <input type="radio" name="categorycode2" value="ジャンクフード" th:checked="${categorycode2} == 'ジャンクフード'">ジャンクフード　　
-                     <input type="radio" name="categorycode2" value="ファストフード" th:checked="${categorycode2} == 'ファストフード'">ファストフード　　
-                     <input type="radio" name="categorycode2" value="ラーメン" th:checked="${categorycode2} == 'ラーメン'">ラーメン
-                      <input type="radio" name="categorycode2" value="すし" th:checked="${categorycode2} == 'すし'">すし　　
-                     <input type="radio" name="categorycode2" value="焼肉" th:checked="${categorycode2} == '焼肉'">焼肉　　
-                     <input type="radio" name="categorycode2" value="定食" th:checked="${categorycode2} == '定食'">定食
+<a>カテゴリー　</a><p><input type="radio" name="categorycode2" value="和食">和食　　
+                     <input type="radio" name="categorycode2" value="中華">中華　　
+                     <input type="radio" name="categorycode2" value="イタリアン">イタリアン
+                     <input type="radio" name="categorycode2" value="ジャンクフード">ジャンクフード　　
+                     <input type="radio" name="categorycode2" value="ファストフード">ファストフード　　
+                     <input type="radio" name="categorycode2" value="ラーメン">ラーメン
+                      <input type="radio" name="categorycode2" value="すし">すし　　
+                     <input type="radio" name="categorycode2" value="焼肉">焼肉　　
+                     <input type="radio" name="categorycode2" value="定食">定食
                    </p>
 
-<a>こだわり　</a><input type="text" name="categorycode3"th:value="${categorycode3}"><br>
+<a>こだわり　</a><input type="text" name="categorycode3"><br>
 
-<a>住所　　　　　 　 </a><input type="text" name="address" th:value="${address}"><br>
+<a>住所　　　　　 　 </a><input type="text" name="address"><br>
 
-<a>電話番号　　　  　 </a><input type="text" name="tel" th:value="${tel}"><br>
+<a>電話番号　　　  　 </a><input type="text" name="tel"><br>
 
-<a>予算　　　　　 　 </a><input type="text" name="budget" th:value="${budget}"><br>
+<a>予算　　　　　 　 </a><input type="text" name="budget"><br>
 
-<a>時間              </a><input type="checkbox" name="time1" value="1" th:checked="${time1} == '1'">朝　　
-                     <input type="checkbox" name="time2" value="1" th:checked="${time2} == '1'">昼　　
-                     <input type="checkbox" name="time3" value="1" th:checked="${time3} == '1'">夜<br>
+<a>時間              </a><input type="checkbox" name="time1" value="1">朝　　
+                     <input type="checkbox" name="time2" value="1">昼　　
+                     <input type="checkbox" name="time3" value="1">夜<br>
 
-<a>シーン            </a><input type="checkbox" name="scean1" value="1" th:checked="${scean1} == '1'">ファミリー　　
-                     <input type="checkbox" name="scean2" value="1"th:checked="${scean2} == '1'">デート　　
-                     <input type="checkbox" name="scean3" value="1" th:checked="${scean3} == '1'">友人<br>
+<a>シーン            </a><input type="checkbox" name="scean1" value="1">ファミリー　　
+                     <input type="checkbox" name="scean2" value="1">デート　　
+                     <input type="checkbox" name="scean3" value="1">友人<br>
                      　　
-<a>メッセージ</a><br><textarea name="message" cols="40" rows="8" th:value="${message}"></textarea><br>
+<a>メッセージ</a><br><textarea name="message" cols="40" rows="8"></textarea><br>
 
-　<input type="submit" onclick="multipleaction('/addpicture')" value="写真を登録する方はこちら">
-  <input type="submit" onclick="multipleaction('/addstore')" value="メニュー登録へ">
+  <input type="submit" value="メニュー登録へ">
 </form>
 </body>
 </html>
