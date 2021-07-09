@@ -21,7 +21,6 @@ public class Menu {
 
 	//コンストラクタ
 	public Menu() {
-
 	}
 
 	public Menu (int menucode, String menuname, int menuprice) {
@@ -30,11 +29,28 @@ public class Menu {
 		this.menuprice = menuprice;
 	}
 
+	public Menu (int code, int menucode, String menuname, int menuprice) {
+		this.code = code;
+		this.menucode = menucode;
+		this.menuname = menuname;
+		this.menuprice = menuprice;
+	}
 
 
 	//セッター・ゲッター
+
+
+
 	public int getMenucode() {
 		return menucode;
+	}
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 	public void setMenucode(int menucode) {
