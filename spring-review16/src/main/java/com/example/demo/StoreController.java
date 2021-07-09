@@ -107,7 +107,7 @@ public class StoreController {
 
 
 	//写真追加をするがクリックされた
-	@GetMapping("/addpicture")
+	@PostMapping("/addpicture")
 	public ModelAndView addpicture (
 			@RequestParam ("name") String name,
 			@RequestParam ("categorycode1") String categorycode1,
@@ -153,6 +153,7 @@ public class StoreController {
 
 
 	//写真情報が入力されて登録ボタンが押された
+	@PostMapping("/addpicture/new")
 	public ModelAndView addpicture2 (
 			@RequestParam("picturecode") int picturecode,
 			@RequestParam("pictureurl") String pictureurl,
