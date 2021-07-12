@@ -47,7 +47,7 @@ $(function(){
 
 <a>ファイル選択　　　 　 </a> <input type="file" id="myfile" accept="image/jpeg" required>
 <br>
-<img id="img1" style="width:300px;height:300px;"/>
+<img id="img1"/>
 
 <script>
 
@@ -74,14 +74,14 @@ function getBase64(){
 <script>
 </script>
 
-<input type="button" id="btn1" value="ボタン" onclick="getBase64();">
+<input type="button" id="btn1" value="ボタン">
 <div id="d1">
 </div><br>
 <input type="text" id="pictureurl" name="pictureurl">
 <br>
 <img id="url">
 
-<input type="submit" value="写真を投稿する">
+<input type="submit" value="写真を投稿する" onclick="getBase64();">
 </form>
 <a href="/">終了</a>
 
