@@ -2,16 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>レビュー</title>
+<title>レビュー投稿</title>
 </head>
-<h1>レビュー</h1>
+<h1>レビュー投稿</h1>
 <body>
 <a href="/">Top</a>
 
-<div th:each="review:${reviewlist}">
-<p th:text="${review.name}"></p>
-<a th:text="${review.message}"></a>
-</div>
+<form action="/addreview" method="POST">
+<a th:text="${name}"></a>
+<a>レビュー</a><br><textarea name="message" cols="60" rows="10"></textarea><br>
 
+<input type="submit" value="投稿">
+</form>
 </body>
 </html>

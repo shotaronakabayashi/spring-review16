@@ -2,14 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>レビュー投稿</title>
+<title>レビュー</title>
 </head>
-<h1>レビュー投稿</h1>
+<h1>レビュー</h1>
 <body>
 <a href="/">Top</a>
 
-
-
+<div th:each="review:${reviewlist}">
+<p th:text="${review.name}"></p>
+<a th:text="${review.message}"></a>
+</div>
 
 </body>
 </html>
