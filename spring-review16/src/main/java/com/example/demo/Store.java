@@ -20,7 +20,6 @@ public class Store {
 	private String name;
 	private String categorycode1;
 	private String categorycode2;
-	private String categorycode3;
 	private String address;
 	private String tel;
 	private int budget;
@@ -34,11 +33,10 @@ public class Store {
 	public Store () {
 	}
 
-	public Store (String name, String categorycode1, String categorycode2, String categorycode3, String address, String tel, int budget, int time, int scene, String message) {
+	public Store (String name, String categorycode1, String categorycode2, String address, String tel, int budget, int time, int scene, String message) {
 		this.name = name;
 		this.categorycode1 = categorycode1;
 		this.categorycode2 = categorycode2;
-		this.categorycode3 = categorycode3;
 		this.address = address;
 		this.tel = tel;
 		this.budget = budget;
@@ -101,14 +99,6 @@ public class Store {
 
 	public void setCategorycode2(String categorycode2) {
 		this.categorycode2 = categorycode2;
-	}
-
-	public String getCategorycode3() {
-		return categorycode3;
-	}
-
-	public void setCategorycode3(String categorycode3) {
-		this.categorycode3 = categorycode3;
 	}
 
 	public int getTime() {

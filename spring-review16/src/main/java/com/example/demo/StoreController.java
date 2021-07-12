@@ -44,7 +44,6 @@ public class StoreController {
 			@RequestParam ("name") String name,
 			@RequestParam ("categorycode1") String categorycode1,
 			@RequestParam ("categorycode2") String categorycode2,
-			@RequestParam ("categorycode3") String categorycode3,
 			@RequestParam ("address") String address,
 			@RequestParam ("tel") String tel,
 			@RequestParam ("budget") int budget,
@@ -66,7 +65,7 @@ public class StoreController {
 		int scean = Integer.parseInt(scean0);
 
 		//追加
-		Store store = new Store(name, categorycode1, categorycode2, categorycode3, address, tel, budget, time,scean,message);
+		Store store = new Store(name, categorycode1, categorycode2, address, tel, budget, time,scean,message);
 		storeRepository.saveAndFlush(store);
 
 		//コードの取得

@@ -5,57 +5,18 @@
 <title>詳細検索</title>
 </head>
 <body>
-<input type="text" name="name"> 検索
+<form action="search/detail22" method="POST">
+<input type="text" name="keyword"> 検索
 <br>
-
-<a>カテゴリー</a>
-	<p>
-		<input type="radio" name="categorycode1" value="和食">和食　　
-        <input type="radio" name="categorycode1" value="中華">中華　　
-        <input type="radio" name="categorycode1" value="イタリアン">イタリアン
-        <input type="radio" name="categorycode1" value="ジャンクフード">ジャンクフード　　
-        <input type="radio" name="categorycode1" value="ファストフード">ファストフード　　
-        <input type="radio" name="categorycode1" value="ラーメン">ラーメン
-        <input type="radio" name="categorycode1" value="すし">すし　　
-        <input type="radio" name="categorycode1" value="焼肉">焼肉　　
-        <input type="radio" name="categorycode1" value="定食">定食
-	</p>
-
-<a>雰囲気</a>
-	<p>
-		<input type="radio" name="categorycode2" value="わいわい">わいわい　　
-		<input type="radio" name="categorycode2" value="落ち着いた">落ち着いた　　
-		<input type="radio" name="categorycode2" value="おしゃれ">おしゃれ　　
-		<input type="radio" name="categorycode2" value="昔ながらの">昔ながらの　　
-		<input type="radio" name="categorycode2" value="古民家">古民家　　
-		<input type="radio" name="categorycode2" value="隠れ家">隠れ家　　
-	</p>
-
-<a>時間</a>
-	<p>
-		<input type="checkbox" name="time1" value="1">モーニング　　
-		<input type="checkbox" name="time2" value="1">ランチ　　
-		<input type="checkbox" name="time3" value="1">ディナー　　
-	</p>
-
-<a>値段</a>
-	<p>
-		<input type="text" name="minprice">
-		　　～　　
-		<input type="text" name="maxprice">
-	</p>
 
 <a>場所</a>
 	<p>
 		<input type="text" name="address">
 	</p>
 
-<a>シーン</a>
-	<p>
-		<input type="checkbox" name="scean">ファミリー　　
-		<input type="checkbox" name="scean">デート　　
-		<input type="checkbox" name="scean">友人と
 
+<input type="submit" value="検索">
+</form>
 </body>
 </html>
 

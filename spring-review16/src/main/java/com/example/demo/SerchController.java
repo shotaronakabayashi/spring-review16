@@ -1,12 +1,12 @@
 package com.example.demo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,14 +43,11 @@ public class SerchController {
 		//３つのカテゴリーのどこに含まれているか照合して送信
 		List<Store> list1 = storeRepository.findByCategorycode1(category);
 		List<Store> list2 = storeRepository.findByCategorycode2(category);
-		List<Store> list3 = storeRepository.findByCategorycode3(category);
 
 		if (list1.isEmpty() == false) {
 			mv.addObject("result", list1);
 		} else if (list2.isEmpty() == false) {
 			mv.addObject("result", list2);
-		} else if (list3.isEmpty() == false) {
-			mv.addObject("result", list3);
 		}
 
 		mv.setViewName("result");
@@ -67,87 +64,70 @@ public class SerchController {
 		return mv;
 	}
 
+
 	//詳細検索
-	public ModelAndView SearchDetail(
-			@RequestParam("name") String name,
-			@RequestParam("categorycode1") String categorycode1,
-			@RequestParam("categorycode2") String categorycode2,
-			@RequestParam("categorycode3") String categorycode3,
-			@RequestMapping ModelAndView mv) {
+	@PostMapping("/search/detail22")
+	public ModelAndView SearchDetail2(
+//			@RequestParam("keyword") String keyword,
+//			@RequestParam("address") String address,
+//			@RequestParam("categorycode1") String categorycode1,
+//			@RequestParam("categorycode2") String categorycode2,
+//			@RequestParam(name="time1", defaultValue = "0" ) String time1,
+//			@RequestParam(name = "time2", defaultValue="0") int time2,
+//			@RequestParam(name = "time3", defaultValue="0") int time3,
+//			@RequestParam("price1") int price1,
+//			@RequestParam("price2") int price2,
+//			@RequestParam(name = "scean1", defaultValue="0") int scean1,
+//			@RequestParam(name = "scean2", defaultValue="0") int scean2,
+//			@RequestParam(name = "scean3", defaultValue="0") int scean3,
+			ModelAndView mv) {
 
-		List<Store> list = new ArrayList<>();
-		List<Store> list0 = new ArrayList<>();
+////		String time0 = "" + time1 + time2 + time3;
+////		String scean0 = "" + scean1 + scean2 + scean3;
+//
+//		int time = Integer.parseInt(time0);
+//		int scean = Integer.parseInt(scean0);
 
-		//カテゴリーの検索
-		List<Store> list1 = storeRepository.findByCategorycode1(categorycode1);
-		List<Store> list2 = storeRepository.findByCategorycode2(categorycode2);
-		List<Store> list3 = storeRepository.findByCategorycode3(categorycode3);
+//		List<Store> list = 	storeRepository.findByNameLikeAndAddressLikeAndCategorycode1AndCategorycode2AndTimeAndBudgetBetweenAndScean
+//		("%" + keyword + "%", "%" + address + "%",categorycode1,categorycode2,time, price1,price2, scean);
 
-		//時間帯の検索
 
-		//値段の検索
+//		List<Store> list = 	storeRepository.findByNameLikeAndAddressLikeAndCategorycode1AndCategorycode2AndTimeAndScean
+//				("%" + keyword + "%", "%" + address + "%",categorycode1,categorycode2,time,scean);
 
-		//場所の検索
+		//List<Store> list = storeRepository.findByNameLikeAndAddressLike("%" + keyword + "%", "%" + address + "%");
 
-		//シーンの検索
+		//mv.addObject("test", "aaaa");
+		//mv.addObject("result", list);
 
-		////カテゴリー１のみ選択された
-		//if ("".equals(categorycode2) && "".equals(categorycode3) ) {
-		//mv.addObject("list", list1);
-		//}
-		////カテゴリー2のみが選択された
-		//else if ("".equals(categorycode1) && "".equals(categorycode3) ) {
-		//mv.addObject("list", list2);
-		//}
-		////カテゴリー3のみが選択された
-		//else if ("".equals(categorycode1) && "".equals(categorycode2) ) {
-		//mv.addObject("list", list3);
-		//}
-		//
-		////カテゴリー1と2が選択された
-		//else if ("".equals(categorycode3) ) {
-		//for (Store a : list1) {
-		//	if (list2.contains(a) ) {
-		//		list.add(a);
-		//	}
-		//}
-		//mv.addObject("list", list);
-		//}
-		////カテゴリー２と３が選択された
-		//else if ("".equals(categorycode1)) {
-		//for (Store a : list2) {
-		//	if (list3.contains(a) ){
-		//		list.add(a);
-		//	}
-		//	mv.addObject("list", list);
-		//}
-		//}
-		////カテゴリー１と３が選択された
-		//else if ("".equals(categorycode2) ) {
-		//for (Store a : list1) {
-		//	if (list3.contains(a) ) {
-		//		list.add(a);
-		//	}
-		//}
-		//mv.addObject("list", list);
-		//}
-		////カテゴリー1と２と３が選択
-		//else {
-		//for (Store a : list1) {
-		//	if (list2.contains(a) ) {
-		//		list0.add(a);
-		//	}
-		//}
-		//for (Store a : list0) {
-		//	if (list3.contains(a) ) {
-		//		list.add(a);
-		//	}
-		//}
-		//mv.addObject("list", list);
-		//}
-		//
-		mv.setViewName("result");
+		mv.setViewName("top");
 		return mv;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
