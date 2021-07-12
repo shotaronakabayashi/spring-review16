@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>お店詳細</title>
+<style>
+
+*, *:before, *:after {
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.cp_cssslider {
+	width: 300px;
+	padding-top: 400px; /* 画像の高さ */
+	position: relative;
+	margin: 2em auto;
+
+}
+.cp_cssslider > img {
+	position: absolute;
+	left: 0;
+	top: 0;
+	transition: all 0.5s;
+	border-radius: 3px;
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+.cp_cssslider input[name='cp_switch'] {
+	display: none;
+}
+
+/* サムネイル */
+.cp_cssslider label {
+	margin: 15px 5px 0 5px;
+	border: 2px solid #ffffff;
+	display: inline-block;
+	cursor: pointer;
+	transition: all 0.5s ease;
+	opacity: 0.6;
+	border-radius: 3px;
+}
+.cp_cssslider label:hover {
+	opacity: 0.9;
+}
+.cp_cssslider label img {
+	display: block;
+	width: 40px;
+	border-radius: 2px;
+}
+.cp_cssslider input[name='cp_switch']:checked + label {
+	border: 2px solid #FF7043;
+	opacity: 1;
+}
+.cp_cssslider input[name='cp_switch'] ~ img {
+	opacity: 0;
+}
+.cp_cssslider input[name='cp_switch']:checked + label + img {
+	opacity: 1;
+}
+
+</style>
+</head>
+<body>
+<a href="/">Top</a>
+<h1>お店詳細</h1>
+<a href="/addreview">レビューする</a>
+
+<a th:text="${name}"></a>
+
+<div class="cp_cssslider">
+    <div th:each="pic:${picturelist}">
+	<input type="radio" name="cp_switch" id="'photo'+${count}" checked/>
+	<label for="'photo'+${count}"><img th:src="${pic.pictureurl}" /></label>
+	<img th:src="${pic.pictureurl}" />
+	</div>
+</div>
+
+<div>
+<a>カテゴリー</a>
+<a>雰囲気</a>
+</div>
+
+
+<div>
+<h3>お店概要</h3>
+<a>住所</a><p th:text="${address}"></p>
+<a>時間</a>
+<div th:each="times:${timelist}">
+<a th:text="times.time"></a>
+</div>
+
+<h4>メニュー</h4>
+<div th:each="menu:${menulist}">
+<p th:text="${menu.menuname}"></p>
+<a>値段</a><p th:text="${menu.menuprice}"></p>
+<a>--------------------------------------------------------------</a>
+</div>
+
+<div>
+<h4>ユーザレビュー</h4>
+<a th:text="review"></a>
+<a href="/review">もっとみる</a>
+</div>
+
+</div>
+
+</body>
+</html>

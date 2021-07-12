@@ -16,7 +16,7 @@ public class TestController {
 	@RequestMapping("/test")
 	public ModelAndView test (ModelAndView mv) {
 
-		int code = 13;
+		int code = 20;
 
 		Picture picture = null;
 

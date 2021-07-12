@@ -8,6 +8,7 @@
 <a href="/">Top</a>
 <h2>写真登録</h2>
 <br>
+<a>最大5枚まで登録できます。</a>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 
@@ -41,6 +42,11 @@ $(function(){
 <a th:text="${code}"></a>
 <a th:text="${count}"></a>:枚写真登録完了<br>
 
+<div th:if="${count == 5}">
+<a style="color:red">これ以上登録できません。</a>
+</div>
+
+<div th:if="${count < 5}">
 <form action="/addpicture" method="POST">
 <input type="hidden" th:value="${count}" th:name="count">
 <input type="hidden" th:value="${code}" th:name="code">
@@ -66,23 +72,21 @@ function getBase64(){
   var data = cvs.toDataURL("image/jpeg");
 
   //d1要素に書き出す
-  document.getElementById("d1").innerText = data;
+
   document.getElementById("pictureurl").value = data;
-  document.getElementById("url").src = data;
+
 }
 </script>
-<script>
-</script>
 
-<input type="button" id="btn1" value="ボタン">
-<div id="d1">
-</div><br>
-<input type="text" id="pictureurl" name="pictureurl">
+
+
+<input type="hidden" id="pictureurl" th:name="pictureurl">
 <br>
-<img id="url">
+
 
 <input type="submit" value="写真を投稿する" onclick="getBase64();">
 </form>
+</div>
 <a href="/">終了</a>
 
 </body>
