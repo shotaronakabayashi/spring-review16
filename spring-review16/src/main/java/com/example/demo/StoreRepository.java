@@ -27,13 +27,7 @@ public interface StoreRepository extends JpaRepository<Store, Integer>{
 	List<Store> findByBudgetBetween(int price1, int price2);
 
 	//詳細検索
-	List<Store> findByNameLikeAndAddressLikeAndCategorycode1AndCategorycode2AndTimeAndBudgetBetweenAndScean
-	(String keyword, String address, String categorycode1, String categorycode2, int time, int price1,int price2, int scean);
+	List<Store> findByNameLikeAndAddressLikeAndCategorycode1AndCategorycode2AndTimeAndScean (String keyword, String address, String categorycode1, String categorycode2, int time,int scean);
 
-	List<Store> findByNameLikeAndAddressLikeAndCategorycode1AndCategorycode2AndTimeAndScean
-	(String keyword, String address, String categorycode1, String categorycode2, int time,int scean);
-
-
-	List<Store> findByNameLikeAndAddressLikeAndCategorycode1AndCategorycode2(String name, String address, String categorycode1, String categorycode2);
 
 }
