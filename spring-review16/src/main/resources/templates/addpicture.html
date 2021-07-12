@@ -68,6 +68,7 @@ function getBase64(){
   //d1要素に書き出す
   document.getElementById("d1").innerText = data;
   document.getElementById("pictureurl").value = data;
+  document.getElementById("url").src = data;
 }
 </script>
 <script>
@@ -77,6 +78,8 @@ function getBase64(){
 <div id="d1">
 </div><br>
 <input type="text" id="pictureurl" name="pictureurl">
+<br>
+<img id="url">
 
 <input type="submit" value="写真を投稿する">
 </form>
