@@ -83,10 +83,57 @@
 <div>
 <h3>お店概要</h3>
 <a>住所</a><p th:text="${address}"></p>
+
 <a>時間</a>
-<div th:each="times:${timelist}">
-<a th:text="times.time"></a>
+<a th:text="${time}"></a>
+<div th:if="${time == 1}">
+<a>🌙</a>
 </div>
+<div th:if="${time == 11}">
+<a>🕛🌙</a>
+</div>
+<div th:if="${time == 111}">
+<a>🌞🕛🌙</a>
+</div>
+<div th:if="${time == 100}">
+<a>🌞</a>
+</div>
+<div th:if="${time == 110}">
+<a>🌞🕛</a>
+</div>
+<div th:if="${time == 101}">
+<a>🌞🌙</a>
+</div>
+<div th:if="${time == 10}">
+<a>🕛</a>
+</div>
+
+
+<a>シーン</a>
+<a th:text="${scean}"></a>
+<div th:if="${scean == 1}">
+<a>🧑‍🤝‍🧑</a>
+</div>
+<div th:if="${scean == 10}">
+<a>💏</a>
+</div>
+<div th:if="${scean == 100}">
+<a>👨‍👩‍👦</a>
+</div>
+<div th:if="${scean == 11}">
+<a>💏🧑‍🤝‍🧑</a>
+</div>
+<div th:if="${scean == 111}">
+<a>👨‍👩‍👦💏🧑‍🤝‍🧑</a>
+</div>
+<div th:if="${scean == 101}">
+<a>👨‍👩‍👦🧑‍🤝‍🧑</a>
+</div>
+<div th:if="${scean == 110}">
+<a>👨‍👩‍👦💏</a>
+</div>
+
+
 
 <h4>メニュー</h4>
 <div th:each="menu:${menulist}">

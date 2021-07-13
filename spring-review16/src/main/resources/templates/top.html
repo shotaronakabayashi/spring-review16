@@ -15,9 +15,11 @@
 ようこそ<a th:text="${session.nickname}"></a>さん<br>
 </div>
 
-<a href="/login">ログイン</a>
+<div th:if="${session.nickname == null}">
+<a href="/login">ログイン</a></div>
 <a> </a>
-<a href="/logout">ログアウト</a>
+<div th:unless="${session.nickname == null}">
+<a href="/logout">ログアウト</a></div>
 <a> </a>
 <a href="/adduser">新規登録</a><br>
 <a href="/addstore">お店登録</a>
