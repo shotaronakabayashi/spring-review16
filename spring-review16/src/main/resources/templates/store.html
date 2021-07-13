@@ -65,7 +65,8 @@
 <div th:each="storelist:${storelist}">
 <a th:href="'/addreview/'+${storelist.name}">レビューする</a>
 
-<a th:text="${storelist.name}"></a>　<a th:text="${storelist.rank}"></a>
+<a th:text="${storelist.name}"></a>
+<a>ランク：星</a><a th:text="${storelist.rank}"></a><a>つ</a>
 </div>
 
 
@@ -139,6 +140,7 @@
 </div>
 </div>
 
+</div>
 
 <h4>メニュー</h4>
 <div th:each="menu:${menulist}">
@@ -147,16 +149,14 @@
 <a>--------------------------------------------------------------</a>
 </div>
 
-
-<div th:each="reviewlist:${reviewlist}">
-<div>
+<div th:each="i : ${#numbers.sequence(1, 1)}">
+<div th:if="${#lists.size(reviewlist) gt __${i}__}">
 <h4>ユーザレビュー</h4>
-<a th:text="reviewlist.review"></a>
+<a th:text="${reviewlist[__${i}__].review}"></a>
 </div>
+</div>
+
+
 <a href="/review">もっとみる</a>
-</div>
-
-</div>
-
 </body>
 </html>
