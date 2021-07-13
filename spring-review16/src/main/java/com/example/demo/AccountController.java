@@ -93,6 +93,7 @@ public class AccountController {
 
 				if (password.equals(account.getPassword() ) ){
 
+					session.setAttribute("usercode", account.getCode());
 					session.setAttribute("nickname", account.getNickname());
 					mv.setViewName("top");
 				} else {
