@@ -55,7 +55,6 @@
 <a>住所</a><p th:text="${storelist.address}"></p>
 
 <a>時間</a>
-<a th:text="${storelist.time}"></a>
 <div th:if="${storelist.time == 1}">
 <a>🌙</a>
 </div>
@@ -80,7 +79,6 @@
 
 
 <a>シーン</a>
-<a th:text="${storelist.scean}"></a>
 <div th:if="${storelist.scean == 1}">
 <a>🧑‍🤝‍🧑</a>
 </div>
@@ -120,8 +118,8 @@
 <a th:text="${reviewlist[__${i}__].review}"></a>
 </div>
 </div>
-
-
-<a href="/review">もっとみる</a>
+<div th:each="storelist:${storelist}">
+<a href="'/review/'+ ${storelist.code}" th:text="'もっとみる('+(${count} - 1)+')'"></a>
+</div>
 </body>
 </html>
