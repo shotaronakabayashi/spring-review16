@@ -3,61 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title>お店詳細</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $('.slider').bxSlider({
+
+            });
+        });
+</script>
+
 <style>
-
-*, *:before, *:after {
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
-}
-.cp_cssslider {
-	width: 300px;
-	padding-top: 400px; /* 画像の高さ */
-	position: relative;
-	margin: 2em auto;
-
-}
-.cp_cssslider > img {
-	position: absolute;
-	left: 0;
-	top: 0;
-	transition: all 0.5s;
-	border-radius: 3px;
-	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.3);
-}
-.cp_cssslider input[name='cp_switch'] {
-	display: none;
-}
-
-/* サムネイル */
-.cp_cssslider label {
-	margin: 15px 5px 0 5px;
-	border: 2px solid #ffffff;
-	display: inline-block;
-	cursor: pointer;
-	transition: all 0.5s ease;
-	opacity: 0.6;
-	border-radius: 3px;
-}
-.cp_cssslider label:hover {
-	opacity: 0.9;
-}
-.cp_cssslider label img {
-	display: block;
-	width: 40px;
-	border-radius: 2px;
-}
-.cp_cssslider input[name='cp_switch']:checked + label {
-	border: 2px solid #FF7043;
-	opacity: 1;
-}
-.cp_cssslider input[name='cp_switch'] ~ img {
-	opacity: 0;
-}
-.cp_cssslider input[name='cp_switch']:checked + label + img {
-	opacity: 1;
+#ww {
+  width: 520px;
+  height: 310px;
 }
 
 </style>
+
 </head>
 <body>
 <a href="/">Top</a>
@@ -69,16 +34,15 @@
 <a>ランク：星</a><a th:text="${storelist.rank}"></a><a>つ</a>
 </div>
 
-
-<div class="cp_cssslider">
-    <div th:each="pic:${picturelist}">
-	<input type="radio" name="cp_switch" id="'photo'+${pic.code}" checked/>
-	<label for="'photo'+${count}"><img th:src="${pic.pictureurl}" /></label>
-	<img th:src="${pic.pictureurl}" />
-	</div>
+<div id="ww">
+<div class="slider">
+<div th:each="pic:${picturelist}">
+<img th:src="${pic.pictureurl}" width="500" height="300" alt="">
+</div>
+</div>
 </div>
 
-
+<br><br>
 <div th:each="storelist:${storelist}">
 <div>
 <a>カテゴリー</a>　<a th:text="${storelist.categorycode1}"></a>
@@ -149,7 +113,7 @@
 <a>--------------------------------------------------------------</a>
 </div>
 
-<div th:each="i : ${#numbers.sequence(0, 1)}">
+<div th:each="i : ${#numbers.sequence(0, 0)}">
 <div th:if="${#lists.size(reviewlist) gt __${i}__}">
 <h4>ユーザレビュー</h4>
 <p th:text="${reviewlist[__${i}__].reviewname}"></p>
