@@ -277,14 +277,14 @@ public class StoreController {
 
 
 	//メニューの削除
-	@RequestMapping("/change")
+	@PostMapping("/delete")
 	public ModelAndView menuDelete (
-			@RequestParam("menucode") int storecode,
-			@RequestParam("menucode_d") int code,
+			@RequestParam("md") int code1,
+			@RequestParam("md2") int storecode,
 			ModelAndView mv) {
 
 		//メニューを削除
-		menuRepository.deleteById(code);
+		menuRepository.deleteById(code1);
 
 				//店舗詳細ページ用の情報を送る-------------------------------------------------------------------
 				Store store = null;
@@ -308,7 +308,6 @@ public class StoreController {
 				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
 				mv.addObject("reviewlist", reviewlist);
 				// ---------------------------------------------------------------------------------------------
-
 
 		mv.setViewName("store");
 		return mv;
