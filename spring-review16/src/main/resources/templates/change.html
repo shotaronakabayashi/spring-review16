@@ -22,7 +22,7 @@
 <div th:each="menu:${menulist}">
 <form action="/change" method="POST">
 <a>メニュー名：</a>
-<input th:type="text" th:value="${menu.menuname}" th:name="nemuname"><br>
+<input type="text" th:value="${menu.menuname}" th:name="nemuname"><br>
 <a>値段：</a><input th:type="text" th:value="${menu.menuprice}" th:name="menuprice">
 <input type="hidden" th:value="${menu.code}" th:name="code">
 <input type="hidden" th:value="${menu.menucode}" th:name="menucode">
