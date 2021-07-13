@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,12 @@ public class ReviewController {
 
 	@Autowired
 	AccountRepository accountRepository;
+
+	@Autowired
+	MenuRepository menuRepository;
+
+	@Autowired
+	PictureRepository pictureRepository;
 
 
 	//レビューをするがクリックされた
@@ -57,10 +64,15 @@ public class ReviewController {
 		//店舗名からstorecodeを取得
 		Store store = null;
 
-		Optional<Store> storelist = storeRepository.findByName(storename);
-		if (storelist.isEmpty() == false) {
-			store = storelist.get();
+		Optional<Store> storelist0 = storeRepository.findByName(storename);
+		if (storelist0.isEmpty() == false) {
+			store = storelist0.get();
 		}
+				//情報返還用//////////////////////////////
+				List<Store> storelist = new ArrayList<>();
+				storelist.add(store);
+				///////////////////////////////////////////
+
 		int storecode = store.getCode();
 
 
@@ -93,13 +105,29 @@ public class ReviewController {
 
 		storeRepository.saveAndFlush(store2);
 
+
+
+		//店舗詳細ページ用の情報を送る
+
+		//店舗情報を送る
+		mv.addObject("storelist", storelist);
+
+		//メニュー情報を送る
+		List<Menu> menulist = menuRepository.findByMenucode(storecode);
+		mv.addObject("menulist", menulist);
+
+		//写真の情報を送る
+		List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
+		mv.addObject("picturelist", picturelist);
+
+		//レビューの情報を送る
+		List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
+		mv.addObject("reviewlist", reviewlist);
+
 		mv.addObject("count", count);
 		mv.setViewName("store");
 		return mv;
 	}
-
-
-
 
 }
 
