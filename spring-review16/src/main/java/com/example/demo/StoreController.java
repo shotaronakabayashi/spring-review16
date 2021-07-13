@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class StoreController {
 
 	@Autowired
 	PictureRepository pictureRepository;
+
+	@Autowired
+	ReviewRepository reviewRepository;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +64,7 @@ public class StoreController {
 		int count = 0;		//何回メニューを登録したかの初期値
 
 		String time0 = ""+ time1 + time2 + time3;
-		String scean0 = "" + scean3 + scean2 + scean3;
+		String scean0 = "" + scean1 + scean2 + scean3;
 
 		int time = Integer.parseInt(time0);
 		int scean = Integer.parseInt(scean0);
@@ -147,6 +152,58 @@ public class StoreController {
 		mv.setViewName("addpicture");
 		return mv;
 	}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//店舗詳細ページが押された
+	@GetMapping("/store/{name}")
+	public ModelAndView storeDetail (
+			@PathVariable("name") String name,
+			ModelAndView mv ) {
+
+		//店舗情報を送る
+		Store store = null;
+		Optional<Store> list = storeRepository.findByName(name);
+
+		if (list.isEmpty() == false) {
+			store = list.get();
+		}
+		List<Store> storelist = new ArrayList<>();
+		storelist.add(store);
+
+		mv.addObject("storelist", storelist);
+
+		//写真の情報を送る
+		int code = store.getCode();
+		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
+
+		mv.addObject("picturelist", picturelist);
+
+		//レビューの情報を送る
+		List<Review> reviewlist = reviewRepository.findByReviewcode(code);
+
+		mv.addObject("reviewlist", reviewlist);
+
+
+		mv.setViewName("store");
+		return mv;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
