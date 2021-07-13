@@ -274,7 +274,7 @@ public class StoreController {
 
 				//レビューの数を送る
 				int count = 0;
-				for (Review s : reviewlist) {
+				for (Review r : reviewlist) {
 					count++;
 				}
 				mv.addObject("count", count);
@@ -318,6 +318,13 @@ public class StoreController {
 				//レビューの情報を送る
 				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
 				mv.addObject("reviewlist", reviewlist);
+
+				//レビューの数を送る
+				int count = 0;
+				for (Review r : reviewlist) {
+					count++;
+				}
+				mv.addObject("count", count);
 				// ---------------------------------------------------------------------------------------------
 
 		mv.setViewName("store");
