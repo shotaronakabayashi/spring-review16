@@ -67,7 +67,7 @@ public class SerchController {
 
 
 	//詳細検索
-	@PostMapping("/search/detail22")
+	@PostMapping("/search/detail")
 	public ModelAndView SearchDetail2(
 			@RequestParam("keyword") String keyword,
 			@RequestParam("address") String address,
