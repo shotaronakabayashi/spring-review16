@@ -149,9 +149,10 @@
 <a>--------------------------------------------------------------</a>
 </div>
 
-<div th:each="i : ${#numbers.sequence(1, 1)}">
+<div th:each="i : ${#numbers.sequence(0, 1)}">
 <div th:if="${#lists.size(reviewlist) gt __${i}__}">
 <h4>ユーザレビュー</h4>
+<p th:text="${reviewlist[__${i}__].reviewname}"></p>
 <a th:text="${reviewlist[__${i}__].review}"></a>
 </div>
 </div>
