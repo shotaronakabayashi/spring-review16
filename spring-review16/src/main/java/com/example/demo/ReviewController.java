@@ -69,20 +69,32 @@ public class ReviewController {
 		reviewRepository.saveAndFlush(review0);
 
 
-		//付けられた星の数をStoreDBに追加
+		//店舗の現在のランクを取得
 		Store store2 = null;
-		Optional<Store> list = storeRepository.findById(storecode);
+		Optional<Store> list1 = storeRepository.findById(storecode);
 
-		if (list.isEmpty() == false) {
-			store2 = list.get();
+		if (list1.isEmpty() == false) {
+			store2 = list1.get();
 		}
 
+		//その店舗をレビューした人数を取得
+		List<Review> list2 = reviewRepository.findByReviewcode(storecode);
+
+		int count = 0;
+		for (Review s : list2) {
+			count++;
+		}
+
+		//付けられた星の数の平均をStoreDBに追加
 		int rank = store2.getRank() + star;
+		rank = rank / count;
+
 		store2.setRank(rank);
 
 		storeRepository.saveAndFlush(store2);
 
-		mv.setViewName("top");
+		mv.addObject("count", count);
+		mv.setViewName("store");
 		return mv;
 	}
 
@@ -104,7 +116,6 @@ public class ReviewController {
 
 		int reviewcode = store.getCode();
 
-		Review review = null;
 		List<Review> list = reviewRepository.findByReviewcode(reviewcode);
 
 		mv.addObject("list", list);

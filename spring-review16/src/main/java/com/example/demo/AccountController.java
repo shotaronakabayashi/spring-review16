@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -19,12 +20,23 @@ public class AccountController {
 	AccountRepository accountRepository;
 
 	@Autowired
+	StoreRepository storeRepository;
+
+	@Autowired
 	HttpSession session;
 
 
 	//トップページを表示
 	@RequestMapping("/")
 	public ModelAndView index(ModelAndView mv) {
+
+		Store store = null;
+		List<Store> list = storeRepository.findAll();
+
+
+
+
+
 
 		mv.setViewName("top");
 		return mv;

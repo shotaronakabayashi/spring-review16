@@ -189,6 +189,12 @@ public class StoreController {
 		List<Review> reviewlist = reviewRepository.findByReviewcode(code);
 		mv.addObject("reviewlist", reviewlist);
 
+		//レビューの数を送る
+		int count = 0;
+		for (Review s : reviewlist) {
+			count++;
+		}
+		mv.addObject("count", count);
 
 		mv.setViewName("store");
 		return mv;
