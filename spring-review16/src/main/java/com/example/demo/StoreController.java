@@ -217,10 +217,29 @@ public class StoreController {
 		}
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//変更
+	//店舗情報を変更するがクリックされた
+	@GetMapping("/change/{code}")
+	public ModelAndView change (
+			@PathVariable("code") int storecode,
+			ModelAndView mv) {
+
+		mv.setViewName("change");
+		return mv;
+	}
+
+	//変更内容が入力されて変更するが押された
+	@PostMapping("/change/{code}")
+	public ModelAndView change2 (
+			@PathVariable("code") int storecode,
+			ModelAndView mv ) {
 
 
 
-
+		mv.setViewName("store");
+		return mv;
+	}
 
 
 

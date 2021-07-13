@@ -73,7 +73,7 @@ public class SerchController {
 			@RequestParam("address") String address,
 			@RequestParam("categorycode1") String categorycode1,
 			@RequestParam("categorycode2") String categorycode2,
-			@RequestParam(name="time1", defaultValue = "0" ) String time1,
+			@RequestParam(name="time1", defaultValue = "0" ) int time1,
 			@RequestParam(name = "time2", defaultValue="0") int time2,
 			@RequestParam(name = "time3", defaultValue="0") int time3,
 			@RequestParam("minprice") int price1,
