@@ -208,7 +208,6 @@ public class StoreController {
 				@PathVariable("code") int code,
 				ModelAndView mv) {
 
-
 			//レビューの情報を送る
 			List<Review> reviewlist = reviewRepository.findByReviewcode(code);
 			mv.addObject("list", reviewlist);
