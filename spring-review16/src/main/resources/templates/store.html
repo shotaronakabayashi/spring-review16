@@ -28,10 +28,9 @@
 <a href="/">Top</a>
 <h1>お店詳細</h1>
 <div th:each="storelist:${storelist}">
-<a th:href="'/addreview/'+${storelist.name}">レビューする</a>
-<a th:href="'/addpicture/'+${storelist.code}">写真を追加</a>
-<a href="">メニューを追加</a>
-
+<a th:href="'/addreview/'+${storelist.name}">[レビューする]</a>
+<a th:href="'/change/' +${storelist.code}">メニュー・写真変更</a>
+<br>
 <a th:text="${storelist.name}"></a>
 <a>ランク：星</a><a th:text="${storelist.rank}"></a><a>つ</a>
 </div>

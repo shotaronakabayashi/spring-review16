@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>メニュー・写真変更</title>
+</head>
+<body>
+<a href="/">Top</a>
+<h2>メニュー・写真登録</h2>
+<br>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+
+$(function(){
+	  $('#myfile').change(function(e){
+	    //ファイルオブジェクトを取得する
+	    var file = e.target.files[0];
+	    var reader = new FileReader();
+
+	    //画像でない場合は処理終了
+	    if(file.type.indexOf("image") < 0){
+	      alert("画像ファイルを指定してください。");
+	      return false;
+	    }
+
+	    //アップロードした画像を設定する
+	    reader.onload = (function(file){
+	      return function(e){
+	        $("#img1").attr("src", e.target.result);
+	        $("#img1").attr("title", file.name);
+	      };
+	    })(file);
+	    reader.readAsDataURL(file);
+
+	  });
+	});
+
+</script>
+
+
+
+<a th:text="${code}"></a>
+<a th:text="${count}"></a>:枚写真登録完了<br>
+
+<div th:if="${count == 5}">
+<a style="color:red">これ以上登録できません。</a>
+</div>
+
+<div th:if="${count < 5}">
+<form action="/addpicture" method="POST">
+<input type="hidden" th:value="${count}" th:name="count">
+<input type="hidden" th:value="${code}" th:name="code">
+
+<a>ファイル選択　　　 　 </a> <input type="file" id="myfile" accept="image/jpeg" required>
+<br>
+<img id="img1"/>
+
+<script>
+
+function getBase64(){
+  //img要素オブジェクトを取得する
+  var obj = document.getElementById("img1");
+
+  //canvas要素を生成してimg要素を反映する
+  var cvs = document.createElement('canvas');
+  cvs.width  = obj.width;
+  cvs.height = obj.height;
+  var ctx = cvs.getContext('2d');
+  ctx.drawImage(obj, 0, 0);
+
+  //canvas要素をBase64化する
+  var data = cvs.toDataURL("image/jpeg");
+
+  //d1要素に書き出す
+
+  document.getElementById("pictureurl").value = data;
+
+}
+</script>
+
+
+
+<input type="hidden" id="pictureurl" th:name="pictureurl">
+<br>
+
+
+<input type="submit" value="写真を投稿する" onclick="getBase64();">
+</form>
+</div>
+<a href="/">終了</a>
+
+</body>
+</html>
