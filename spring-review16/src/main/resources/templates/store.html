@@ -64,7 +64,7 @@
 <h1>お店詳細</h1>
 <a th:href="'/addreview/'+${name}">レビューする</a>
 
-<a th:text="${name}"></a>　<a th:text="${runk}"></a>
+<a th:text="${storelist.name}"></a>　<a th:text="${storelist.runk}"></a>
 
 <div class="cp_cssslider">
     <div th:each="pic:${picturelist}">
@@ -75,61 +75,61 @@
 </div>
 
 <div>
-<a>カテゴリー</a>　<a th:text="${categorycode1}"></a>
-<a>雰囲気</a>　<a th:text="${categorycode2}"></a>
+<a>カテゴリー</a>　<a th:text="${storelist.categorycode1}"></a>
+<a>雰囲気</a>　<a th:text="${storelist.categorycode2}"></a>
 </div>
 
 
 <div>
 <h3>お店概要</h3>
-<a>住所</a><p th:text="${address}"></p>
+<a>住所</a><p th:text="${storelist.address}"></p>
 
 <a>時間</a>
-<a th:text="${time}"></a>
-<div th:if="${time == 1}">
+<a th:text="${storelist.time}"></a>
+<div th:if="${storelist.time == 1}">
 <a>🌙</a>
 </div>
-<div th:if="${time == 11}">
+<div th:if="${storelist.time == 11}">
 <a>🕛🌙</a>
 </div>
-<div th:if="${time == 111}">
+<div th:if="${storelist.time == 111}">
 <a>🌞🕛🌙</a>
 </div>
-<div th:if="${time == 100}">
+<div th:if="${storelist.time == 100}">
 <a>🌞</a>
 </div>
-<div th:if="${time == 110}">
+<div th:if="${storelist.time == 110}">
 <a>🌞🕛</a>
 </div>
-<div th:if="${time == 101}">
+<div th:if="${storelist.time == 101}">
 <a>🌞🌙</a>
 </div>
-<div th:if="${time == 10}">
+<div th:if="${storelist.time == 10}">
 <a>🕛</a>
 </div>
 
 
 <a>シーン</a>
-<a th:text="${scean}"></a>
-<div th:if="${scean == 1}">
+<a th:text="${storelist.scean}"></a>
+<div th:if="${storelist.scean == 1}">
 <a>🧑‍🤝‍🧑</a>
 </div>
-<div th:if="${scean == 10}">
+<div th:if="${storelist.scean == 10}">
 <a>💏</a>
 </div>
-<div th:if="${scean == 100}">
+<div th:if="${storelist.scean == 100}">
 <a>👨‍👩‍👦</a>
 </div>
-<div th:if="${scean == 11}">
+<div th:if="${storelist.scean == 11}">
 <a>💏🧑‍🤝‍🧑</a>
 </div>
-<div th:if="${scean == 111}">
+<div th:if="${storelist.scean == 111}">
 <a>👨‍👩‍👦💏🧑‍🤝‍🧑</a>
 </div>
-<div th:if="${scean == 101}">
+<div th:if="${storelist.scean == 101}">
 <a>👨‍👩‍👦🧑‍🤝‍🧑</a>
 </div>
-<div th:if="${scean == 110}">
+<div th:if="${storelist.scean == 110}">
 <a>👨‍👩‍👦💏</a>
 </div>
 
@@ -144,7 +144,7 @@
 
 <div>
 <h4>ユーザレビュー</h4>
-<a th:text="review"></a>
+<a th:text="reviewlist.review"></a>
 <a href="/review">もっとみる</a>
 </div>
 
