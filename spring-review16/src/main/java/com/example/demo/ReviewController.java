@@ -21,41 +21,66 @@ public class ReviewController {
 	@Autowired
 	StoreRepository storeRepository;
 
+	@Autowired
+	AccountRepository accountRepository;
 
-	//レビュー画面を表示するがクリックされた
-	@GetMapping ("/review")
-	public ModelAndView addReview (ModelAndView mv) {
 
-		mv.setViewName("review");
+	//レビューをするがクリックされた
+	@GetMapping ("/addreview/{name}")
+	public ModelAndView addReview (
+			@PathVariable("name") String storename,
+			ModelAndView mv) {
+
+		mv.addObject("storename", storename);
+		mv.setViewName("addreview");
 		return mv;
 	}
 
 	//レビュー内容が入力されて送信ボタン押された
 	@PostMapping ("/addreview")
 	public ModelAndView addReview2 (
-			@RequestParam("reviewcode") int storecode,
-			@RequestParam("usercode") int usercode,
+			@RequestParam("storename") String storename,
 			@RequestParam("reviewname") String reviewname,
 			@RequestParam("review") String review,
 			@RequestParam("star") int star,
 			ModelAndView mv ) {
 
+		//ニックネームからusercodeを取得
+		Account account = null;
+
+		Optional<Account> accountlist = accountRepository.findByNickname(reviewname);
+		if (accountlist.isEmpty() == false) {
+			account = accountlist.get();
+		}
+		int usercode = account.getCode();
+
+		//店舗名からstorecodeを取得
+		Store store = null;
+
+		Optional<Store> storelist = storeRepository.findByName(storename);
+		if (storelist.isEmpty() == false) {
+			store = storelist.get();
+		}
+		int storecode = store.getCode();
+
+
 		//レビュー内容をデータベースに追加
 		Review review0 = new Review(storecode,usercode,reviewname,review);
 		reviewRepository.saveAndFlush(review0);
 
+
 		//付けられた星の数をStoreDBに追加
-		Store store = null;
+		Store store2 = null;
 		Optional<Store> list = storeRepository.findById(storecode);
 
 		if (list.isEmpty() == false) {
-			store = list.get();
+			store2 = list.get();
 		}
 
-		int rank = store.getRank() + star;
-		store.setRank(rank);
+		int rank = store2.getRank() + star;
+		store2.setRank(rank);
 
-		storeRepository.saveAndFlush(store);
+		storeRepository.saveAndFlush(store2);
 
 		mv.setViewName("top");
 		return mv;
