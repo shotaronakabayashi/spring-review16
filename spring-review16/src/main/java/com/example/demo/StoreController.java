@@ -225,16 +225,89 @@ public class StoreController {
 			@PathVariable("code") int storecode,
 			ModelAndView mv) {
 
+		List<Menu> menulist = menuRepository.findByMenucode(storecode);
+
+		mv.addObject("menulist", menulist);
 		mv.setViewName("change");
 		return mv;
 	}
 
+
 	//変更内容が入力されて変更するが押された
-	@PostMapping("/change/{code}")
+	//メニューの変更
+	@PostMapping("/change")
 	public ModelAndView change2 (
-			@PathVariable("code") int storecode,
+			@RequestParam("code") int code,
+			@RequestParam("menucode") int menucode,
+			@RequestParam("menuname") String menuname,
+			@RequestParam("menuprice") int price,
 			ModelAndView mv ) {
 
+		Menu menu = new Menu(code, menucode, menuname,price);
+		menuRepository.saveAndFlush(menu);
+
+
+				//店舗詳細ページ用の情報を送る-------------------------------------------------------------------
+				int storecode = menucode;
+				Store store = null;
+				Optional<Store> storelist0 = storeRepository.findById(storecode);
+				store = storelist0.get();
+				List<Store> storelist = new ArrayList<>();
+				storelist.add(store);
+
+				//店舗情報を送る
+				mv.addObject("storelist", storelist);
+
+				//メニュー情報を送る
+				List<Menu> menulist = menuRepository.findByMenucode(storecode);
+				mv.addObject("menulist", menulist);
+
+				//写真の情報を送る
+				List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
+				mv.addObject("picturelist", picturelist);
+
+				//レビューの情報を送る
+				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
+				mv.addObject("reviewlist", reviewlist);
+				// ---------------------------------------------------------------------------------------------
+
+		mv.setViewName("store");
+		return mv;
+	}
+
+
+	//メニューの削除
+	@RequestMapping("/change")
+	public ModelAndView menuDelete (
+			@RequestParam("menucode") int storecode,
+			@RequestParam("menucode_d") int code,
+			ModelAndView mv) {
+
+		//メニューを削除
+		menuRepository.deleteById(code);
+
+				//店舗詳細ページ用の情報を送る-------------------------------------------------------------------
+				Store store = null;
+				Optional<Store> storelist0 = storeRepository.findById(storecode);
+				store = storelist0.get();
+				List<Store> storelist = new ArrayList<>();
+				storelist.add(store);
+
+				//店舗情報を送る
+				mv.addObject("storelist", storelist);
+
+				//メニュー情報を送る
+				List<Menu> menulist = menuRepository.findByMenucode(storecode);
+				mv.addObject("menulist", menulist);
+
+				//写真の情報を送る
+				List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
+				mv.addObject("picturelist", picturelist);
+
+				//レビューの情報を送る
+				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
+				mv.addObject("reviewlist", reviewlist);
+				// ---------------------------------------------------------------------------------------------
 
 
 		mv.setViewName("store");

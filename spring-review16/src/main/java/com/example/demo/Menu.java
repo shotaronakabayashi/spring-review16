@@ -43,8 +43,6 @@ public class Menu {
 
 	//セッター・ゲッター
 
-
-
 	public int getMenucode() {
 		return menucode;
 	}
@@ -75,6 +73,11 @@ public class Menu {
 
 	public void setMenuprice(int menuprice) {
 		this.menuprice = menuprice;
+	}
+
+
+	public void deleteMenu(int code) {
+
 	}
 
 

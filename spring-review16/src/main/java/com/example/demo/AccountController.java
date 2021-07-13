@@ -30,6 +30,7 @@ public class AccountController {
 	@RequestMapping("/")
 	public ModelAndView index(ModelAndView mv) {
 
+
 		Store store = null;
 		List<Store> list = storeRepository.findAll();
 
