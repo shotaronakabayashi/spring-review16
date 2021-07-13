@@ -125,20 +125,20 @@ public class Store {
 		this.budget = budget;
 	}
 
-	public String getMessege() {
-		return message;
-	}
-
-	public void setMessege(String messege) {
-		this.message = messege;
-	}
-
 	public int getRank() {
 		return rank;
 	}
 
 	public void setRank(int rank) {
 		this.rank = rank;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 

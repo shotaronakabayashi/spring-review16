@@ -34,16 +34,33 @@ public class AccountController {
 		List<Store> list = storeRepository.findAll();
 
 
-		int best1 = 0; int best2 = 0; int bast3 = 0; int best4 = 0;
+		int best1 = 0; int best2 = 0; int best3 = 0;
 		for (Store s : list) {
-			 if (s.getRank() >= best1) {
-				 best1 = s.getRank();
+			 int a = s.getRank();
+			 if (a > best1 ){
+				 best1 = a;
 			 }
-
+			 else if (a <= best1 || a >= best2) {
+				 best2 = a;
+			 }
+			 else if (a <= best2 || a >= best3) {
+				 best3 = a;
+			 }
 		}
 
+		//ランクの情報から店舗情報を取得
+		//1位
+		List<Store> list1 = storeRepository.findByRank(best1);
 
+		//2位
+		List<Store> list2 = storeRepository.findByRank(best2);
 
+		//3位
+		List<Store> list3 = storeRepository.findByRank(best3);
+
+		mv.addObject("list1", list1);
+		mv.addObject("list2", list2);
+		mv.addObject("list3", list3);
 
 		mv.setViewName("top");
 		return mv;

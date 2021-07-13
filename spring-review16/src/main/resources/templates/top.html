@@ -44,10 +44,30 @@
 
 <div>
 <a>ランキング表示</a>
-<a href="/rank/test1">[test1]</a>
-<a href="/rank/test2">[test2]</a>
-<a href="/rank/test3">[test3]</a>
-<a href="/rank/test4">[test4]</a><br>
+<div th:each="list1 : ${list1}">
+	<a th:text="${list1.name}"></a>
+	<a th:text="${list1.address}"></a>
+	<a th:text="${list1.categorycode1}"></a>
+	<a th:text="${list1.categorycode2}"></a>
+	<a th:text="${list1.message}"></a>
+</div>
+
+<div th:each="list2 : ${list2}">
+	<a th:text="${list2.name}"></a>
+	<a th:text="${list2.address}"></a>
+	<a th:text="${list2.categorycode1}"></a>
+	<a th:text="${list2.categorycode2}"></a>
+	<a th:text="${list2.message}"></a>
+</div>
+
+<div th:each="list3 : ${list3}">
+	<a th:text="${list3.name}"></a>
+	<a th:text="${list3.address}"></a>
+	<a th:text="${list3.categorycode1}"></a>
+	<a th:text="${list3.categorycode2}"></a>
+	<a th:text="${list3.message}"></a>
+</div>
+<br>
 </div>
 <div>
 <img src=""><br>
