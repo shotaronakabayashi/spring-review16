@@ -9,9 +9,20 @@
 <a href="/">Top</a>
 
 <form action="/addreview" method="POST">
-<input type="hidden" name="name" value="${session.nickname}">
-<a th:text="${name}"></a>
-<a>レビュー</a><br><textarea name="message" cols="60" rows="10"></textarea><br>
+<input type="hidden" name="reviewcode" value="${session.reviewcode}">
+<input type="hidden" name="usercode" value="${session.usercode}">
+<input type="hidden" name="reviewname" value="${reviewname}">
+<a th:text="${reviewname}"></a>
+<a>お店の評価</a>
+    星<select name="runk">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>つ
+		<br>
+<a>レビュー</a><br><textarea name="review" cols="60" rows="10"></textarea><br>
 
 <input type="submit" value="投稿">
 </form>

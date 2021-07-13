@@ -8,8 +8,8 @@
 <body>
 <a href="/">Top</a>
 
-<div th:each="review:${reviewlist}">
-<a th:text="${review.name}"></a><p th:text="${nickname}"></p>
+<div th:each="review:${list}">
+<a th:text="${review.name}"></a><p th:text="${review.reviewname}"></p>
 <a th:text="${review.message}"></a>
 </div>
 
