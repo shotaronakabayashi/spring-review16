@@ -8,9 +8,10 @@
 <body>
 <a href="/">Top</a>
 
-<div th:each="review:${list}">
-<p th:text="${review.reviewname}"></p>
-<a th:text="${review.review}"></a>
+<div th:each="rev:${list}">
+ <p th:text="${rev.reviewname}"></p>
+ <p th:text="${rev.review}"></p>
+ <p>------------------------------------------------------------------------------------------</p>
 </div>
 
 </body>
