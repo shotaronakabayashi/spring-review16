@@ -203,9 +203,15 @@ public class StoreController {
 
 
 	//レビューのもっと見るが押された
-		@GetMapping("/review")
-		public ModelAndView reviewMore (ModelAndView mv) {
+		@GetMapping("/review/{code}")
+		public ModelAndView reviewMore (
+				@PathVariable("code") int code,
+				ModelAndView mv) {
 
+
+			//レビューの情報を送る
+			List<Review> reviewlist = reviewRepository.findByReviewcode(code);
+			mv.addObject("list", reviewlist);
 
 			mv.setViewName("review");
 			return mv;
