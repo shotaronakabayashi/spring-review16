@@ -202,6 +202,17 @@ public class StoreController {
 
 
 
+	//レビューのもっと見るが押された
+		@GetMapping("/review")
+		public ModelAndView reviewMore (ModelAndView mv) {
+
+
+			mv.setViewName("review");
+			return mv;
+		}
+
+
+
 
 
 

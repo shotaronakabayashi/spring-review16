@@ -34,6 +34,13 @@ public class AccountController {
 		List<Store> list = storeRepository.findAll();
 
 
+		int best1 = 0; int best2 = 0; int bast3 = 0; int best4 = 0;
+		for (Store s : list) {
+			 if (s.getRank() >= best1) {
+				 best1 = s.getRank();
+			 }
+
+		}
 
 
 
