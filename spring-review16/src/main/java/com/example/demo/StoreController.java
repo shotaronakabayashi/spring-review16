@@ -251,7 +251,9 @@ public class StoreController {
 				int storecode = menucode;
 				Store store = null;
 				Optional<Store> storelist0 = storeRepository.findById(storecode);
-				store = storelist0.get();
+				if (storelist0.isEmpty() == false) {
+					store = storelist0.get();
+				}
 				List<Store> storelist = new ArrayList<>();
 				storelist.add(store);
 
@@ -269,6 +271,13 @@ public class StoreController {
 				//レビューの情報を送る
 				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
 				mv.addObject("reviewlist", reviewlist);
+
+				//レビューの数を送る
+				int count = 0;
+				for (Review s : reviewlist) {
+					count++;
+				}
+				mv.addObject("count", count);
 				// ---------------------------------------------------------------------------------------------
 
 		mv.setViewName("store");
@@ -289,7 +298,9 @@ public class StoreController {
 				//店舗詳細ページ用の情報を送る-------------------------------------------------------------------
 				Store store = null;
 				Optional<Store> storelist0 = storeRepository.findById(storecode);
-				store = storelist0.get();
+				if (storelist0.isEmpty() == false) {
+					store = storelist0.get();
+				}
 				List<Store> storelist = new ArrayList<>();
 				storelist.add(store);
 
