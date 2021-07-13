@@ -22,13 +22,16 @@
 <div th:each="menu:${menulist}">
 <form action="/change" method="POST">
 <a>メニュー名：</a>
-<input th:type="text" th:value="${menu.menuname}"><br>
-<a>値段：</a><input th:type="text" th:value="${menu.menuprice}">
-<input type="hidden" value="${menu.code}" name="menucode">
+<input th:type="text" th:value="${menu.menuname}" name="nemuname"><br>
+<a>値段：</a><input th:type="text" th:value="${menu.menuprice}" name="menuprice">
+<input type="hidden" value="${menu.code}" name="code">
+<input type="hidden" value="${menu.menucode}" name="menucode">
 <input type="submit" value="変更">
 </form>
+
 <form action="/change" method="POST">
 <input type="hidden" value="${menu.code}" name="menucode_d">
+<input type="hidden" value="${menu.menucode}" name="menucode">
 <input type="submit" value="削除">
 </form>
 <a>--------------------------------------------------------------</a>
@@ -40,13 +43,16 @@
 <tr th:each="pic:${picturelist}">
 <td><img th:src="${pic.pictureurl}" width="500" height="300" alt=""></td>
 <form action="/change" method="POST">
-<input type="hidden" value="${pic.code}" name="piccode">
+<input type="hidden" value="${pic.code}" name="p_code">
 <td><input type="submit" value="削除"></td>
 </form>
 </tr>
 </table>
 </div>
 
-
+<div th:each="storelist:${storelist}">
+<a th:href="'/addstore/'+${storelist.code}">メニュー追加</a>
+<a th:href="'/addpicture/'+${storelist.code}">写真追加</a>
+</div>
 </body>
 </html>
