@@ -62,13 +62,13 @@
 <body>
 <a href="/">Top</a>
 <h1>お店詳細</h1>
-<a href="'/addreview/'+${name}">レビューする</a>
+<a th:href="'/addreview/'+${name}">レビューする</a>
 
 <a th:text="${name}"></a>　<a th:text="${runk}"></a>
 
 <div class="cp_cssslider">
     <div th:each="pic:${picturelist}">
-	<input type="radio" name="cp_switch" id="'photo'+${count}" checked/>
+	<input type="radio" name="cp_switch" id="'photo'+${pic.code}" checked/>
 	<label for="'photo'+${count}"><img th:src="${pic.pictureurl}" /></label>
 	<img th:src="${pic.pictureurl}" />
 	</div>
