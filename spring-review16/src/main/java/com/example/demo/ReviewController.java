@@ -98,38 +98,6 @@ public class ReviewController {
 		return mv;
 	}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	//レビューを表示するがクリックされた
-	@GetMapping("/review/{name}")
-	public ModelAndView review (
-			@PathVariable("name") String storename,
-			ModelAndView mv
-			) {
-
-		Store store = null;
-		Optional<Store> list1 = storeRepository.findByName(storename);
-
-		if (list1.isEmpty() == false) {
-			store = list1.get();
-		}
-
-		int reviewcode = store.getCode();
-
-		List<Review> list = reviewRepository.findByReviewcode(reviewcode);
-
-		mv.addObject("list", list);
-
-		mv.setViewName("review");
-		return mv;
-	}
-
-
-
-
-
-
-
 
 
 
