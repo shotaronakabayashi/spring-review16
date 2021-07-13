@@ -12,13 +12,7 @@ public class ReviewController {
 
 
 	@Autowired
-	ReviewRepository reviewreposiyory;
-
-
-
-
-
-
+	ReviewRepository reviewRepository;
 
 
 	//レビュー画面を表示するがクリックされた
@@ -32,15 +26,14 @@ public class ReviewController {
 	//レビュー内容が入力されて送信ボタン押された
 	@PostMapping ("/addreview")
 	public ModelAndView addReview (
-			@RequestParam("reviewcode") int reviewcode,
+			@RequestParam("reviewcode") int storecode,
 			@RequestParam("usercode") int usercode,
-			@RequestParam("reviewname") int reviewname,
+			@RequestParam("reviewname") String reviewname,
 			@RequestParam("review") String review,
 			ModelAndView mv ) {
 
-
-
-		//String ninkname = session.getAttribute("nickname");
+		Review review0 = new Review(storecode,usercode,reviewname,review);
+		reviewRepository.saveAndFlush(review0);
 
 		mv.setViewName("top");
 		return mv;

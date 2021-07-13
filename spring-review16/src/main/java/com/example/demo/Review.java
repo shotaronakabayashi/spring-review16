@@ -17,6 +17,7 @@ public class Review {
 	private int code;
 	private int reviewcode;
 	private int usercode;
+	private String reviewname;
 	private String review;
 
 
@@ -25,11 +26,11 @@ public class Review {
 
 	}
 
-	public Review (int reviewcode, int usercode, String review) {
+	public Review (int reviewcode, int usercode, String reviewname, String review) {
 		this.reviewcode = reviewcode;
 		this.usercode = usercode;
+		this.reviewname = reviewname;
 		this.review = review;
-
 	}
 
 	public int getCode() {
@@ -62,6 +63,14 @@ public class Review {
 
 	public void setReview(String review) {
 		this.review = review;
+	}
+
+	public String getReviewname() {
+		return reviewname;
+	}
+
+	public void setReviewname(String reviewname) {
+		this.reviewname = reviewname;
 	}
 
 
