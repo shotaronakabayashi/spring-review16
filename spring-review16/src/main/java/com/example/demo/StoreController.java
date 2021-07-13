@@ -173,15 +173,19 @@ public class StoreController {
 
 		mv.addObject("storelist", storelist);
 
-		//写真の情報を送る
+		//メニュー情報を送る
 		int code = store.getCode();
-		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
 
+		List<Menu> menulist = menuRepository.findByMenucode(code);
+		mv.addObject("menulist", menulist);
+
+		//写真の情報を送る
+
+		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
 		mv.addObject("picturelist", picturelist);
 
 		//レビューの情報を送る
 		List<Review> reviewlist = reviewRepository.findByReviewcode(code);
-
 		mv.addObject("reviewlist", reviewlist);
 
 
