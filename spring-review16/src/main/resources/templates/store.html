@@ -62,9 +62,12 @@
 <body>
 <a href="/">Top</a>
 <h1>お店詳細</h1>
-<a th:href="'/addreview/'+${name}">レビューする</a>
+<div th:each="storelist:${storelist}">
+<a th:href="'/addreview/'+${srorelist.name}">レビューする</a>
 
 <a th:text="${storelist.name}"></a>　<a th:text="${storelist.runk}"></a>
+</div>
+
 
 <div class="cp_cssslider">
     <div th:each="pic:${picturelist}">
@@ -74,6 +77,8 @@
 	</div>
 </div>
 
+
+<div th:each="storelist:${storelist}">
 <div>
 <a>カテゴリー</a>　<a th:text="${storelist.categorycode1}"></a>
 <a>雰囲気</a>　<a th:text="${storelist.categorycode2}"></a>
@@ -132,7 +137,7 @@
 <div th:if="${storelist.scean == 110}">
 <a>👨‍👩‍👦💏</a>
 </div>
-
+</div>
 
 
 <h4>メニュー</h4>
@@ -142,9 +147,12 @@
 <a>--------------------------------------------------------------</a>
 </div>
 
+
+<div th:each="reviewlist:${reviewlist}">
 <div>
 <h4>ユーザレビュー</h4>
 <a th:text="reviewlist.review"></a>
+</div>
 <a href="/review">もっとみる</a>
 </div>
 
