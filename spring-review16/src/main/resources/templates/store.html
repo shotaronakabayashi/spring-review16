@@ -63,7 +63,7 @@
 <a href="/">Top</a>
 <h1>お店詳細</h1>
 <div th:each="storelist:${storelist}">
-<a th:href="'/addreview/'+${srorelist.name}">レビューする</a>
+<a th:href="'/addreview/'+${storelist.name}">レビューする</a>
 
 <a th:text="${storelist.name}"></a>　<a th:text="${storelist.runk}"></a>
 </div>
