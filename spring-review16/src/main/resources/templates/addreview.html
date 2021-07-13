@@ -9,6 +9,7 @@
 <a href="/">Top</a>
 
 <form action="/addreview" method="POST">
+<input type="hidden" name="name" value="${session.nickname}">
 <a th:text="${name}"></a>
 <a>レビュー</a><br><textarea name="message" cols="60" rows="10"></textarea><br>
 
