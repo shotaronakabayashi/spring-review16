@@ -24,6 +24,9 @@ public class AccountController {
 	StoreRepository storeRepository;
 
 	@Autowired
+	ReviewRepository reviewRepository;
+
+	@Autowired
 	HttpSession session;
 
 
@@ -157,7 +160,17 @@ public class AccountController {
 	public ModelAndView mypage (
 			@PathVariable("nickname") String nickname,
 			ModelAndView mv) {
+		//ログインしてない際のエラー処理
+		if (nickname.equals("null") ) {
+			mv.addObject("message", "ログインしてください");
+			mv.setViewName("top");
+			return mv;
+		}
 
+		//マイページの内容
+		List<Review> list = reviewRepository.findByReviewname(nickname);
+
+		mv.addObject("list", list);
 		mv.addObject("nickname", nickname);
 		mv.setViewName("mypage");
 		return mv;

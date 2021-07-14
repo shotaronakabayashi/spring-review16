@@ -77,7 +77,7 @@ public class ReviewController {
 
 
 		//レビュー内容をデータベースに追加
-		Review review0 = new Review(storecode,usercode,reviewname,review);
+		Review review0 = new Review(storecode,usercode,reviewname,review,star,storename);
 		reviewRepository.saveAndFlush(review0);
 
 

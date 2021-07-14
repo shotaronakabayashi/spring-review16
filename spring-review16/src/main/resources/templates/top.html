@@ -25,6 +25,7 @@
 <a href="/addstore">お店登録</a>
 
 <a th:href="'/mypage/' + ${session.nickname}">マイページに行く</a>
+<a th:text="${message}"></a>
 
 <div>
 <form action="/keyword">

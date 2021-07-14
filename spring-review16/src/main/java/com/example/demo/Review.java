@@ -19,6 +19,8 @@ public class Review {
 	private int usercode;
 	private String reviewname;
 	private String review;
+	private int star;
+	private String storename;
 
 
 	//コンストラクタ
@@ -26,11 +28,13 @@ public class Review {
 
 	}
 
-	public Review (int reviewcode, int usercode, String reviewname, String review) {
+	public Review (int reviewcode, int usercode, String reviewname, String review, int star, String storename) {
 		this.reviewcode = reviewcode;
 		this.usercode = usercode;
 		this.reviewname = reviewname;
 		this.review = review;
+		this.star = star;
+		this.storename = storename;
 	}
 
 	public int getCode() {
@@ -73,9 +77,25 @@ public class Review {
 		this.reviewname = reviewname;
 	}
 
-	
-	
-	
+	public int getStar() {
+		return star;
+	}
+
+	public void setStar(int star) {
+		this.star = star;
+	}
+
+	public String getStorename() {
+		return storename;
+	}
+
+	public void setStorename(String storename) {
+		this.storename = storename;
+	}
+
+
+
+
 
 
 

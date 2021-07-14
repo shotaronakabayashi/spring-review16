@@ -8,4 +8,6 @@ public interface ReviewRepository extends JpaRepository<Review, Integer>{
 
 	List<Review> findByReviewcode(int reviewcode);
 
+	List<Review> findByReviewname(String name);
+
 }
