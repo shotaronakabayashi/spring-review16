@@ -180,7 +180,7 @@ public class AccountController {
 
 
 	//マイページから登録情報変更がクリックされた
-	@GetMapping("/cheange/{nickname}")
+	@GetMapping("/change/{nickname}")
 	public ModelAndView changeUser (
 			@PathVariable("nickname") String nickname,
 			ModelAndView mv) {

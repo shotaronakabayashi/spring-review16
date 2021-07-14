@@ -24,6 +24,14 @@ public class SerchController {
 			@RequestParam("keyword") String keyword,
 			ModelAndView mv) {
 
+		//エラー処理
+		if (keyword.equals("null") ) {
+			mv.addObject("message", "店舗名を入社してください");
+			mv.setViewName("top");
+			return mv;
+		}
+
+
 		//入力されたキーワードを名前に含む店舗
 		List<Store> list = storeRepository.findByNameLike("%" + keyword + "%");
 

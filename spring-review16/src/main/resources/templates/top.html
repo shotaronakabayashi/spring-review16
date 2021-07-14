@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>TABETELL</h1>
+<h1 align="center">TABETELL</h1>
 
 <div th:if="${session.nickname == null}">
 ようこそゲストさん<br>
@@ -16,13 +16,15 @@
 </div>
 
 <div th:if="${session.nickname == null}">
-<a href="/login">ログイン</a></div>
+<a href="/adduser">新規登録</a>　　
+<a href="/login">ログイン</a>
+</div>
 <a> </a>
 <div th:unless="${session.nickname == null}">
-<a href="/logout">ログアウト</a></div>
-<a> </a>
-<a href="/adduser">新規登録</a><br>
+<a href="/logout">ログアウト</a>
 <a href="/addstore">お店登録</a>
+</div>
+<a> </a>
 
 <a th:href="'/mypage/' + ${session.nickname}">マイページに行く</a>
 <a th:text="${message}"></a>
