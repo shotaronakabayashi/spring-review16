@@ -16,7 +16,7 @@ public interface StoreRepository extends JpaRepository<Store, Integer>{
 
 	List<Store> findByCategorycode2(String categorycode2);
 
-	List<Store> findByTime(int time);
+	List<Store> findByTimeLike(int time);
 
 	List<Store> findByScean(int scean);
 

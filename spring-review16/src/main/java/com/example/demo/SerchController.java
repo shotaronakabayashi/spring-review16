@@ -77,15 +77,15 @@ public class SerchController {
 	//詳細検索
 	@PostMapping("/search/detail")
 	public ModelAndView SearchDetail2(
-			@RequestParam("keyword") String keyword,
-			@RequestParam("address") String address,
-			@RequestParam("categorycode1") String categorycode1,
-			@RequestParam("categorycode2") String categorycode2,
+			@RequestParam(name="keyword", defaultValue="") String keyword,
+			@RequestParam(name="address", defaultValue="") String address,
+			@RequestParam(name="categorycode1") String categorycode1,
+			@RequestParam(name="categorycode2") String categorycode2,
 			@RequestParam(name="time1", defaultValue = "0" ) int time1,
 			@RequestParam(name = "time2", defaultValue="0") int time2,
 			@RequestParam(name = "time3", defaultValue="0") int time3,
-			@RequestParam("minprice") int price1,
-			@RequestParam("maxprice") int price2,
+			@RequestParam(name="minprice", defaultValue="0") int price1,
+			@RequestParam(name="maxprice", defaultValue="10000000") int price2,
 			@RequestParam(name = "scean1", defaultValue="0") int scean1,
 			@RequestParam(name = "scean2", defaultValue="0") int scean2,
 			@RequestParam(name = "scean3", defaultValue="0") int scean3,
