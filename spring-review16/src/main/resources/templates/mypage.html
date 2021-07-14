@@ -10,6 +10,19 @@
 
 <a th:text="${nickname}"></a><a>さんのマイページ</a>
 
+<a>マイレビュー</a>
+
+<div th:each="rev:${reviewlist}">
+<a th:text="${rev.reviewstorename}"></a>
+<a th:text="${rev.review}"></a>
+
+
+
+</div>
+
+
+<a href="/changemy">登録情報変更</a>
+
 
 </body>
 </html>
