@@ -27,6 +27,7 @@ public class Store {
 	private int scean;
 	private String message;
 	private int rank;
+	private float rankave;
 
 
 	//コンストラクタ
@@ -140,6 +141,25 @@ public class Store {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	public float getRankave() {
+		return rankave;
+	}
+
+	public void setRankave(float rankave) {
+		this.rankave = rankave;
+	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -99,9 +99,10 @@ public class ReviewController {
 
 		//付けられた星の数の平均をStoreDBに追加
 		int rank = store2.getRank() + star;
-		rank = rank / count;
+		float rankave = rank / (float)count;
 
 		store2.setRank(rank);
+		store2.setRankave(rankave);
 
 		storeRepository.saveAndFlush(store2);
 
