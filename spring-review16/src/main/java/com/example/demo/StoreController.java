@@ -218,8 +218,10 @@ public class StoreController {
 		}
 		List<Store> storelist = new ArrayList<>();
 		storelist.add(store);
+		float rankave = store.getRankave();
 
 		mv.addObject("storelist", storelist);
+		mv.addObject("rankave", rankave);
 
 		int code = store.getCode();
 
