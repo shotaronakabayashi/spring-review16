@@ -151,16 +151,7 @@ public class Store {
 	}
 
 
-	//リストのソートのメソッド
-	 public int compare(Store., Product p2) {
-		    //金額を比較
-		    int compareResult = Integer.compare(p1.getPrice(), p2.getPrice());
-		    //金額が同じ場合、商品名を比較
-		    if (compareResult == 0) {
-		      compareResult = p1.getName().compareTo(p2.getName());
-		    }
-		    return compareResult;
-		  }
+
 
 
 

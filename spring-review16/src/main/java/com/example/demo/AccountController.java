@@ -34,7 +34,7 @@ public class AccountController {
 		Store store = null;
 		List<Store> list = storeRepository.findAll();
 
-		float best1 = 0; float best2 = 0; float best3 = 0; float other = 0;
+		float best1 = 0; float best2 = 0; float best3 = 0; float best4 = 0; float other = 0;
 		for (Store st : list) {
 			for (Store s : list) {
 				 float a = s.getRankave();
@@ -46,7 +46,11 @@ public class AccountController {
 				 }
 				 else if (a <= best2 && a >= best3) {
 					 best3 = a;
-				 } else {
+				 }
+				 else if (a <= best3 && a >= best4) {
+					 best4 = a;
+				 }
+				 else {
 					 other = a;
 				 }
 			}
