@@ -24,6 +24,8 @@ public interface StoreRepository extends JpaRepository<Store, Integer>{
 
 	List<Store> findByRank(int rank);
 
+	List<Store> findByRankave(float rankave);
+
 
 
 	List<Store> findByBudgetBetween(int price1, int price2);

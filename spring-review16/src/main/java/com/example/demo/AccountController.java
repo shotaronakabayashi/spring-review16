@@ -28,16 +28,15 @@ public class AccountController {
 
 	//トップページを表示
 	@RequestMapping("/")
-	public ModelAndView index(ModelAndView mv) {
+	public ModelAndView index(	ModelAndView mv) {
 
 
 		Store store = null;
 		List<Store> list = storeRepository.findAll();
 
-
-		int best1 = 0; int best2 = 0; int best3 = 0;
+		float best1 = 0; float best2 = 0; float best3 = 0;
 		for (Store s : list) {
-			 int a = s.getRank();
+			 float a = s.getRankave();
 			 if (a > best1 ){
 				 best1 = a;
 			 }
@@ -51,13 +50,13 @@ public class AccountController {
 
 		//ランクの情報から店舗情報を取得
 		//1位
-		List<Store> list1 = storeRepository.findByRank(best1);
+		List<Store> list1 = storeRepository.findByRankave(best1);
 
 		//2位
-		List<Store> list2 = storeRepository.findByRank(best2);
+		List<Store> list2 = storeRepository.findByRankave(best2);
 
 		//3位
-		List<Store> list3 = storeRepository.findByRank(best3);
+		List<Store> list3 = storeRepository.findByRankave(best3);
 
 		mv.addObject("list1", list1);
 		mv.addObject("list2", list2);

@@ -31,6 +31,52 @@ public class StoreController {
 	ReviewRepository reviewRepository;
 
 
+	//カテゴリー別のランキングを表示
+	//トップページを表示
+	@RequestMapping("/{category}")
+	public ModelAndView index(
+			@PathVariable("category") String category,
+			ModelAndView mv) {
+
+
+		Store store = null;
+		List<Store> list = storeRepository.findByCategorycode1(category);
+
+		float best1 = 0; float best2 = 0; float best3 = 0;
+		for (Store s : list) {
+			float a = s.getRankave();
+			if (a > best1 ){
+				best1 = a;
+			}
+			else if (a <= best1 || a >= best2) {
+				 best2 = a;
+			}
+			else if (a <= best2 || a >= best3) {
+				 best3 = a;
+			}
+		}
+
+			//ランクの情報から店舗情報を取得
+			//1位
+			List<Store> list1 = storeRepository.findByRankave(best1);
+
+			//2位
+			List<Store> list2 = storeRepository.findByRankave(best2);
+
+			//3位
+			List<Store> list3 = storeRepository.findByRankave(best3);
+
+			mv.addObject("list1", list1);
+			mv.addObject("list2", list2);
+			mv.addObject("list3", list3);
+
+			mv.setViewName("top");
+			return mv;
+		}
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//店舗登録をクリックされた
@@ -226,7 +272,9 @@ public class StoreController {
 			ModelAndView mv) {
 
 		List<Menu> menulist = menuRepository.findByMenucode(storecode);
+		List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
 
+		mv.addObject("picturelist", picturelist);
 		mv.addObject("menulist", menulist);
 		mv.setViewName("change");
 		return mv;
@@ -326,6 +374,54 @@ public class StoreController {
 				}
 				mv.addObject("count", count);
 				// ---------------------------------------------------------------------------------------------
+
+		mv.setViewName("store");
+		return mv;
+	}
+
+
+	//写真の削除
+	@PostMapping("/delete/picture")
+	public ModelAndView deletePicture (
+			@RequestParam("p_code") int code,
+			@RequestParam("picturecode") int storecode,
+			ModelAndView mv) {
+
+		//削除
+		pictureRepository.deleteById(code);
+
+				//店舗詳細ページ用の情報を送る-------------------------------------------------------------------
+				Store store = null;
+				Optional<Store> storelist0 = storeRepository.findById(storecode);
+				if (storelist0.isEmpty() == false) {
+					store = storelist0.get();
+				}
+				List<Store> storelist = new ArrayList<>();
+				storelist.add(store);
+
+				//店舗情報を送る
+				mv.addObject("storelist", storelist);
+
+				//メニュー情報を送る
+				List<Menu> menulist = menuRepository.findByMenucode(storecode);
+				mv.addObject("menulist", menulist);
+
+				//写真の情報を送る
+				List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
+				mv.addObject("picturelist", picturelist);
+
+				//レビューの情報を送る
+				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
+				mv.addObject("reviewlist", reviewlist);
+
+				//レビューの数を送る
+				int count = 0;
+				for (Review r : reviewlist) {
+					count++;
+				}
+				mv.addObject("count", count);
+				// ---------------------------------------------------------------------------------------------
+
 
 		mv.setViewName("store");
 		return mv;

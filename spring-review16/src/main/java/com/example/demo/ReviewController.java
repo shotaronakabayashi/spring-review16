@@ -124,6 +124,7 @@ public class ReviewController {
 		//レビューの情報を送る
 		List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
 		mv.addObject("reviewlist", reviewlist);
+		mv.addObject("rankave", rankave);
 
 		mv.addObject("count", count);
 		mv.setViewName("store");
