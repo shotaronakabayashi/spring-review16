@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -175,12 +176,51 @@ public class AccountController {
 		mv.setViewName("mypage");
 		return mv;
 
-
 	}
 
 
+	//マイページから登録情報変更がクリックされた
+	@GetMapping("/cheange/{nickname}")
+	public ModelAndView changeUser (
+			@PathVariable("nickname") String nickname,
+			ModelAndView mv) {
+
+		Account account = null;
+		Optional<Account> list0 = accountRepository.findByNickname(nickname);
+		account = list0.get();
+		List<Account> list = new ArrayList<>();
+		list.add(account);
+
+		//ユーザーのコード
+		int code = account.getCode();
+
+		mv.addObject("code", code);
+		mv.addObject("list", list);
+		mv.setViewName("changeuser");
+		return mv;
+	}
 
 
+	//登録情報の変更内容が入力された
+	@PostMapping("/changeuser")
+	ModelAndView changeUser2 (
+			@RequestParam("code") int code,
+			@RequestParam("name") String name,
+			@RequestParam("nickname") String nickname,
+			@RequestParam("address") String address,
+			@RequestParam("tel") String tel,
+			@RequestParam("email") String email,
+			@RequestParam("password") String password,
+			ModelAndView mv) {
+
+		Account account = new Account(code,name, nickname, address, tel, email, password);
+
+		//追加
+		accountRepository.saveAndFlush(account);
+
+		mv.setViewName("mypage");
+		return mv;
+	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
