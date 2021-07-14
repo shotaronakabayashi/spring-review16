@@ -25,6 +25,8 @@
 
 </head>
 <body>
+
+
 <a href="/">Top</a>
 <h1>お店詳細</h1>
 <div th:each="storelist:${storelist}">
@@ -32,7 +34,17 @@
 <a th:href="'/change/' +${storelist.code}">メニュー・写真変更</a>
 <br>
 <a th:text="${storelist.name}"></a>
-<a>ランク：星</a><a th:text="${storelist.rankave}"></a><a>つ</a>
+
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+	document.addEventListener("DOMContentLoaded", function() {
+var data = /*[[${rankave}]]*/+0;
+document.getElementById("rank").innerHTML = data.toFixed(1);
+})
+/*]]>*/
+</script>
+
+<a>ランク：星</a><a id="rank"></a><a>つ</a>
 </div>
 
 <div id="ww">

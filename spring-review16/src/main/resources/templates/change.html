@@ -43,8 +43,9 @@
 <table>
 <tr th:each="pic:${picturelist}">
 <td><img th:src="${pic.pictureurl}" width="500" height="300" alt=""></td>
-<form action="/change" method="POST">
+<form action="/delete/picture" method="POST">
 <input type="hidden" th:value="${pic.code}" th:name="p_code">
+<input type="hidden" th:value="${pic.picturecode}" th:name="picturecode">
 <td><input type="submit" value="削除"></td>
 </form>
 </tr>
