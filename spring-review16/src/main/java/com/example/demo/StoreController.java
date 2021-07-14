@@ -67,7 +67,7 @@ public class StoreController {
 
 			//3位
 			List<Store> list3 = storeRepository.findByRankave(best3);
-
+mv.addObject("debag", best3);
 			mv.addObject("list1", list1);
 			mv.addObject("list2", list2);
 			mv.addObject("list3", list3);
@@ -278,8 +278,14 @@ public class StoreController {
 		List<Menu> menulist = menuRepository.findByMenucode(storecode);
 		List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
 
+		Optional<Store> storelist = storeRepository.findById(storecode);
+		Store store = storelist.get();
+
+		int addcode = store.getCode();
+
 		mv.addObject("picturelist", picturelist);
 		mv.addObject("menulist", menulist);
+		mv.addObject("addcode", addcode);
 		mv.setViewName("change");
 		return mv;
 	}
@@ -309,8 +315,10 @@ public class StoreController {
 				List<Store> storelist = new ArrayList<>();
 				storelist.add(store);
 
+				float rankave = store.getRankave();
 				//店舗情報を送る
 				mv.addObject("storelist", storelist);
+				mv.addObject("rankave", rankave);
 
 				//メニュー情報を送る
 				List<Menu> menulist = menuRepository.findByMenucode(storecode);
@@ -355,9 +363,11 @@ public class StoreController {
 				}
 				List<Store> storelist = new ArrayList<>();
 				storelist.add(store);
+				float rankave = store.getRankave();
 
 				//店舗情報を送る
 				mv.addObject("storelist", storelist);
+				mv.addObject("rankave", rankave);
 
 				//メニュー情報を送る
 				List<Menu> menulist = menuRepository.findByMenucode(storecode);
@@ -402,9 +412,11 @@ public class StoreController {
 				}
 				List<Store> storelist = new ArrayList<>();
 				storelist.add(store);
+				float rankave = store.getRankave();
 
 				//店舗情報を送る
 				mv.addObject("storelist", storelist);
+				mv.addObject("rankave", rankave);
 
 				//メニュー情報を送る
 				List<Menu> menulist = menuRepository.findByMenucode(storecode);
