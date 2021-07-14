@@ -46,13 +46,13 @@ public class StoreController {
 		for (Store st : list) {
 			for (Store s : list) {
 				float a = s.getRankave();
-				if (a > best1 ){
+				if (a >= best1 ){
 					best1 = a;
 				}
-				else if (a <= best1 && a >= best2) {
+				else if (a < best1 && a >= best2) {
 					 best2 = a;
 				}
-				else if (a <= best2 && a >= best3) {
+				else if (a < best2 && a >= best3) {
 					 best3 = a;
 				} else {
 					other = a;

@@ -69,7 +69,6 @@
 </div>
 第3位　　　
 
-<a th:text="${debag}"></a>
 <div th:each="list3 : ${list3}">
 	<a th:href="'/store/' + ${list3.name}" th:text="${list3.name}"></a>
 	<a th:text="${list3.address}"></a>
