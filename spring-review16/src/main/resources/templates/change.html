@@ -16,7 +16,8 @@
 <body>
 <a href="/">Top</a>
 <h2>メニュー・写真変更</h2>
-
+<a th:href="'/addmenu/'+${addcode}">メニュー追加</a>
+<a th:href="'/addpicture/'+${addcode}">写真追加</a>
 
 
 <h4>メニュー</h4>
@@ -52,9 +53,6 @@
 </table>
 </div>
 
-<div th:each="storelist:${storelist}">
-<a th:href="'/addstore/'+${storelist.code}">メニュー追加</a>
-<a th:href="'/addpicture/'+${storelist.code}">写真追加</a>
-</div>
+
 </body>
 </html>

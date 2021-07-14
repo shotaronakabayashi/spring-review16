@@ -119,9 +119,10 @@ document.getElementById("rank").innerHTML = data.toFixed(1);
 </div>
 
 <h4>メニュー</h4>
+<a>--------------------------------------------------------------</a>
 <div th:each="menu:${menulist}">
 <p th:text="${menu.menuname}"></p>
-<a>値段</a><p th:text="${menu.menuprice}"></p>
+<a>値段：</a><a th:text="${menu.menuprice}"></a><br>
 <a>--------------------------------------------------------------</a>
 </div>
 
