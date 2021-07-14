@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>会員情報変更</title>
+</head>
+<body>
+<a href="/">Top</a>
+<h2>会員情報変更</h2>
+<a>会員ID：</a><a th:text="${code}"></a>
+<div th:each="list:${list}">
+<form action="/changeuser" method="POST">
+<h4 >
+名前　　　　　　　　　　　　<input type="text" name="name" th:value="${list.name}">
+</h4>
+<br>
+
+<h4>
+ニックネーム　　　　　　　　<input type="text" name="nickname" th:value="${list.nickname}">
+</h4>
+<br>
+
+<h4>
+住所　　　　　　　　　　　　<input type="text" name="address" th:value="${list.address}">
+</h4>
+<br>
+
+<h4>
+電話番号　　　　　　　　　　<input type="text" name="tel" th:value="${list.tel}">
+</h4>
+<br>
+
+<h4>
+メールアドレス　　　　　　　<input type="text" name="email" th:value="${list.email}">
+</h4>
+<br>
+
+<h4>
+パスワード　　　　　　　　　<input type="text" name="password" th:value="${list.password}">
+</h4>
+<br>
+<input type="hidden" th:value="${code}" name="code">
+<input type="submit" value="変更する">
+</form>
+</div>
+</body>
+</html>

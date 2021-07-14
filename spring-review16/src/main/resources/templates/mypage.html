@@ -8,18 +8,17 @@
 <a href="/">Top</a>
 <h1>マイページ</h1>
 
-<a th:text="${nickname}"></a><a>さんのマイページ</a>
+<a th:text="${nickname}"></a><a>さんのマイページ</a><br>
+
+<a href="'/change/'+${nickname}">会員情報変更</a><br>
 
 <a>マイレビュー</a>
-
-<div th:each="rev:${reviewlist}">
-<a th:text="${rev.storename}"></a>
-<a th:text="${rev.review}"></a>
+<a>------------------------------------------------------------</a>
+<div th:each="rev:${list}">
+<a th:text="${rev.storename}"></a><a>　星：</a><a th:text="${rev.star}"></a><a>つ</a>
+<p th:text="${rev.review}"></p>
+<a>------------------------------------------------------------</a>
 </div>
-
-
-<a href="/changemy">登録情報変更</a>
-
 
 </body>
 </html>
