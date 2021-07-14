@@ -95,6 +95,12 @@ public class AccountController {
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
 			ModelAndView mv) {
+		//エラー処理
+		if (name.length()==0 || nickname.length()==0 || address.length()==0 || tel.length()==0 || email.length()==0 || password.length()==0 ) {
+			mv.addObject("message", "すべての項目に入力してください。");
+			mv.setViewName("adduser");
+			return mv;
+		}
 
 		Account account = new Account(name, nickname, address, tel, email, password);
 
