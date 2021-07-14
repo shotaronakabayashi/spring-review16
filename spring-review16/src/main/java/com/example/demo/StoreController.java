@@ -43,18 +43,20 @@ public class StoreController {
 		List<Store> list = storeRepository.findByCategorycode1(category);
 
 		float best1 = 0; float best2 = 0; float best3 = 0; float other = 0;
-		for (Store s : list) {
-			float a = s.getRankave();
-			if (a > best1 ){
-				best1 = a;
-			}
-			else if (a <= best1 && a >= best2) {
-				 best2 = a;
-			}
-			else if (a <= best2 && a >= best3) {
-				 best3 = a;
-			} else {
-				other = a;
+		for (Store st : list) {
+			for (Store s : list) {
+				float a = s.getRankave();
+				if (a > best1 ){
+					best1 = a;
+				}
+				else if (a <= best1 && a >= best2) {
+					 best2 = a;
+				}
+				else if (a <= best2 && a >= best3) {
+					 best3 = a;
+				} else {
+					other = a;
+				}
 			}
 		}
 
@@ -157,6 +159,22 @@ mv.addObject("debag", best3);
 
 		mv.addObject("code", menucode);
 		mv.addObject("count", count);
+		mv.setViewName("addmenu");
+		return mv;
+	}
+
+
+
+
+	@RequestMapping("/addmenu/{code}")
+	public ModelAndView addmenu3 (
+			@PathVariable ("code") int code,
+			ModelAndView mv	) {
+
+		int count = 0;
+
+		mv.addObject("count", count);
+		mv.addObject("code", code);
 		mv.setViewName("addmenu");
 		return mv;
 	}

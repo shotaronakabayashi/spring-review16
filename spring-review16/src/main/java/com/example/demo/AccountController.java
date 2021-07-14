@@ -35,19 +35,21 @@ public class AccountController {
 		List<Store> list = storeRepository.findAll();
 
 		float best1 = 0; float best2 = 0; float best3 = 0; float other = 0;
-		for (Store s : list) {
-			 float a = s.getRankave();
-			 if (a > best1 ){
-				 best1 = a;
-			 }
-			 else if (a <= best1 && a >= best2) {
-				 best2 = a;
-			 }
-			 else if (a <= best2 && a >= best3) {
-				 best3 = a;
-			 } else {
-				 other = a;
-			 }
+		for (Store st : list) {
+			for (Store s : list) {
+				 float a = s.getRankave();
+				 if (a > best1 ){
+					 best1 = a;
+				 }
+				 else if (a <= best1 && a >= best2) {
+					 best2 = a;
+				 }
+				 else if (a <= best2 && a >= best3) {
+					 best3 = a;
+				 } else {
+					 other = a;
+				 }
+			}
 		}
 
 		//ランクの情報から店舗情報を取得
