@@ -16,7 +16,7 @@ public interface StoreRepository extends JpaRepository<Store, Integer>{
 
 	List<Store> findByCategorycode2(String categorycode2);
 
-	List<Store> findByTimeLike(int time);
+	List<Store> findByTime(int time);
 
 	List<Store> findByScean(int scean);
 
@@ -31,7 +31,7 @@ public interface StoreRepository extends JpaRepository<Store, Integer>{
 	List<Store> findByBudgetBetween(int price1, int price2);
 
 	//詳細検索
-	List<Store> findByNameLikeAndAddressLikeAndCategorycode1AndCategorycode2AndTimeAndScean (String keyword, String address, String categorycode1, String categorycode2, int time,int scean);
+	List<Store> findByNameLikeAndAddressLikeAndCategorycode1AndCategorycode2 (String keyword, String address, String categorycode1, String categorycode2);
 
 
 }

@@ -16,6 +16,15 @@
 
 
 </div>
+---------------------------------------------------------
+<div th:each="test:${test}">
+    <a th:href="'/store/'+${test.name}" th:text="${test.name}"></a>
+    <a th:text="${test.address}"></a>
+    <a th:text="${test.categorycode1}"></a>
+    <a th:text="${test.categorycode2}"></a>
+
+
+</div>
 
 
 </body>
