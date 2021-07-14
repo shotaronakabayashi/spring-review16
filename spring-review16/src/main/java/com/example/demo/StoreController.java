@@ -69,7 +69,7 @@ public class StoreController {
 
 			//3位
 			List<Store> list3 = storeRepository.findByRankave(best3);
-mv.addObject("debag", best3);
+
 			mv.addObject("list1", list1);
 			mv.addObject("list2", list2);
 			mv.addObject("list3", list3);
@@ -77,8 +77,6 @@ mv.addObject("debag", best3);
 			mv.setViewName("top");
 			return mv;
 		}
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -163,21 +161,6 @@ mv.addObject("debag", best3);
 		return mv;
 	}
 
-
-
-
-	@RequestMapping("/addmenu/{code}")
-	public ModelAndView addmenu3 (
-			@PathVariable ("code") int code,
-			ModelAndView mv	) {
-
-		int count = 0;
-
-		mv.addObject("count", count);
-		mv.addObject("code", code);
-		mv.setViewName("addmenu");
-		return mv;
-	}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -361,6 +344,24 @@ mv.addObject("debag", best3);
 		mv.setViewName("store");
 		return mv;
 	}
+
+
+
+	//メニューを追加　（詳細ページ）
+	@RequestMapping("/addmenu/{code}")
+	public ModelAndView addmenu3 (
+			@PathVariable ("code") int code,
+			ModelAndView mv	) {
+
+		int count = 0;
+
+		mv.addObject("count", count);
+		mv.addObject("code", code);
+		mv.setViewName("addmenu");
+		return mv;
+	}
+
+
 
 
 	//メニューの削除

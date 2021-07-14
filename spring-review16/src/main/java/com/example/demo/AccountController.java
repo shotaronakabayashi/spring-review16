@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -148,6 +149,25 @@ public class AccountController {
 		}
 		return mv;
 	}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//「マイページに行く」がクリックされた
+	@GetMapping("mypage/{nickname}")
+	public ModelAndView mypage (
+			@PathVariable("nickname") String nickname,
+			ModelAndView mv) {
+
+		mv.addObject("nickname", nickname);
+		mv.setViewName("mypage");
+		return mv;
+
+
+	}
+
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
