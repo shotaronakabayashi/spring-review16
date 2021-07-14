@@ -27,12 +27,12 @@
 <a> </a>
 
 <a th:href="'/mypage/' + ${session.nickname}">マイページに行く</a>
-<a th:text="${message}"></a>
 
 <div>
 <form action="/keyword">
-<input type="text" name="keyword">
-<input type="submit" value="検索"><a>　　　</a>
+<input type="text" name="keyword">　
+<input type="submit" value="検索"><a>　　</a>
+<a th:text="${message}"></a>
 </form>
 <a href="search/detail">詳細検索</a><br>
 </div>

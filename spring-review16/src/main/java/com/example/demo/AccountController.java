@@ -161,12 +161,6 @@ public class AccountController {
 	public ModelAndView mypage (
 			@PathVariable("nickname") String nickname,
 			ModelAndView mv) {
-		//ログインしてない際のエラー処理
-		if (nickname.equals("null") ) {
-			mv.addObject("message", "ログインしてください");
-			mv.setViewName("top");
-			return mv;
-		}
 
 		//マイページの内容
 		List<Review> list = reviewRepository.findByReviewname(nickname);
@@ -180,7 +174,7 @@ public class AccountController {
 
 
 	//マイページから登録情報変更がクリックされた
-	@GetMapping("/change/{nickname}")
+	@GetMapping("/changeuser/{nickname}")
 	public ModelAndView changeUser (
 			@PathVariable("nickname") String nickname,
 			ModelAndView mv) {

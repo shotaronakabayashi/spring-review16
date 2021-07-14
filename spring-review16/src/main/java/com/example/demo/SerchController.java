@@ -25,12 +25,11 @@ public class SerchController {
 			ModelAndView mv) {
 
 		//エラー処理
-		if (keyword.equals("null") ) {
-			mv.addObject("message", "店舗名を入社してください");
+		if (keyword.length() == 0 ) {
+			mv.addObject("message", "店舗名を入力してください");
 			mv.setViewName("top");
 			return mv;
-		}
-
+		} else {
 
 		//入力されたキーワードを名前に含む店舗
 		List<Store> list = storeRepository.findByNameLike("%" + keyword + "%");
@@ -39,6 +38,7 @@ public class SerchController {
 
 		mv.setViewName("result");
 		return mv;
+		}
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
