@@ -42,17 +42,19 @@ public class StoreController {
 		Store store = null;
 		List<Store> list = storeRepository.findByCategorycode1(category);
 
-		float best1 = 0; float best2 = 0; float best3 = 0;
+		float best1 = 0; float best2 = 0; float best3 = 0; float other = 0;
 		for (Store s : list) {
 			float a = s.getRankave();
 			if (a > best1 ){
 				best1 = a;
 			}
-			else if (a <= best1 || a >= best2) {
+			else if (a <= best1 && a >= best2) {
 				 best2 = a;
 			}
-			else if (a <= best2 || a >= best3) {
+			else if (a <= best2 && a >= best3) {
 				 best3 = a;
+			} else {
+				other = a;
 			}
 		}
 

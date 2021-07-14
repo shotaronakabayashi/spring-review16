@@ -45,34 +45,40 @@
 <br><br>
 <a href="/">[総合]</a>　　
 <a href="/ファストフード">ファストフード</a>　　
-<a href="/和食">和食</a>
+<a href="/和食">和食</a>　　
+<a href="/イタリアン">イタリアン</a>
 
 <div>
 <a>ランキング表示</a>
+<br>
+第１位
 <div th:each="list1 : ${list1}">
-	<a th:text="${list1.name}"></a>
+	<a th:href="'/store/' + ${list1.name}" th:text="${list1.name}"></a>
 	<a th:text="${list1.address}"></a>
 	<a th:text="${list1.categorycode1}"></a>
 	<a th:text="${list1.categorycode2}"></a>
 	<a th:text="${list1.message}"></a>
 </div>
-
+第２位
 <div th:each="list2 : ${list2}">
-	<a th:text="${list2.name}"></a>
+	<a th:href="'/store/' + ${list2.name}" th:text="${list2.name}"></a>
 	<a th:text="${list2.address}"></a>
 	<a th:text="${list2.categorycode1}"></a>
 	<a th:text="${list2.categorycode2}"></a>
 	<a th:text="${list2.message}"></a>
 </div>
+第3位　　　
 
+<a th:text="${debag}"></a>
 <div th:each="list3 : ${list3}">
-	<a th:text="${list3.name}"></a>
+	<a th:href="'/store/' + ${list3.name}" th:text="${list3.name}"></a>
 	<a th:text="${list3.address}"></a>
 	<a th:text="${list3.categorycode1}"></a>
 	<a th:text="${list3.categorycode2}"></a>
 	<a th:text="${list3.message}"></a>
 </div>
 <br>
+
 </div>
 <div>
 <img src=""><br>
