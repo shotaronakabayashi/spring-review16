@@ -218,6 +218,11 @@ public class AccountController {
 		//追加
 		accountRepository.saveAndFlush(account);
 
+		List<Review> list = reviewRepository.findByReviewname(nickname);
+
+		mv.addObject("list", list);
+		mv.addObject("nickname");
+
 		mv.setViewName("mypage");
 		return mv;
 	}
