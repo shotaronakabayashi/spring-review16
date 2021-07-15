@@ -59,7 +59,7 @@ document.getElementById("rank").innerHTML = data.toFixed(1);
 <script type="text/javascript" th:inline="javascript">
 /*<![CDATA[*/
 document.addEventListener("DOMContentLoaded", function() {
-var data = /*[[${googleurl}]]*/+"";
+var data = /*[[${mapurl}]]*/+"";
 
 var kugiri = '"';
 var array = data.split(kugiri);
@@ -68,7 +68,7 @@ alert(array);
 
 for(var i=0; i<array.length;i++){
 	if(i==1){
-		document.getElementById("test").src = array[i];
+		document.getElementById("map").src = array[i];
 	}
 }
 
@@ -76,7 +76,7 @@ for(var i=0; i<array.length;i++){
 })
 /*]]>*/
 </script>
-<iframe src="" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" id="test"></iframe>
+<iframe src="" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" id="map"></iframe>
 
 
 <br><br>
