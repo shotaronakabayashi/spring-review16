@@ -274,6 +274,7 @@ public class AccountController {
 		//マイページの内容
 		List<Review> list = reviewRepository.findByReviewname(nickname);
 
+
 		mv.addObject("list", list);
 		mv.addObject("nickname", nickname);
 		mv.setViewName("mypage");
@@ -281,7 +282,7 @@ public class AccountController {
 
 	}
 
-	//マイページから登録情報変更がクリックされた
+	//マイページから登録情報変更がクリックされた	遷移
 	@GetMapping("/changeuser/{nickname}")
 	public ModelAndView changeUser(
 			@PathVariable("nickname") String nickname,
@@ -319,7 +320,10 @@ public class AccountController {
 		//追加
 		accountRepository.saveAndFlush(account);
 
-		List<Review> list = reviewRepository.findByReviewname(nickname);
+		List<Review> list = reviewRepository.findByUsercode(code);
+
+		session.invalidate();
+		session.setAttribute("nickname", nickname);
 
 		mv.addObject("list", list);
 		mv.addObject("nickname", nickname);
