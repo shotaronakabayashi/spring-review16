@@ -260,7 +260,10 @@ public class StoreController {
 
 	//-----新規登録終了-----
 
+
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	//-----店舗の詳細開始-----
 
 	//店舗詳細ページが押された
@@ -295,9 +298,12 @@ public class StoreController {
 
 		//マップの情報を送る
 		List<Map> maplist = mapRepository.findByMapcode(code);
-		Map map = maplist.get(0);
-		String mapurl = map.getMapurl();
-		mv.addObject("mapurl", mapurl);
+		Map map = null;
+		if (maplist.isEmpty() == false) {
+			map = maplist.get(0);
+			String mapurl = map.getMapurl();
+			mv.addObject("mapurl", mapurl);
+		}
 
 		//レビューの情報を送る
 		List<Review> reviewlist = reviewRepository.findByReviewcode(code);
