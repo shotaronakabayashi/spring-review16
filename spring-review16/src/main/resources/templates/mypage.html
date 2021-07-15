@@ -15,7 +15,7 @@
 <a>マイレビュー</a>
 <a>------------------------------------------------------------</a>
 <div th:each="rev:${list}">
-<a th:text="${rev.storename}"></a><a>　星：</a><a th:text="${rev.star}"></a><a>つ</a>
+<a th:text="${session.nickname}"></a><a>　星：</a><a th:text="${rev.star}"></a><a>つ</a>
 <p th:text="${rev.review}"></p>
 <a>------------------------------------------------------------</a>
 </div>
