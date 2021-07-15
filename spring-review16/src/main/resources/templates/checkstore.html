@@ -32,7 +32,7 @@
 	<a href="/">Top</a>
 	<h1>登録情報確認</h1>
 <div th:each="storelist:${storelist}">
-<a th:href="'/checkok/' +${storelist.name}">登録する</a>　　<a th:href="'/checkng/' +/${storelist.code}">キャンセル</a>
+<a th:href="'/checkok/' +${storelist.name}">登録する</a>　　<a th:href="'/checkng/' +${storelist.code}">キャンセル</a>
 </div>
 <div th:each="storelist:${storelist}">
 <a>店名：</a><a th:text="${storelist.name}"></a>
@@ -74,7 +74,8 @@
 	<br>
 	<div th:each="storelist:${storelist}">
 		<div>
-			<a>カテゴリー</a> <a th:text="${storelist.categorycode1}"></a> <a>雰囲気</a>
+			<a>カテゴリー：</a> <a th:text="${storelist.categorycode1}"></a><br>
+			<a>雰囲気：</a>
 			<a th:text="${storelist.categorycode2}"></a>
 		</div>
 
@@ -132,6 +133,7 @@
 			</div>
 		</div>
 
+	<h3>メッセージ：</h3><a th:text="${storelist.message}"></a>
 
 	</div>
 
@@ -158,9 +160,5 @@
 		</div>
 	</div>
 
-<a href="/checkng">キャンセル</a>
-<div th:each="storelist:${storelist}">
-<a href="'/checkok/' +${storelist.name}">登録する</a>
-</div>
 </body>
 </html>

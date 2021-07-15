@@ -86,7 +86,8 @@
 	<br>
 	<div th:each="storelist:${storelist}">
 		<div>
-			<a>カテゴリー</a> <a th:text="${storelist.categorycode1}"></a> <a>雰囲気</a>
+			<a>カテゴリー：</a> <a th:text="${storelist.categorycode1}"></a><br>
+			<a>雰囲気：</a>
 			<a th:text="${storelist.categorycode2}"></a>
 		</div>
 

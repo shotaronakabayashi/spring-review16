@@ -13,6 +13,8 @@
 <input type="hidden" name="code" th:value="${list.code}">
 <a>店舗名　　　　 　  </a><input type="text" name="name" th:value="${list.name}"><br>
 
+<input type="hidden" name="rankave" value="${list.rankave}">
+<input type="hidden" name="rank" value="${list.rank}">
 
 <a>カテゴリー　</a><p><input type="radio" name="categorycode1" value="和食" th:checked="${list.categorycode1} == '和食'">和食　　
                      <input type="radio" name="categorycode1" value="中華" th:checked="${list.categorycode1} == '中華'">中華　　
