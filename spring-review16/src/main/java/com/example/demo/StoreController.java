@@ -331,7 +331,7 @@ public class StoreController {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//店舗の登録内容変更
 
-	//メニュー・写真を変更するがクリックされた
+	//メニュー・写真変更がクリックされた
 	@GetMapping("/change/{code}")
 	public ModelAndView change(
 			@PathVariable("code") int storecode,
@@ -400,7 +400,6 @@ public class StoreController {
 
 //---------------------------------------------------------
 
-
 	//変更内容が入力されて変更するが押された
 	//メニューの変更
 	@PostMapping("/change")
@@ -414,52 +413,16 @@ public class StoreController {
 		Menu menu = new Menu(code, menucode, menuname, price);
 		menuRepository.saveAndFlush(menu);
 
-		//店舗詳細ページ用の情報を送る-------------------------------------------------------------------
-		int storecode = menucode;
-		Store store = null;
-		Optional<Store> storelist0 = storeRepository.findById(storecode);
-		if (storelist0.isEmpty() == false) {
-			store = storelist0.get();
-		}
-		List<Store> storelist = new ArrayList<>();
-		storelist.add(store);
+		List<Menu> menulist = menuRepository.findByMenucode(menucode);
+		List<Picture> picturelist = pictureRepository.findByPicturecode(menucode);
 
-		float rankave = store.getRankave();
-		//店舗情報を送る
-		mv.addObject("storelist", storelist);
-		mv.addObject("rankave", rankave);
-
-		//メニュー情報を送る
-		List<Menu> menulist = menuRepository.findByMenucode(storecode);
 		mv.addObject("menulist", menulist);
-
-		//写真の情報を送る
-		List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
 		mv.addObject("picturelist", picturelist);
+		mv.addObject("addcode", menucode);
 
-		//マップの情報を送る
-		List<Map> maplist = mapRepository.findByMapcode(storecode);
-		Map map = maplist.get(0);
-		String mapurl = map.getMapurl();
-		mv.addObject("mapurl", mapurl);
-
-		//レビューの情報を送る
-		List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
-		mv.addObject("reviewlist", reviewlist);
-
-		//レビューの数を送る
-		int count = 0;
-		for (Review r : reviewlist) {
-			count++;
-		}
-		mv.addObject("count", count);
-		// ---------------------------------------------------------------------------------------------
-
-		mv.setViewName("store");
+		mv.setViewName("change");
 		return mv;
 	}
-
-
 
 	//メニューの削除
 	@PostMapping("/delete")
@@ -471,49 +434,30 @@ public class StoreController {
 		//メニューを削除
 		menuRepository.deleteById(code1);
 
-		//店舗詳細ページ用の情報を送る-------------------------------------------------------------------
-		Store store = null;
-		Optional<Store> storelist0 = storeRepository.findById(storecode);
-		if (storelist0.isEmpty() == false) {
-			store = storelist0.get();
-		}
-		List<Store> storelist = new ArrayList<>();
-		storelist.add(store);
-		float rankave = store.getRankave();
-
-		//店舗情報を送る
-		mv.addObject("storelist", storelist);
-		mv.addObject("rankave", rankave);
-
-		//メニュー情報を送る
 		List<Menu> menulist = menuRepository.findByMenucode(storecode);
-		mv.addObject("menulist", menulist);
-
-		//写真の情報を送る
 		List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
+
+		mv.addObject("menulist", menulist);
 		mv.addObject("picturelist", picturelist);
+		mv.addObject("addcode", storecode);
 
-		//マップの情報を送る
-		List<Map> maplist = mapRepository.findByMapcode(storecode);
-		Map map = maplist.get(0);
-		String mapurl = map.getMapurl();
-		mv.addObject("mapurl", mapurl);
-
-		//レビューの情報を送る
-		List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
-		mv.addObject("reviewlist", reviewlist);
-
-		//レビューの数を送る
-		int count = 0;
-		for (Review r : reviewlist) {
-			count++;
-		}
-		mv.addObject("count", count);
-		// ---------------------------------------------------------------------------------------------
-
-		mv.setViewName("store");
+		mv.setViewName("change");
 		return mv;
 	}
+
+
+	//写真の追加ページに遷移
+	@GetMapping("/addpicture2/{code}")
+	public ModelAndView Readdpicture (
+			@PathVariable("code") int code,
+			ModelAndView mv ) {
+
+		mv.addObject("code", code);
+		mv.setViewName("addpicture2");
+		return mv;
+	}
+
+	//写真が追加された
 
 
 
