@@ -389,7 +389,7 @@ public class StoreController {
 
 	//店舗の登録内容の変更
 	//「店舗情報を変更する」ボタンがクリックされた		店舗変更ページへの遷移
-	@GetMapping("chenge/store/{code}")
+	@GetMapping("change/store/{code}")
 	public ModelAndView changeStore(
 			@PathVariable("code") int storecode,
 			ModelAndView mv) {
