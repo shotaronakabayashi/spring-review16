@@ -11,7 +11,7 @@
 <a th:text="${code}"></a>
 <a th:text="${count}"></a>:メニュー登録完了<br>
 
-<form action="/addmenu" method="POST">
+<form action="/addmenu2" method="POST">
 <input type="hidden" th:value="${count}" th:name="count">
 <input type="hidden" th:value="${code}" th:name="code">
 
@@ -23,6 +23,6 @@
 <input type="submit" value="メニュー登録へ">
 </form>
 
-<a href="javascript:history.back()">終了</a>
+<a th:href="'/addmenu2/return/'+${code}">終了</a>
 </body>
 </html>

@@ -18,7 +18,7 @@
 <h2>メニュー・写真変更</h2>
 <a th:href="'/addmenu/'+${addcode}+'/1'">メニュー追加</a>
 <a th:href="'/addpicture/'+${addcode}">写真追加</a><br>
-<a href="javascript:history.back()">終了</a>
+<a href="'/store/'+${code}">終了</a>
 
 <h4>メニュー</h4>
 <div th:each="menu:${menulist}">
