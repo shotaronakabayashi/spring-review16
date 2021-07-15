@@ -30,6 +30,9 @@ public class StoreController {
 	@Autowired
 	ReviewRepository reviewRepository;
 
+	@Autowired
+	MapRepository mapRepository;
+
 
 	//カテゴリー別のランキングを表示
 	//トップページを表示
@@ -204,6 +207,34 @@ public class StoreController {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	//マップ情報も追加するがクリックされた
+	@GetMapping("/addmap/{code}")
+	public ModelAndView addmap (
+			@PathVariable("code") int code,
+			ModelAndView mv) {
+
+		mv.addObject("code", code);
+		mv.setViewName("addmap");
+		return mv;
+	}
+
+
+	//Mapの情報が入力されて登録するがクリックされた
+	@PostMapping("/addmap/{code}")
+	public ModelAndView addmap2 (
+			@PathVariable ("code") int mapcode,
+			@RequestParam ("mapurl") String mapurl,
+			ModelAndView mv) {
+
+		Map map = new Map(mapcode, mapurl);
+		mapRepository.saveAndFlush(map);
+
+		mv.addObject("addmenu");
+		return mv;
+	}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	//店舗詳細ページが押された
 	@GetMapping("/store/{name}")
 	public ModelAndView storeDetail (
@@ -235,6 +266,9 @@ public class StoreController {
 		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
 		mv.addObject("picturelist", picturelist);
 
+		//マップの情報を送る
+		List<Map> maplist = mapRepository.findByMapcode(code);
+		mv.addObject("maplist", maplist);
 
 		//レビューの情報を送る
 		List<Review> reviewlist = reviewRepository.findByReviewcode(code);
@@ -329,6 +363,10 @@ public class StoreController {
 				List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
 				mv.addObject("picturelist", picturelist);
 
+				//マップの情報を送る
+				List<Map> maplist = mapRepository.findByMapcode(storecode);
+				mv.addObject("maplist", maplist);
+
 				//レビューの情報を送る
 				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
 				mv.addObject("reviewlist", reviewlist);
@@ -396,6 +434,10 @@ public class StoreController {
 				List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
 				mv.addObject("picturelist", picturelist);
 
+				//マップの情報を送る
+				List<Map> maplist = mapRepository.findByMapcode(storecode);
+				mv.addObject("maplist", maplist);
+
 				//レビューの情報を送る
 				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
 				mv.addObject("reviewlist", reviewlist);
@@ -445,6 +487,10 @@ public class StoreController {
 				List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
 				mv.addObject("picturelist", picturelist);
 
+				//マップの情報を送る
+				List<Map> maplist = mapRepository.findByMapcode(storecode);
+				mv.addObject("maplist", maplist);
+
 				//レビューの情報を送る
 				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
 				mv.addObject("reviewlist", reviewlist);
@@ -473,21 +519,3 @@ public class StoreController {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
