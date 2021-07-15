@@ -262,7 +262,7 @@ public class StoreController {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//-----店舗の詳細開始-----
-	
+
 	//店舗詳細ページが押された
 	@GetMapping("/store/{name}")
 	public ModelAndView storeDetail(
@@ -378,7 +378,7 @@ public class StoreController {
 		menuRepository.saveAndFlush(menu);
 
 		mv.addObject("code", menucode);
-		mv.setViewName("addmenu");
+		mv.setViewName("addmenu2");
 		return mv;
 	}
 
@@ -395,7 +395,7 @@ public class StoreController {
 
 //---------------------------------------------------------
 
-	
+
 	//変更内容が入力されて変更するが押された
 	//メニューの変更
 	@PostMapping("/change")
@@ -454,8 +454,8 @@ public class StoreController {
 		return mv;
 	}
 
-	
-	
+
+
 	//メニューの削除
 	@PostMapping("/delete")
 	public ModelAndView menuDelete(
@@ -510,8 +510,8 @@ public class StoreController {
 		return mv;
 	}
 
-	
-	
+
+
 	//写真の削除
 	@PostMapping("/delete/picture")
 	public ModelAndView deletePicture(
