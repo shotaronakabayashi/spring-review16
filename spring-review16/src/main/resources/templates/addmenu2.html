@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>メニュー登録</title>
+<title>メニュー追加</title>
 </head>
 <body>
 <a href="/">Top</a>
-<h2>メニュー登録</h2>
+<h2>メニュー追加</h2>
 <br>
 <a th:text="${code}"></a>
 <a th:text="${count}"></a>:メニュー登録完了<br>
@@ -23,9 +23,6 @@
 <input type="submit" value="メニュー登録へ">
 </form>
 
-<a th:href="'/addpicture/'+${code}">写真を登録する方はこちら</a>
-<a th:href="'/addmap/'+${code}">MAPを登録する方はこちら</a>
-
-<a href="/">全ての終了</a>
+<a href="javascript:history.back()">終了</a>
 </body>
 </html>
