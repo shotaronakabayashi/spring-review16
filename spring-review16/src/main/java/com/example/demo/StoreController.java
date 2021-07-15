@@ -388,7 +388,12 @@ public class StoreController {
 			@PathVariable("code") int code,
 			ModelAndView mv ) {
 
-		mv.addObject("code", code);
+		List<Menu> menulist = menuRepository.findByMenucode(code);
+		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
+
+		mv.addObject("menulist", menulist);
+		mv.addObject("picturelist", picturelist);
+		mv.addObject("addcode", code);
 		mv.setViewName("change");
 		return mv;
 	}
