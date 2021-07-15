@@ -220,16 +220,18 @@ public class StoreController {
 
 
 	//Mapの情報が入力されて登録するがクリックされた
-	@PostMapping("/addmap/{code}")
+	@PostMapping("/addmap")
 	public ModelAndView addmap2 (
-			@PathVariable ("code") int mapcode,
-			@RequestParam ("mapurl") String mapurl,
+			@RequestParam ("code") int mapcode,
+			@RequestParam ("url") String mapurl,
 			ModelAndView mv) {
 
 		Map map = new Map(mapcode, mapurl);
 		mapRepository.saveAndFlush(map);
 
-		mv.addObject("addmenu");
+		mv.addObject("code", mapcode);
+
+		mv.setViewName("addmenu");
 		return mv;
 	}
 
@@ -268,7 +270,9 @@ public class StoreController {
 
 		//マップの情報を送る
 		List<Map> maplist = mapRepository.findByMapcode(code);
-		mv.addObject("maplist", maplist);
+		Map map = maplist.get(0);
+		String mapurl = map.getMapurl();
+		mv.addObject("mapurl", mapurl);
 
 		//レビューの情報を送る
 		List<Review> reviewlist = reviewRepository.findByReviewcode(code);
@@ -365,7 +369,9 @@ public class StoreController {
 
 				//マップの情報を送る
 				List<Map> maplist = mapRepository.findByMapcode(storecode);
-				mv.addObject("maplist", maplist);
+				Map map = maplist.get(0);
+				String mapurl = map.getMapurl();
+				mv.addObject("mapurl", mapurl);
 
 				//レビューの情報を送る
 				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
@@ -436,7 +442,9 @@ public class StoreController {
 
 				//マップの情報を送る
 				List<Map> maplist = mapRepository.findByMapcode(storecode);
-				mv.addObject("maplist", maplist);
+				Map map = maplist.get(0);
+				String mapurl = map.getMapurl();
+				mv.addObject("mapurl", mapurl);
 
 				//レビューの情報を送る
 				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
@@ -489,7 +497,9 @@ public class StoreController {
 
 				//マップの情報を送る
 				List<Map> maplist = mapRepository.findByMapcode(storecode);
-				mv.addObject("maplist", maplist);
+				Map map = maplist.get(0);
+				String mapurl = map.getMapurl();
+				mv.addObject("mapurl", mapurl);
 
 				//レビューの情報を送る
 				List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
