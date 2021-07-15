@@ -130,7 +130,7 @@ public class StoreController {
 		int scean = scean1*100 + scean2*10 + scean3;
 
 		//未入力エラーチェック
-		if("".equals(name) || "".equals(categorycode1) || "".equals(categorycode2) || "".equals(address) || "".equals(tel) || time==000 || "".equals(message) ||
+		if("".equals(name) || "".equals(categorycode1) || "".equals(categorycode2) || "".equals(address) || "".equals(tel) || "".equals(message) ||
 				budget == 0 || time == 0 || scean == 0) {
 			mv.addObject("message", "全ての項目を入力してください。");
 			mv.setViewName("addstore");

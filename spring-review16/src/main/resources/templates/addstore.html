@@ -13,7 +13,7 @@
 <a>店舗名　　　　 　  </a><input type="text" name="name"><br>
 
 
-<a>カテゴリー　</a><p><input type="radio" name="categorycode1" value="和食">和食　　
+<a>カテゴリー　</a><p><input type="radio" name="categorycode1" value="和食" checked="checked">和食　　
                      <input type="radio" name="categorycode1" value="中華">中華　　
                      <input type="radio" name="categorycode1" value="イタリアン">イタリアン
                      <input type="radio" name="categorycode1" value="ジャンクフード">ジャンクフード　　
@@ -24,7 +24,7 @@
                      <input type="radio" name="categorycode1" value="定食">定食
                    </p>
 
-<a>雰囲気 　</a><p>  <input type="radio" name="categorycode2" value="わいわい">わいわい　　
+<a>雰囲気 　</a><p>  <input type="radio" name="categorycode2" value="わいわい" checked="checked">わいわい　　
                      <input type="radio" name="categorycode2" value="落ち着いた">落ち着いた　　
                      <input type="radio" name="categorycode2" value="おしゃれ">おしゃれ
                      <input type="radio" name="categorycode2" value="昔ながらの">昔ながらの　　
@@ -51,5 +51,7 @@
 
   <input type="submit" value="メニュー・写真登録へ">
 </form>
+<br>
+<a th:text="${message}"></a>
 </body>
 </html>
