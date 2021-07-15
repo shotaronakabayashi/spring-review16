@@ -266,22 +266,25 @@ public class AccountController {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//「マイページに行く」がクリックされた
-	@GetMapping("mypage/{nickname}")
+	@GetMapping("mypage/{usercode}")
 	public ModelAndView mypage(
-			@PathVariable("nickname") String nickname,
+			@PathVariable("usercode") int usercode,
 			ModelAndView mv) {
 
 		//マイページの内容
-		List<Review> list = reviewRepository.findByReviewname(nickname);
+		List<Review> list = reviewRepository.findByUsercode(usercode);
+
+		Review review = list.get(0);
+
 
 		mv.addObject("list", list);
-		mv.addObject("nickname", nickname);
+		mv.addObject("nickname", review.getReviewname());
 		mv.setViewName("mypage");
 		return mv;
 
 	}
 
-	//マイページから登録情報変更がクリックされた
+	//マイページから登録情報変更がクリックされた	遷移
 	@GetMapping("/changeuser/{nickname}")
 	public ModelAndView changeUser(
 			@PathVariable("nickname") String nickname,
@@ -319,7 +322,10 @@ public class AccountController {
 		//追加
 		accountRepository.saveAndFlush(account);
 
-		List<Review> list = reviewRepository.findByReviewname(nickname);
+		List<Review> list = reviewRepository.findByUsercode(code);
+
+		session.invalidate();
+		session.setAttribute("nickname", nickname);
 
 		mv.addObject("list", list);
 		mv.addObject("nickname", nickname);
