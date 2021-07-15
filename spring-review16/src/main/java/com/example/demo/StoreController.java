@@ -394,6 +394,7 @@ public class StoreController {
 			@PathVariable("code") int storecode,
 			ModelAndView mv) {
 
+
 		Optional<Store> storelist01 = storeRepository.findById(storecode);
 		Store store = storelist01.get();
 		List<Store> storelist = new ArrayList<>();
