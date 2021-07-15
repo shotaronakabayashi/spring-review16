@@ -65,6 +65,8 @@
 </h4>
 <br><br>
 
+<ul>
+<li>
 第１位
 <div th:each="list1 : ${list1}">
 	<a th:href="'/store/' + ${list1.name}" th:text="${list1.name}"></a>
@@ -73,6 +75,8 @@
 	<a th:text="${list1.categorycode2}"></a>
 	<a th:text="${list1.message}"></a>
 </div>
+</li>
+<li>
 第２位
 <div th:each="list2 : ${list2}">
 	<a th:href="'/store/' + ${list2.name}" th:text="${list2.name}"></a>
@@ -81,6 +85,8 @@
 	<a th:text="${list2.categorycode2}"></a>
 	<a th:text="${list2.message}"></a>
 </div>
+</li>
+<li>
 第3位　　　
 
 <div th:each="list3 : ${list3}">
@@ -91,10 +97,11 @@
 	<a th:text="${list3.message}"></a>
 </div>
 <br>
+</li>
+</ul>
+
 
 </div>
-
-
 
 </body>
 </html>

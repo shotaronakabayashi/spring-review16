@@ -399,6 +399,8 @@ public class StoreController {
 		List<Store> storelist = new ArrayList<>();
 		storelist.add(store);
 
+		mv.addObject("message", store.getMessage());
+		mv.addObject("time", store.getTime());
 		mv.addObject("storelist", storelist);
 		mv.setViewName("changestore");
 		return mv;
