@@ -125,12 +125,12 @@ public class StoreController {
 			@RequestParam("message") String message,
 			ModelAndView mv) {
 
-
-		int time = time1*100 + time2*10 + time3;
-		int scean = scean1*100 + scean2*10 + scean3;
+		int time = time1 * 100 + time2 * 10 + time3;
+		int scean = scean1 * 100 + scean2 * 10 + scean3;
 
 		//未入力エラーチェック
-		if("".equals(name) || "".equals(categorycode1) || "".equals(categorycode2) || "".equals(address) || "".equals(tel) || "".equals(message) ||
+		if ("".equals(name) || "".equals(categorycode1) || "".equals(categorycode2) || "".equals(address)
+				|| "".equals(tel) || "".equals(message) ||
 				budget == 0 || time == 0 || scean == 0) {
 			mv.addObject("message", "全ての項目を入力してください。");
 			mv.setViewName("addstore");
@@ -264,7 +264,6 @@ public class StoreController {
 		return mv;
 	}
 
-
 	//メニュー追加画面から「登録確認画面へ」が押された	確認画面への遷移
 	@GetMapping("/check/{code}")
 	public ModelAndView check(
@@ -273,7 +272,7 @@ public class StoreController {
 
 		// 登録された情報を送る
 		//店舗
-		Optional<Store>  storelist01 = storeRepository.findById(storecode);
+		Optional<Store> storelist01 = storeRepository.findById(storecode);
 		Store store = storelist01.get();
 		List<Store> storelist = new ArrayList<>();
 		storelist.add(store);
@@ -291,7 +290,7 @@ public class StoreController {
 		List<Map> maplist = mapRepository.findByMapcode(storecode);
 		Map map = null;
 		if (maplist.isEmpty() == false) {
-			map=maplist.get(0);
+			map = maplist.get(0);
 			mv.addObject("mapurl", map.getMapurl());
 		}
 
@@ -301,27 +300,18 @@ public class StoreController {
 
 	//確認画面からOKが押された		登録完了画面への遷移
 	@GetMapping("/checkok/{storename}")
-	public ModelAndView checkOk (
+	public ModelAndView checkOk(
 			@PathVariable("storename") String storename,
-			ModelAndView mv ) {
+			ModelAndView mv) {
 
 		mv.addObject("storename", storename);
 		mv.setViewName("checkok");
 		return mv;
 	}
 
-
 	//確認画面からNGが押された		登録初期化
 
-
-
-
-
-
-
-
 	//-----新規登録終了-----
-
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -396,8 +386,101 @@ public class StoreController {
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//店舗の登録内容変更
 
+	//店舗の登録内容の変更
+	//「店舗情報を変更する」ボタンがクリックされた		店舗変更ページへの遷移
+	@GetMapping("chenge/store/{code}")
+	public ModelAndView changeStore(
+			@RequestParam("code") int storecode,
+			ModelAndView mv) {
+
+		Optional<Store> storelist01 = storeRepository.findById(storecode);
+		Store store = storelist01.get();
+		List<Store> storelist = new ArrayList<>();
+		storelist.add(store);
+
+		mv.addObject("storelist", storelist);
+		mv.setViewName("changestore");
+		return mv;
+	}
+
+	//変更内容が入力されて「変更」が押された
+	@PostMapping("change/store2")
+	public ModelAndView changeStore2(
+			@RequestParam("code") int code,
+			@RequestParam("name") String name,
+			@RequestParam("categorycode1") String categorycode1,
+			@RequestParam("categorycode2") String categorycode2,
+			@RequestParam("address") String address,
+			@RequestParam("tel") String tel,
+			@RequestParam(name = "budget", defaultValue = "0") int budget,
+			@RequestParam(name = "time1", defaultValue = "0") int time1,
+			@RequestParam(name = "time2", defaultValue = "0") int time2,
+			@RequestParam(name = "time3", defaultValue = "0") int time3,
+			@RequestParam(name = "scean1", defaultValue = "0") int scean1,
+			@RequestParam(name = "scean2", defaultValue = "0") int scean2,
+			@RequestParam(name = "scean3", defaultValue = "0") int scean3,
+			@RequestParam("message") String message,
+			ModelAndView mv) {
+
+		int time = time1 * 100 + time2 * 10 + time3;
+		int scean = scean1 * 100 + scean2 * 10 + scean3;
+
+		//未入力エラーチェック
+		if ("".equals(name) || "".equals(categorycode1) || "".equals(categorycode2) || "".equals(address)
+				|| "".equals(tel) || "".equals(message) ||
+				budget == 0 || time == 0 || scean == 0) {
+			mv.addObject("message", "全ての項目を入力してください。");
+			mv.setViewName("addstore");
+			return mv;
+		}
+
+		Store store = new Store(code, name, categorycode1, categorycode2, address, tel, budget, time, scean, message);
+		storeRepository.saveAndFlush(store);
+
+		//詳細ページ用の情報を送る
+
+		//店舗情報
+		List<Store> storelist = new ArrayList<>();
+		storelist.add(store);
+		mv.addObject("storelist", storelist);
+
+		//メニュー情報を送る
+		List<Menu> menulist = menuRepository.findByMenucode(code);
+		mv.addObject("menulist", menulist);
+
+		//写真の情報を送る
+		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
+		mv.addObject("picturelist", picturelist);
+
+		//マップの情報を送る
+		List<Map> maplist = mapRepository.findByMapcode(code);
+		Map map = null;
+		if (maplist.isEmpty() == false) {
+			map = maplist.get(0);
+			String mapurl = map.getMapurl();
+			mv.addObject("mapurl", mapurl);
+		}
+
+		//レビューの情報を送る
+		List<Review> reviewlist = reviewRepository.findByReviewcode(code);
+		mv.addObject("reviewlist", reviewlist);
+
+		//レビューの数を送る
+		int count = 0;
+		for (Review s : reviewlist) {
+			count++;
+		}
+		mv.addObject("count", count);
+
+		mv.setViewName("store"); //メニュー登録画面に遷移
+		return mv;
+
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//メニュー・写真の変更
 	//メニュー・写真変更がクリックされた
 	@GetMapping("/change/{code}")
 	public ModelAndView change(
@@ -531,8 +614,6 @@ public class StoreController {
 		return mv;
 	}
 
-
-
 	//------------------------------------------------------------------------------------------------
 
 	//写真の追加ページに遷移
@@ -561,7 +642,6 @@ public class StoreController {
 		return mv;
 	}
 
-
 	//写真追加終了
 	@GetMapping("addpicture2/return/{code}")
 	public ModelAndView Repicture(
@@ -579,18 +659,3 @@ public class StoreController {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

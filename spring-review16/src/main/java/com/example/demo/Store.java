@@ -46,6 +46,18 @@ public class Store {
 		this.message = message;
 	}
 
+	public Store (int code, String name, String categorycode1, String categorycode2, String address, String tel, int budget, int time, int scene, String message) {
+		this.code = code;
+		this.name = name;
+		this.categorycode1 = categorycode1;
+		this.categorycode2 = categorycode2;
+		this.address = address;
+		this.tel = tel;
+		this.budget = budget;
+		this.time = time;
+		this.scean = scene;
+		this.message = message;
+	}
 
 
 
