@@ -188,7 +188,7 @@ public class StoreController {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	//メニュー登録画面から写真も追加するがクリックされた
+	//メニュー登録画面から「写真を追加する」がクリックされた
 
 	@GetMapping("/addpicture/{code}")
 	public ModelAndView addpicture (
@@ -227,7 +227,7 @@ public class StoreController {
 
 
 	//写真登録を終了するが押された
-	@GetMapping("/addmenu2/return/{code}")
+	@GetMapping("/addmenu/return/{code}")
 	public ModelAndView Readdmenu (
 			@PathVariable("code") int code,
 			ModelAndView mv ) {
@@ -267,8 +267,8 @@ public class StoreController {
 		mv.setViewName("addmenu");
 		return mv;
 	}
-	
-	
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
