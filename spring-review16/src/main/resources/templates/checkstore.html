@@ -31,7 +31,9 @@
 
 	<a href="/">Top</a>
 	<h1>登録情報確認</h1>
-
+<div th:each="storelist:${storelist}">
+<a>店名：</a><a th:text="${storelist.name}"></a>
+</div>
 	<div id="ww">
 		<div class="slider">
 			<div th:each="pic:${picturelist}">
@@ -153,7 +155,9 @@
 		</div>
 	</div>
 
-<a href="">キャンセル</a>
-<a href="">登録する</a>
+<a href="/checkng">キャンセル</a>
+<div th:each="storelist:${storelist}">
+<a href="'/checkok/' +${storelist.name}">登録する</a>
+</div>
 </body>
 </html>
