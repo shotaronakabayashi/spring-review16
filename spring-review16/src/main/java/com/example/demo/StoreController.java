@@ -225,6 +225,19 @@ public class StoreController {
 		return mv;
 	}
 
+
+	//写真登録を終了するが押された
+	@GetMapping("/addmenu2/return/{code}")
+	public ModelAndView Readdmenu (
+			@PathVariable("code") int code,
+			ModelAndView mv ) {
+
+		mv.addObject("code", code);
+		mv.setViewName("addmenu");
+		return mv;
+	}
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//マップ情報も追加するがクリックされた
@@ -254,6 +267,8 @@ public class StoreController {
 		mv.setViewName("addmenu");
 		return mv;
 	}
+	
+	
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
