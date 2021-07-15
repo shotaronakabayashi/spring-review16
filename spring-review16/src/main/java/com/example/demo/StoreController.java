@@ -316,9 +316,6 @@ public class StoreController {
 			@PathVariable("code") int code,
 			ModelAndView mv) {
 
-		//店舗情報を削除
-		storeRepository.deleteById(code);
-
 		//メニューを削除
 		List<Menu> list = menuRepository.findByMenucode(code);
 		for (Menu m : list) {
@@ -336,6 +333,11 @@ public class StoreController {
 		for (Map m : mlist) {
 			mapRepository.deleteById(m.getCode());
 		}
+
+		//店舗情報を削除
+		storeRepository.deleteById(code);
+
+
 
 		mv.addObject("addstore");
 		return mv;
@@ -455,6 +457,8 @@ public class StoreController {
 			@RequestParam(name = "scean2", defaultValue = "0") int scean2,
 			@RequestParam(name = "scean3", defaultValue = "0") int scean3,
 			@RequestParam("message") String message,
+			@RequestParam("rank") int rank,
+			@RequestParam("rankave") float rankave,
 			ModelAndView mv) {
 
 		int time = time1 * 100 + time2 * 10 + time3;
@@ -469,7 +473,7 @@ public class StoreController {
 			return mv;
 		}
 
-		Store store = new Store(code, name, categorycode1, categorycode2, address, tel, budget, time, scean, message);
+		Store store = new Store(code, name, categorycode1, categorycode2, address, tel, budget, time, scean, message,rank,rankave);
 		storeRepository.saveAndFlush(store);
 
 		//詳細ページ用の情報を送る
