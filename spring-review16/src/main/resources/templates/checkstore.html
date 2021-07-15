@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>お店詳細</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.slider').bxSlider({
+
+		});
+	});
+</script>
+
+<style>
+#ww {
+	width: 520px;
+	height: 310px;
+}
+</style>
+
+</head>
+<body>
+
+
+	<a href="/">Top</a>
+	<h1>お店詳細</h1>
+	<div th:each="storelist:${storelist}">
+		<a th:href="'/addreview/'+${storelist.name}">レビューする</a> <a
+			th:href="'/change/' +${storelist.code}">メニュー・写真変更</a> <br> <a
+			th:text="${storelist.name}"></a>
+
+		<script type="text/javascript" th:inline="javascript">
+			/*<![CDATA[*/
+			document.addEventListener("DOMContentLoaded", function() {
+				var data = /*[[${rankave}]]*/+0;
+				document.getElementById("rank").innerHTML = data.toFixed(1);
+			})
+			/*]]>*/
+		</script>
+
+		<a>ランク：星</a><a id="rank"></a><a>つ</a>
+	</div>
+
+	<div id="ww">
+		<div class="slider">
+			<div th:each="pic:${picturelist}">
+				<img th:src="${pic.pictureurl}" width="500" height="300" alt="">
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		document.addEventListener("DOMContentLoaded", function() {
+			var data = /*[[${mapurl}]]*/+"";
+
+			var kugiri = '"';
+			var array = data.split(kugiri);
+
+			for (var i = 0; i < array.length; i++) {
+				if (i == 1) {
+					document.getElementById("map").src = array[i];
+				}
+			}
+
+		})
+		/*]]>*/
+	</script>
+
+	<br>
+	<br>
+
+	<iframe src="" width="400" height="300" style="border: 0;"
+		allowfullscreen="" loading="lazy" id="map"></iframe>
+
+	<br>
+	<br>
+	<div th:each="storelist:${storelist}">
+		<div>
+			<a>カテゴリー</a> <a th:text="${storelist.categorycode1}"></a> <a>雰囲気</a>
+			<a th:text="${storelist.categorycode2}"></a>
+		</div>
+
+
+		<div>
+			<h3>お店概要</h3>
+			<a>住所</a>
+			<p th:text="${storelist.address}"></p>
+
+			<a>時間</a>
+			<div th:if="${storelist.time == 1}">
+				<a>🌙</a>
+			</div>
+			<div th:if="${storelist.time == 11}">
+				<a>🕛🌙</a>
+			</div>
+			<div th:if="${storelist.time == 111}">
+				<a>🌞🕛🌙</a>
+			</div>
+			<div th:if="${storelist.time == 100}">
+				<a>🌞</a>
+			</div>
+			<div th:if="${storelist.time == 110}">
+				<a>🌞🕛</a>
+			</div>
+			<div th:if="${storelist.time == 101}">
+				<a>🌞🌙</a>
+			</div>
+			<div th:if="${storelist.time == 10}">
+				<a>🕛</a>
+			</div>
+
+
+			<a>シーン</a>
+			<div th:if="${storelist.scean == 1}">
+				<a>🧑‍🤝‍🧑</a>
+			</div>
+			<div th:if="${storelist.scean == 10}">
+				<a>💏</a>
+			</div>
+			<div th:if="${storelist.scean == 100}">
+				<a>👨‍👩‍👦</a>
+			</div>
+			<div th:if="${storelist.scean == 11}">
+				<a>💏🧑‍🤝‍🧑</a>
+			</div>
+			<div th:if="${storelist.scean == 111}">
+				<a>👨‍👩‍👦💏🧑‍🤝‍🧑</a>
+			</div>
+			<div th:if="${storelist.scean == 101}">
+				<a>👨‍👩‍👦🧑‍🤝‍🧑</a>
+			</div>
+			<div th:if="${storelist.scean == 110}">
+				<a>👨‍👩‍👦💏</a>
+			</div>
+		</div>
+
+
+	</div>
+
+	<h4>メニュー</h4>
+	<a>--------------------------------------------------------------</a>
+	<div th:each="menu:${menulist}">
+		<p th:text="${menu.menuname}"></p>
+		<a>値段：</a><a th:text="${menu.menuprice}"></a><br> <a>--------------------------------------------------------------</a>
+	</div>
+
+	<div th:each="i : ${#numbers.sequence(0, 0)}">
+		<div th:if="${#lists.size(reviewlist) gt __${i}__}">
+			<h4>ユーザレビュー</h4>
+			<a th:text="${reviewlist[__${i}__].reviewname}"></a><a> 星</a><a
+				th:text="${reviewlist[__${i}__].star}"></a><a>つ</a> <a
+				th:text="${reviewlist[__${i}__].review}"></a>
+		</div>
+	</div>
+
+	<div th:if="${count != 0}">
+		<div th:each="storelist:${storelist}">
+			<a th:href="'/review/'+ ${storelist.code}"
+				th:text="'もっとみる('+(${count} - 1)+')'"></a>
+		</div>
+	</div>
+
+</body>
+</html>
