@@ -352,54 +352,6 @@ public class StoreController {
 		return mv;
 	}
 
-	//メニューを追加-------------------------------------
-	@RequestMapping("/addmenu/{code}")
-	public ModelAndView addmenu3(
-			@PathVariable("code") int code,
-			ModelAndView mv) {
-
-		mv.addObject("code", code);
-		mv.setViewName("addmenu2");
-		return mv;
-	}
-
-
-	//メニュー追加ページ	（店舗詳細ページから）
-	@PostMapping("/addmenu2")
-	public ModelAndView addmenu22(
-			@RequestParam("code") int menucode,
-			@RequestParam("menuname") String menuname,
-			@RequestParam("menuprice") int menuprice,
-			ModelAndView mv) {
-
-		//メニューを登録
-		Menu menu = new Menu(menucode, menuname, menuprice);
-
-		menuRepository.saveAndFlush(menu);
-
-		mv.addObject("code", menucode);
-		mv.setViewName("addmenu2");
-		return mv;
-	}
-
-	//メニュー登録が終了　（店舗詳細ページ）
-	@GetMapping("/addmenu2/return/{code}")
-	public ModelAndView Readdmenu2 (
-			@PathVariable("code") int code,
-			ModelAndView mv ) {
-
-		List<Menu> menulist = menuRepository.findByMenucode(code);
-		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
-
-		mv.addObject("menulist", menulist);
-		mv.addObject("picturelist", picturelist);
-		mv.addObject("addcode", code);
-		mv.setViewName("change");
-		return mv;
-	}
-
-//---------------------------------------------------------
-
 	//変更内容が入力されて変更するが押された
 	//メニューの変更
 	@PostMapping("/change")
@@ -445,49 +397,6 @@ public class StoreController {
 		return mv;
 	}
 
-//---------------------------------------------
-	//写真の追加ページに遷移
-	@GetMapping("/addpicture2/{code}")
-	public ModelAndView Readdpicture (
-			@PathVariable("code") int code,
-			ModelAndView mv ) {
-
-		mv.addObject("code", code);
-		mv.setViewName("addpicture2");
-		return mv;
-	}
-
-	//写真が追加された
-	@PostMapping("addpicture2")
-	public ModelAndView Readdpicture2 (
-			@RequestParam("code") int picturecode,
-			@RequestParam("pictureurl") String pictureurl,
-			ModelAndView mv) {
-
-		Picture picture = new Picture(picturecode, pictureurl);
-		pictureRepository.saveAndFlush(picture);
-
-		mv.setViewName("addpicture2");
-		return mv;
-	}
-
-	//写真追加終了
-	@GetMapping("addpicture2/return/{code}")
-	public ModelAndView Repicture (
-			@PathVariable("code") int code,
-			ModelAndView mv) {
-
-		List<Menu> menulist = menuRepository.findByMenucode(code);
-		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
-
-		mv.addObject("menulist", menulist);
-		mv.addObject("picturelist", picturelist);
-		mv.addObject("addcode", code);
-		mv.setViewName("change");
-		return mv;
-	}
-
-
 	//写真の削除
 	@PostMapping("/delete/picture")
 	public ModelAndView deletePicture(
@@ -508,4 +417,113 @@ public class StoreController {
 		mv.setViewName("change");
 		return mv;
 	}
+
+	//メニューを追加------------------------------------------------------------------------
+	//追加ページへの遷移
+	@RequestMapping("/addmenu/{code}")
+	public ModelAndView addmenu3(
+			@PathVariable("code") int code,
+			ModelAndView mv) {
+
+		mv.addObject("code", code);
+		mv.setViewName("addmenu2");
+		return mv;
+	}
+
+	//メニュー追加ページ	（店舗詳細ページから）
+	@PostMapping("/addmenu2")
+	public ModelAndView addmenu22(
+			@RequestParam("code") int menucode,
+			@RequestParam("menuname") String menuname,
+			@RequestParam("menuprice") int menuprice,
+			ModelAndView mv) {
+
+		//メニューを登録
+		Menu menu = new Menu(menucode, menuname, menuprice);
+
+		menuRepository.saveAndFlush(menu);
+
+		mv.addObject("code", menucode);
+		mv.setViewName("addmenu2");
+		return mv;
+	}
+
+	//メニュー登録が終了　（店舗詳細ページ）
+	@GetMapping("/addmenu2/return/{code}")
+	public ModelAndView Readdmenu2(
+			@PathVariable("code") int code,
+			ModelAndView mv) {
+
+		List<Menu> menulist = menuRepository.findByMenucode(code);
+		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
+
+		mv.addObject("menulist", menulist);
+		mv.addObject("picturelist", picturelist);
+		mv.addObject("addcode", code);
+		mv.setViewName("change");
+		return mv;
+	}
+
+
+
+	//------------------------------------------------------------------------------------------------
+
+	//写真の追加ページに遷移
+	@GetMapping("/addpicture2/{code}")
+	public ModelAndView Readdpicture(
+			@PathVariable("code") int code,
+			ModelAndView mv) {
+
+		mv.addObject("code", code);
+		mv.setViewName("addpicture2");
+		return mv;
+	}
+
+	//写真が追加された
+	@PostMapping("addpicture2")
+	public ModelAndView Readdpicture2(
+			@RequestParam("code") int picturecode,
+			@RequestParam("pictureurl") String pictureurl,
+			ModelAndView mv) {
+
+		Picture picture = new Picture(picturecode, pictureurl);
+		pictureRepository.saveAndFlush(picture);
+
+		mv.addObject("code", picturecode);
+		mv.setViewName("addpicture2");
+		return mv;
+	}
+
+
+	//写真追加終了
+	@GetMapping("addpicture2/return/{code}")
+	public ModelAndView Repicture(
+			@PathVariable("code") int code,
+			ModelAndView mv) {
+
+		List<Menu> menulist = menuRepository.findByMenucode(code);
+		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
+
+		mv.addObject("menulist", menulist);
+		mv.addObject("picturelist", picturelist);
+		mv.addObject("addcode", code);
+		mv.setViewName("change");
+		return mv;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
