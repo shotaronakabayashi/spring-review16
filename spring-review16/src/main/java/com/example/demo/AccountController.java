@@ -121,6 +121,12 @@ public class AccountController {
 			return mv;
 		}
 
+		//ニックネームの重複チェック
+		//全体
+		List<Account> listall = accountRepository.findAll();
+
+
+
 		Account account = new Account(name, nickname, address, tel, email, password);
 
 		//追加
