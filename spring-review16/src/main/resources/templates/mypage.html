@@ -8,14 +8,14 @@
 <a href="/">Top</a>
 <h1>マイページ</h1>
 
-<a th:text="${nickname}"></a><a>さんのマイページ</a><br>
+<a th:text="${session.nickname}"></a><a>さんのマイページ</a><br>
 
 <a th:href="'/changeuser/'+${nickname}">会員情報変更</a><br>
 
 <a>マイレビュー</a>
 <a>------------------------------------------------------------</a>
 <div th:each="rev:${list}">
-<a th:text="${session.nickname}"></a><a>　星：</a><a th:text="${rev.star}"></a><a>つ</a>
+<a th:text="${rev.storename}"></a><a>　星：</a><a th:text="${rev.star}"></a><a>つ</a>
 <p th:text="${rev.review}"></p>
 <a>------------------------------------------------------------</a>
 </div>
