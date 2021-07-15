@@ -115,7 +115,7 @@ public class StoreController {
 			@RequestParam("categorycode2") String categorycode2,
 			@RequestParam("address") String address,
 			@RequestParam("tel") String tel,
-			@RequestParam("budget") int budget,
+			@RequestParam(name = "budget", defaultValue = "0") int budget,
 			@RequestParam(name = "time1", defaultValue = "0") int time1,
 			@RequestParam(name = "time2", defaultValue = "0") int time2,
 			@RequestParam(name = "time3", defaultValue = "0") int time3,
@@ -126,24 +126,18 @@ public class StoreController {
 			ModelAndView mv) {
 
 
-
+		int time = time1*100 + time2*10 + time3;
+		int scean = scean1*100 + scean2*10 + scean3;
 
 		//未入力エラーチェック
-		//if("".equals(name) || "".equals(categorycode1) || "".equals(categorycode2) || "".equals(address) || "".equals(tel) || time==000 || "".equals(message))
-
-
-
-
-
-
+		if("".equals(name) || "".equals(categorycode1) || "".equals(categorycode2) || "".equals(address) || "".equals(tel) || time==000 || "".equals(message) ||
+				budget == 0 || time == 0 || scean == 0) {
+			mv.addObject("message", "全ての項目を入力してください。");
+			mv.setViewName("addstore");
+			return mv;
+		}
 
 		int count = 0; //何回メニューを登録したかの初期値
-
-		String time0 = "" + time1 + time2 + time3;
-		String scean0 = "" + scean1 + scean2 + scean3;
-
-		int time = Integer.parseInt(time0);
-		int scean = Integer.parseInt(scean0);
 
 		//追加
 		Store store = new Store(name, categorycode1, categorycode2, address, tel, budget, time, scean, message);
