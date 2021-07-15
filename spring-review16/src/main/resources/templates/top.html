@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link th:href="@{/ranking.css}" rel="stylesheet">
 </head>
 <body>
 <h1 align="center">TABETELL</h1>
@@ -65,7 +67,7 @@
 </h4>
 <br><br>
 
-<ul>
+<ul class="ranking">
 <li>
 第１位
 <div th:each="list1 : ${list1}">
@@ -76,6 +78,7 @@
 	<a th:text="${list1.message}"></a>
 </div>
 </li>
+
 <li>
 第２位
 <div th:each="list2 : ${list2}">
@@ -86,6 +89,7 @@
 	<a th:text="${list2.message}"></a>
 </div>
 </li>
+
 <li>
 第3位　　　
 
@@ -96,10 +100,10 @@
 	<a th:text="${list3.categorycode2}"></a>
 	<a th:text="${list3.message}"></a>
 </div>
-<br>
 </li>
 </ul>
 
+<br>
 
 </div>
 

@@ -126,7 +126,9 @@ public class AccountController {
 		List<Account> listall = accountRepository.findAll();
 		for (Account a : listall) {
 			if (a.getNickname().equals(nickname)); {
-				mv.addObject("message2", "ニックネームが登録されています。");
+				mv.addObject("message", "ニックネームが登録されています。");
+				mv.setViewName("adduser");
+				return mv;
 			}
 		}
 

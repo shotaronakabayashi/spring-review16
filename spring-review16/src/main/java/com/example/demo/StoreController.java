@@ -311,6 +311,37 @@ public class StoreController {
 
 	//確認画面からNGが押された		登録初期化
 
+	@GetMapping("/checkng/{code}")
+	public ModelAndView checkNg(
+			@PathVariable("code") int code,
+			ModelAndView mv) {
+
+		//店舗情報を削除
+		storeRepository.deleteById(code);
+
+		//メニューを削除
+		List<Menu> list = menuRepository.findByMenucode(code);
+		for (Menu m : list) {
+			menuRepository.deleteById(m.getCode());
+		}
+
+		//写真を削除
+		List<Picture> plist = pictureRepository.findByPicturecode(code);
+		for (Picture p : plist) {
+			pictureRepository.deleteById(p.getCode());
+		}
+
+		//マップを削除
+		List<Map> mlist = mapRepository.findByMapcode(code);
+		for (Map m : mlist) {
+			mapRepository.deleteById(m.getCode());
+		}
+
+		mv.addObject("addstore");
+		return mv;
+	}
+
+
 	//-----新規登録終了-----
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -446,6 +477,7 @@ public class StoreController {
 		//店舗情報
 		List<Store> storelist = new ArrayList<>();
 		storelist.add(store);
+		mv.addObject("rankave", store.getRankave());
 		mv.addObject("storelist", storelist);
 
 		//メニュー情報を送る
