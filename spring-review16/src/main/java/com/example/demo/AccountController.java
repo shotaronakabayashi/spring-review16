@@ -274,24 +274,20 @@ public class AccountController {
 		//マイページの内容
 		List<Review> list = reviewRepository.findByUsercode(usercode);
 
-		Review review = list.get(0);
-
-
 		mv.addObject("list", list);
-		mv.addObject("nickname", review.getReviewname());
 		mv.setViewName("mypage");
 		return mv;
 
 	}
 
 	//マイページから登録情報変更がクリックされた	遷移
-	@GetMapping("/changeuser/{nickname}")
+	@GetMapping("/changeuser/{usercode}")
 	public ModelAndView changeUser(
-			@PathVariable("nickname") String nickname,
+			@PathVariable("usercode") int usercode,
 			ModelAndView mv) {
 
 		Account account = null;
-		Optional<Account> list0 = accountRepository.findByNickname(nickname);
+		Optional<Account> list0 = accountRepository.findById(usercode);
 		account = list0.get();
 		List<Account> list = new ArrayList<>();
 		list.add(account);
@@ -326,6 +322,7 @@ public class AccountController {
 
 		session.invalidate();
 		session.setAttribute("nickname", nickname);
+		session.setAttribute("usercode", code);
 
 		mv.addObject("list", list);
 		mv.addObject("nickname", nickname);
