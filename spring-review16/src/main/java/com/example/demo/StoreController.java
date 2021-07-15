@@ -341,7 +341,6 @@ public class StoreController {
 		return mv;
 	}
 
-
 	//-----新規登録終了-----
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -437,7 +436,6 @@ public class StoreController {
 		return mv;
 	}
 
-
 	//変更内容が入力されて「変更」が押された
 	@PostMapping("change/store2")
 	public ModelAndView changeStore2(
@@ -471,7 +469,8 @@ public class StoreController {
 			return mv;
 		}
 
-		Store store = new Store(code, name, categorycode1, categorycode2, address, tel, budget, time, scean, message,rank,rankave);
+		Store store = new Store(code, name, categorycode1, categorycode2, address, tel, budget, time, scean, message,
+				rank, rankave);
 		storeRepository.saveAndFlush(store);
 
 		//詳細ページ用の情報を送る
@@ -602,6 +601,54 @@ public class StoreController {
 		mv.addObject("addcode", storecode);
 
 		mv.setViewName("change");
+		return mv;
+	}
+
+	//終了するが押された
+	@GetMapping("/store/end/{code}")
+	public ModelAndView Store33(
+			@PathVariable("code") int code,
+			ModelAndView mv) {
+
+		//詳細ページ用の情報を送る
+
+		//店舗情報
+		List<Store> storelist = new ArrayList<>();
+		Optional<Store> storelist01 = storeRepository.findById(code);
+		Store store = storelist01.get();
+		storelist.add(store);
+		mv.addObject("rankave", store.getRankave());
+		mv.addObject("storelist", storelist);
+
+		//メニュー情報を送る
+		List<Menu> menulist = menuRepository.findByMenucode(code);
+		mv.addObject("menulist", menulist);
+
+		//写真の情報を送る
+		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
+		mv.addObject("picturelist", picturelist);
+
+		//マップの情報を送る
+		List<Map> maplist = mapRepository.findByMapcode(code);
+		Map map = null;
+		if (maplist.isEmpty() == false) {
+			map = maplist.get(0);
+			String mapurl = map.getMapurl();
+			mv.addObject("mapurl", mapurl);
+		}
+
+		//レビューの情報を送る
+		List<Review> reviewlist = reviewRepository.findByReviewcode(code);
+		mv.addObject("reviewlist", reviewlist);
+
+		//レビューの数を送る
+		int count = 0;
+		for (Review s : reviewlist) {
+			count++;
+		}
+		mv.addObject("count", count);
+
+		mv.setViewName("store");
 		return mv;
 	}
 
