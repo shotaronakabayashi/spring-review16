@@ -125,6 +125,18 @@ public class StoreController {
 			@RequestParam("message") String message,
 			ModelAndView mv) {
 
+
+
+
+		//未入力エラーチェック
+		//if("".equals(name) || "".equals(categorycode1) || "".equals(categorycode2) || "".equals(address) || "".equals(tel) || time==000 || "".equals(message))
+
+
+
+
+
+
+
 		int count = 0; //何回メニューを登録したかの初期値
 
 		String time0 = "" + time1 + time2 + time3;
@@ -259,7 +271,7 @@ public class StoreController {
 	}
 
 
-	//メニュー追加画面から全て終了するが押された	確認画面への遷移
+	//メニュー追加画面から「登録確認画面へ」が押された	確認画面への遷移
 	@GetMapping("/check/{code}")
 	public ModelAndView check(
 			@PathVariable("code") int storecode,
@@ -283,7 +295,11 @@ public class StoreController {
 
 		//マップ
 		List<Map> maplist = mapRepository.findByMapcode(storecode);
-		mv.addObject("maplist", maplist);
+		Map map = null;
+		if (maplist.isEmpty() == false) {
+			map=maplist.get(0);
+			mv.addObject("mapurl", map.getMapurl());
+		}
 
 		mv.setViewName("checkstore");
 		return mv;
@@ -302,6 +318,7 @@ public class StoreController {
 
 
 	//確認画面からNGが押された		登録初期化
+
 
 
 
