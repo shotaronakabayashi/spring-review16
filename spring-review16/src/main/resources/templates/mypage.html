@@ -10,7 +10,7 @@
 
 <a th:text="${session.nickname}"></a><a>さんのマイページ</a><br>
 
-<a th:href="'/changeuser/'+${nickname}">会員情報変更</a><br>
+<a th:href="'/changeuser/'+${session.usercode}">会員情報変更</a><br>
 
 <a>マイレビュー</a>
 <a>------------------------------------------------------------</a>
