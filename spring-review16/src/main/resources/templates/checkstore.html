@@ -31,21 +31,6 @@
 
 	<a href="/">Top</a>
 	<h1>登録情報確認</h1>
-	<div th:each="storelist:${storelist}">
-		<a th:href="'/addreview/'+${storelist.name}">レビューする</a> <a
-			th:href="'/change/' +${storelist.code}">メニュー・写真変更</a> <br> <a
-			th:text="${storelist.name}"></a>
-
-		<script type="text/javascript" th:inline="javascript">
-			/*<![CDATA[*/
-			document.addEventListener("DOMContentLoaded", function() {
-				var data = /*[[${rankave}]]*/+0;
-				document.getElementById("rank").innerHTML = data.toFixed(1);
-			})
-			/*]]>*/
-		</script>
-
-	</div>
 
 	<div id="ww">
 		<div class="slider">
@@ -168,5 +153,7 @@
 		</div>
 	</div>
 
+<a href="">キャンセル</a>
+<a href="">登録する</a>
 </body>
 </html>
