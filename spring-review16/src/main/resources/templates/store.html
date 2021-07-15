@@ -32,9 +32,10 @@
 	<a href="/">Top</a>
 	<h1>お店詳細</h1>
 	<div th:each="storelist:${storelist}">
-		<a th:href="'/addreview/'+${storelist.name}">レビューする</a> <a
-			th:href="'/change/' +${storelist.code}">メニュー・写真変更</a> <br> <a
-			th:text="${storelist.name}"></a>
+		<a th:href="'/addreview/'+${storelist.name}">レビューする</a>
+		<a th:href="'/change/store/' +${storelist.code}">店舗情報変更</a>
+		<a th:href="'/change/' +${storelist.code}">メニュー・写真変更</a> <br>
+		<a th:text="${storelist.name}"></a>
 
 		<script type="text/javascript" th:inline="javascript">
 			/*<![CDATA[*/
