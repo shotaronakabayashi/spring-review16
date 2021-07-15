@@ -353,7 +353,7 @@ public class StoreController {
 	}
 
 	//メニューを追加-------------------------------------
-	@RequestMapping("/addmenu/{code}/{flag}")
+	@RequestMapping("/addmenu/{code}")
 	public ModelAndView addmenu3(
 			@PathVariable("code") int code,
 			ModelAndView mv) {
@@ -445,7 +445,7 @@ public class StoreController {
 		return mv;
 	}
 
-
+//---------------------------------------------
 	//写真の追加ページに遷移
 	@GetMapping("/addpicture2/{code}")
 	public ModelAndView Readdpicture (
@@ -458,7 +458,34 @@ public class StoreController {
 	}
 
 	//写真が追加された
+	@PostMapping("addpicture2")
+	public ModelAndView Readdpicture2 (
+			@RequestParam("code") int picturecode,
+			@RequestParam("pictureurl") String pictureurl,
+			ModelAndView mv) {
 
+		Picture picture = new Picture(picturecode, pictureurl);
+		pictureRepository.saveAndFlush(picture);
+
+		mv.setViewName("addpicture2");
+		return mv;
+	}
+
+	//写真追加終了
+	@GetMapping("addpicture2/return/{code}")
+	public ModelAndView Repicture (
+			@PathVariable("code") int code,
+			ModelAndView mv) {
+
+		List<Menu> menulist = menuRepository.findByMenucode(code);
+		List<Picture> picturelist = pictureRepository.findByPicturecode(code);
+
+		mv.addObject("menulist", menulist);
+		mv.addObject("picturelist", picturelist);
+		mv.addObject("addcode", code);
+		mv.setViewName("change");
+		return mv;
+	}
 
 
 	//写真の削除
@@ -471,48 +498,14 @@ public class StoreController {
 		//削除
 		pictureRepository.deleteById(code);
 
-		//店舗詳細ページ用の情報を送る-------------------------------------------------------------------
-		Store store = null;
-		Optional<Store> storelist0 = storeRepository.findById(storecode);
-		if (storelist0.isEmpty() == false) {
-			store = storelist0.get();
-		}
-		List<Store> storelist = new ArrayList<>();
-		storelist.add(store);
-		float rankave = store.getRankave();
-
-		//店舗情報を送る
-		mv.addObject("storelist", storelist);
-		mv.addObject("rankave", rankave);
-
-		//メニュー情報を送る
 		List<Menu> menulist = menuRepository.findByMenucode(storecode);
-		mv.addObject("menulist", menulist);
-
-		//写真の情報を送る
 		List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
+
+		mv.addObject("menulist", menulist);
 		mv.addObject("picturelist", picturelist);
+		mv.addObject("addcode", storecode);
 
-		//マップの情報を送る
-		List<Map> maplist = mapRepository.findByMapcode(storecode);
-		Map map = maplist.get(0);
-		String mapurl = map.getMapurl();
-		mv.addObject("mapurl", mapurl);
-
-		//レビューの情報を送る
-		List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
-		mv.addObject("reviewlist", reviewlist);
-
-		//レビューの数を送る
-		int count = 0;
-		for (Review r : reviewlist) {
-			count++;
-		}
-		mv.addObject("count", count);
-		// ---------------------------------------------------------------------------------------------
-
-		mv.setViewName("store");
+		mv.setViewName("change");
 		return mv;
 	}
-
 }
