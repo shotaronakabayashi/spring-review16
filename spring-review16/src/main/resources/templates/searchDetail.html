@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>詳細検索</title>
@@ -7,7 +7,7 @@
 <body>
 <form action="/search/detail" method="POST">
 <br><br><br>
-<table border="1" align="center">
+<table align="center">
 <tr>
 	<td>
 		<input type="text" name="keyword" size="100">　
@@ -58,12 +58,14 @@
 		　　～　　
 		<input type="text" name="maxprice">
 	</p>
+<div th:text="${message}"></div>
 
 <a>シーン</a>
 	<p>
 		<input type="checkbox" name="scean1" value="1" checked="checked">ファミリー　　
 		<input type="checkbox" name="scean2" value="1">デート　　
 		<input type="checkbox" name="scean3" value="1">友人と
+	</p>
 
 </form>
 </body>

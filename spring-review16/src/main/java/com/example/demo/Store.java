@@ -151,22 +151,19 @@ public class Store {
 	}
 
 
+//	//メソッド
+//	public Store HashList(Store list) {
+//
+//		List<Store> timelist4;
+//		timelist4 = timelist01.stream()
+//                .distinct()
+//                .collect(Collectors.toList());
+//
+//
+//		List<Store> list2 = new ArrayList<Store>(HashSet<>list);
+//		return list;
+	}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}

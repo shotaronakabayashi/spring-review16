@@ -78,8 +78,8 @@ public class SerchController {
 	public ModelAndView SearchDetail2(
 			@RequestParam(name = "keyword", defaultValue = "") String keyword,
 			@RequestParam(name = "address", defaultValue = "") String address,
-			@RequestParam(name = "categorycode1") String categorycode1,
-			@RequestParam(name = "categorycode2") String categorycode2,
+			@RequestParam(name = "categorycode1", defaultValue = "") String categorycode1,
+			@RequestParam(name = "categorycode2", defaultValue = "") String categorycode2,
 			@RequestParam(name = "time1", defaultValue = "0") int time1,
 			@RequestParam(name = "time2", defaultValue = "0") int time2,
 			@RequestParam(name = "time3", defaultValue = "0") int time3,
@@ -90,10 +90,18 @@ public class SerchController {
 			@RequestParam(name = "scean3", defaultValue = "0") int scean3,
 			ModelAndView mv) {
 
+		//価格エラー処理
+		if (price1 > price2) {
+			mv.addObject("message", "価格を正しく入力してください。");
+			mv.setViewName("searchDetail");
+			return mv;
+		}
+
 		//店舗の時間帯で参照する
-		String time0 = "" + time1 + time2 + time3;
-		int time = Integer.parseInt(time0);
-		//最終
+		int time = time1 * 100 + time2 * 10 + time3;
+		//111リストのための仮リスト
+		List<Store> tlist = new ArrayList<>();
+		//最終的なリスト
 		List<Store> timelist = new ArrayList<>();
 
 		//朝が選択された場合	time1==1 time=100
@@ -101,29 +109,31 @@ public class SerchController {
 		timelist1.addAll(storeRepository.findByTime(101));
 		timelist1.addAll(storeRepository.findByTime(110));
 		timelist1.addAll(storeRepository.findByTime(111));
+
 		//昼が選択された場合	time2==1 time=10
 		List<Store> timelist2 = storeRepository.findByTime(10);
 		timelist2.addAll(storeRepository.findByTime(11));
 		timelist2.addAll(storeRepository.findByTime(110));
 		timelist2.addAll(storeRepository.findByTime(111));
+
 		//夜が選択された場合	time3==1 time=1
 		List<Store> timelist3 = storeRepository.findByTime(1);
 		timelist3.addAll(storeRepository.findByTime(11));
 		timelist3.addAll(storeRepository.findByTime(101));
 		timelist3.addAll(storeRepository.findByTime(111));
 
-		//001（夜の場合
-		if (time == 1) {
-			timelist = timelist3;
+		//100（朝)の場合
+		if (time == 100) {
+			timelist = timelist1;
 		} //010 (昼)の場合
 		else if (time == 10) {
 			timelist = timelist2;
-		} //100(朝)の場合
-		else if (time == 100) {
-			timelist = timelist1;
-		} //11(昼・夜)の場合
-		else if (time == 11) {
-			for (Store s : timelist3) {
+		} //100(夜)の場合
+		else if (time == 1) {
+			timelist = timelist3;
+		} //110(朝・昼)の場合
+		else if (time == 110) {
+			for (Store s : timelist1) {
 				if (timelist2.contains(s)) {
 					timelist.add(s);
 				}
@@ -135,16 +145,16 @@ public class SerchController {
 					timelist.add(s);
 				}
 			}
-		} //110(昼・夜)の場合
-		else if (time == 110) {
-			for (Store s : timelist3) {
-				if (timelist2.contains(s)) {
+		} //011(昼・夜)の場合
+		else if (time == 11) {
+			for (Store s : timelist2) {
+				if (timelist3.contains(s)) {
 					timelist.add(s);
 				}
 			}
 		} //111の場合
 		else if (time == 111) {
-			List<Store> tlist = new ArrayList<>();
+
 			for (Store s : timelist1) {
 				if (timelist2.contains(s)) {
 					tlist.add(s);
@@ -155,43 +165,48 @@ public class SerchController {
 					timelist.add(s);
 				}
 			}
+		} //何も選択されなかった場合
+		else {
+			timelist = storeRepository.findAll();
 		}
 
-
 		//シーン
-		String scean0 = "" + scean1 + scean2 + scean3;
-		int scean = Integer.parseInt(scean0);
+		int scean = scean1 * 100 + scean2 * 10 + scean3;
+		//111リストのための仮リスト
+		List<Store> slist = new ArrayList<>();
 		//最終
 		List<Store> sceanlist = new ArrayList<>();
 
-		//ファミリーが選択された場合	scean1==1 scean=100
-		List<Store> sceanlist1 = storeRepository.findByScean(1);
-		timelist1.addAll(storeRepository.findByScean(11));
-		timelist1.addAll(storeRepository.findByScean(101));
-		timelist1.addAll(storeRepository.findByScean(111));
-		//デートが選択された場合	scean2==1 scean=10
-		List<Store> sceanlist2 = storeRepository.findByScean(10);
-		timelist2.addAll(storeRepository.findByScean(11));
-		timelist2.addAll(storeRepository.findByScean(110));
-		timelist2.addAll(storeRepository.findByScean(111));
-		//友人が選択された場合		scean3==1 scean=1
-		List<Store> sceanlist3 = storeRepository.findByScean(100);
-		timelist3.addAll(storeRepository.findByScean(11));
-		timelist3.addAll(storeRepository.findByScean(101));
-		timelist3.addAll(storeRepository.findByScean(111));
+		//ファミリーが選択された場合	time1==1 scean=100
+		List<Store> sceanlist1 = storeRepository.findByScean(100);
+		sceanlist1.addAll(storeRepository.findByScean(101));
+		sceanlist1.addAll(storeRepository.findByScean(110));
+		sceanlist1.addAll(storeRepository.findByScean(111));
 
-		//001（友人)の場合
-		if (scean == 1) {
-			sceanlist = sceanlist3;
+		//デートが選択された場合	time2==1 time=10
+		List<Store> sceanlist2 = storeRepository.findByScean(10);
+		sceanlist2.addAll(storeRepository.findByScean(11));
+		sceanlist2.addAll(storeRepository.findByScean(110));
+		sceanlist2.addAll(storeRepository.findByScean(111));
+
+		//友人が選択された場合	time3==1 time=1
+		List<Store> sceanlist3 = storeRepository.findByScean(1);
+		sceanlist3.addAll(storeRepository.findByScean(11));
+		sceanlist3.addAll(storeRepository.findByScean(101));
+		sceanlist3.addAll(storeRepository.findByScean(111));
+
+		//100（ファミリー)の場合
+		if (scean == 100) {
+			sceanlist = sceanlist1;
 		} //010 (デート)の場合
 		else if (scean == 10) {
 			sceanlist = sceanlist2;
-		} //100(ファミリー)の場合
-		else if (scean == 100) {
-			sceanlist = sceanlist1;
-		} //011(デート・友人)の場合
-		else if (scean == 11) {
-			for (Store s : sceanlist3) {
+		} //100(友人)の場合
+		else if (scean == 1) {
+			sceanlist = sceanlist3;
+		} //110(ファミリー・デート)の場合
+		else if (scean == 110) {
+			for (Store s : sceanlist1) {
 				if (sceanlist2.contains(s)) {
 					sceanlist.add(s);
 				}
@@ -203,16 +218,15 @@ public class SerchController {
 					sceanlist.add(s);
 				}
 			}
-		} //110(ファミリー・デート)の場合
-		else if (scean == 110) {
-			for (Store s : sceanlist1) {
-				if (sceanlist2.contains(s)) {
+		} //011(デート・友人)の場合
+		else if (scean == 11) {
+			for (Store s : sceanlist2) {
+				if (sceanlist3.contains(s)) {
 					sceanlist.add(s);
 				}
 			}
 		} //111の場合
 		else if (scean == 111) {
-			List<Store> slist = new ArrayList<>();
 			for (Store s : sceanlist1) {
 				if (sceanlist2.contains(s)) {
 					slist.add(s);
@@ -223,47 +237,46 @@ public class SerchController {
 					sceanlist.add(s);
 				}
 			}
+		} //何も選択されなかった場合
+		else {
+			sceanlist = storeRepository.findAll();
 		}
 
 		//値段検索
 		List<Store> pricelist = storeRepository.findByBudgetBetween(price1, price2);
-		//入力されたものの検索
+		//店舗情報での検索
 		List<Store> detaillist = storeRepository.findByNameLikeAndAddressLikeAndCategorycode1AndCategorycode2(
 				"%" + keyword + "%", "%" + address + "%", categorycode1, categorycode2);
 
-		//仮
-		List<Store> tplist = new ArrayList<>();
-		List<Store> dslist = new ArrayList<>();
+		//仮リスト
+		List<Store> tslist = new ArrayList<>();
+		List<Store> pdlist = new ArrayList<>();
 		//最終的な送る値
 		List<Store> list = new ArrayList<>();
 
-		//時間帯と値段で照合
+		//時間帯とシーンで照合
 		for (Store s : timelist) {
-			if (pricelist.contains(s)) {
-				tplist.add(s);
-			}
-		}
-
-		//シーンと詳細で照合
-		for (Store s : detaillist) {
 			if (sceanlist.contains(s)) {
-				dslist.add(s);
+				tslist.add(s);
 			}
 		}
-
+		//価格と店舗情報で照合
+		for (Store s : pricelist) {
+			if (detaillist.contains(s)) {
+				pdlist.add(s);
+			}
+		}
 		//二つのリストを照合
-		for (Store s : tplist) {
-			if (dslist.contains(s)) {
+		for (Store s : tslist) {
+			if (pdlist.contains(s)) {
 				list.add(s);
 			}
 		}
 
 		mv.addObject("result", list);
-		mv.addObject("test", timelist);
-
-
 		mv.setViewName("result");
 		return mv;
+
 	}
 
 }

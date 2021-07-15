@@ -7,44 +7,50 @@
 <body>
 <h1 align="center">TABETELL</h1>
 
-<div th:if="${session.nickname == null}">
+<h3 th:if="${session.nickname == null}">
 ようこそゲストさん<br>
-</div>
+</h3>
 
-<div th:unless="${session.nickname == null}">
+<h3 th:unless="${session.nickname == null}">
 ようこそ<a th:text="${session.nickname}"></a>さん<br>
-</div>
+</h3>
 
 <div th:if="${session.nickname == null}">
 <a href="/adduser">新規登録</a>　　
 <a href="/login">ログイン</a>
 </div>
-<a> </a>
+
 <div th:unless="${session.nickname == null}">
+<a th:href="'/mypage/' + ${session.nickname}">マイページに行く</a>　
+<a href="/addstore">お店登録</a>　
 <a href="/logout">ログアウト</a>
-<a href="/addstore">お店登録</a>
 </div>
-<a> </a>
+<br>
 
-<a th:href="'/mypage/' + ${session.nickname}">マイページに行く</a>
-
-<div>
+<div align="center">
 <form action="/keyword">
-<input type="text" name="keyword">　
-<input type="submit" value="検索"><a>　　</a>
+<input type="text" name="keyword" size="100">　
+<input type="submit" value="検索">　　
 <a th:text="${message}"></a>
 </form>
-<a href="search/detail">詳細検索</a><br>
 </div>
+<br>
 
-<div>
-<a>カテゴリ</a>
-<a href="/keyword/ファストフード">ファストフード</a>
-<a href="/keyword/イタリアン">イタリアン</a>
-<a href="/keyword/和食">和食</a>
-<a href="/keyword/早い">早い</a>
-<a href="/keyword/個室">個室</a>
-</div>
+<div><font size="4">
+　　　　　　　　　　　　<a>カテゴリ</a>　　　　　　
+<a href="/keyword/ファストフード">[ファストフード]</a>　
+<a href="/keyword/イタリアン">[イタリアン]</a>　
+<a href="/keyword/和食">[和食]</a>　
+<a href="/keyword/おしゃれ">[おしゃれ]</a>　
+<a href="/keyword/個室">[個室]</a>　
+<a href="/keyword/わいわい">[わいわい]</a>　
+</font></div>
+<br>
+
+<div align="center"><font size="4">
+<a href="search/detail">詳細検索</a>
+</font></div>
+<br><br>
 ----------------------------------------------------------------------------------------------------------
 <br><br>
 <a href="/">[総合]</a>　　

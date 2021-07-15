@@ -30,29 +30,29 @@ public class AccountController {
 	@Autowired
 	HttpSession session;
 
-
 	//トップページを表示
 	@RequestMapping("/")
-	public ModelAndView index(	ModelAndView mv) {
+	public ModelAndView index(ModelAndView mv) {
 
-
+		//トップページのランキング表示------------------------
 		List<Store> list = storeRepository.findAll();
 
-		float best1 = 0; float best2 = 0; float best3 = 0; float other = 0;
+		float best1 = 0;
+		float best2 = 0;
+		float best3 = 0;
+		float other = 0;
 		for (Store st : list) {
 			for (Store s : list) {
-				 float a = s.getRankave();
-				 if (a >= best1 ){
-					 best1 = a;
-				 }
-				 else if (a < best1 && a >= best2) {
-					 best2 = a;
-				 }
-				 else if (a < best2 && a >= best3) {
-					 best3 = a;
-				 }else {
-					 other = a;
-				 }
+				float a = s.getRankave();
+				if (a >= best1) {
+					best1 = a;
+				} else if (a < best1 && a >= best2) {
+					best2 = a;
+				} else if (a < best2 && a >= best3) {
+					best3 = a;
+				} else {
+					other = a;
+				}
 			}
 		}
 
@@ -69,7 +69,7 @@ public class AccountController {
 		mv.addObject("list1", list1);
 		mv.addObject("list2", list2);
 		mv.addObject("list3", list3);
-
+		//--------------------------------------------------------
 
 		mv.setViewName("top");
 		return mv;
@@ -96,7 +96,8 @@ public class AccountController {
 			@RequestParam("password") String password,
 			ModelAndView mv) {
 		//エラー処理
-		if (name.length()==0 || nickname.length()==0 || address.length()==0 || tel.length()==0 || email.length()==0 || password.length()==0 ) {
+		if (name.length() == 0 || nickname.length() == 0 || address.length() == 0 || tel.length() == 0
+				|| email.length() == 0 || password.length() == 0) {
 			mv.addObject("message", "すべての項目に入力してください。");
 			mv.setViewName("adduser");
 			return mv;
@@ -106,6 +107,43 @@ public class AccountController {
 
 		//追加
 		accountRepository.saveAndFlush(account);
+
+		//トップページのランキング表示-------------------------------
+		List<Store> list = storeRepository.findAll();
+
+		float best1 = 0;
+		float best2 = 0;
+		float best3 = 0;
+		float other = 0;
+		for (Store st : list) {
+			for (Store s : list) {
+				float a = s.getRankave();
+				if (a >= best1) {
+					best1 = a;
+				} else if (a < best1 && a >= best2) {
+					best2 = a;
+				} else if (a < best2 && a >= best3) {
+					best3 = a;
+				} else {
+					other = a;
+				}
+			}
+		}
+
+		//ランクの情報から店舗情報を取得
+		//1位
+		List<Store> list1 = storeRepository.findByRankave(best1);
+
+		//2位
+		List<Store> list2 = storeRepository.findByRankave(best2);
+
+		//3位
+		List<Store> list3 = storeRepository.findByRankave(best3);
+
+		mv.addObject("list1", list1);
+		mv.addObject("list2", list2);
+		mv.addObject("list3", list3);
+		//-----------------------------------------------------------------
 
 		mv.setViewName("top");
 		return mv;
@@ -128,7 +166,6 @@ public class AccountController {
 			@RequestParam("password") String password,
 			ModelAndView mv) {
 
-
 		//未入力の場合のエラー処理
 		if (nickname == null || nickname.length() == 0 || password == null || password.length() == 0) {
 			mv.addObject("message", "ニックネームとパスワードを入力してください");
@@ -142,7 +179,7 @@ public class AccountController {
 			if (list.isEmpty() == false) {
 				account = list.get();
 
-				if (password.equals(account.getPassword() ) ){
+				if (password.equals(account.getPassword())) {
 
 					session.setAttribute("usercode", account.getCode());
 					session.setAttribute("nickname", account.getNickname());
@@ -151,12 +188,48 @@ public class AccountController {
 					mv.addObject("message", "ニックネームとパスワードが一致しません。");
 					mv.setViewName("login");
 				}
-			}
-			else {
+			} else {
 				mv.addObject("message", "ニックネームとパスワードが一致しません。");
 				mv.setViewName("login");
 			}
 		}
+
+		//トップページのランキング表示-----------------------------
+		List<Store> list = storeRepository.findAll();
+
+		float best1 = 0;
+		float best2 = 0;
+		float best3 = 0;
+		float other = 0;
+		for (Store st : list) {
+			for (Store s : list) {
+				float a = s.getRankave();
+				if (a >= best1) {
+					best1 = a;
+				} else if (a < best1 && a >= best2) {
+					best2 = a;
+				} else if (a < best2 && a >= best3) {
+					best3 = a;
+				} else {
+					other = a;
+				}
+			}
+		}
+
+		//ランクの情報から店舗情報を取得
+		//1位
+		List<Store> list1 = storeRepository.findByRankave(best1);
+
+		//2位
+		List<Store> list2 = storeRepository.findByRankave(best2);
+
+		//3位
+		List<Store> list3 = storeRepository.findByRankave(best3);
+
+		mv.addObject("list1", list1);
+		mv.addObject("list2", list2);
+		mv.addObject("list3", list3);
+		//------------------------------------------------------------
 		return mv;
 	}
 
@@ -164,7 +237,7 @@ public class AccountController {
 
 	//「マイページに行く」がクリックされた
 	@GetMapping("mypage/{nickname}")
-	public ModelAndView mypage (
+	public ModelAndView mypage(
 			@PathVariable("nickname") String nickname,
 			ModelAndView mv) {
 
@@ -178,10 +251,9 @@ public class AccountController {
 
 	}
 
-
 	//マイページから登録情報変更がクリックされた
 	@GetMapping("/changeuser/{nickname}")
-	public ModelAndView changeUser (
+	public ModelAndView changeUser(
 			@PathVariable("nickname") String nickname,
 			ModelAndView mv) {
 
@@ -200,10 +272,9 @@ public class AccountController {
 		return mv;
 	}
 
-
 	//登録情報の変更内容が入力された
 	@PostMapping("/changeuser")
-	ModelAndView changeUser2 (
+	ModelAndView changeUser2(
 			@RequestParam("code") int code,
 			@RequestParam("name") String name,
 			@RequestParam("nickname") String nickname,
@@ -213,7 +284,7 @@ public class AccountController {
 			@RequestParam("password") String password,
 			ModelAndView mv) {
 
-		Account account = new Account(code,name, nickname, address, tel, email, password);
+		Account account = new Account(code, name, nickname, address, tel, email, password);
 
 		//追加
 		accountRepository.saveAndFlush(account);
@@ -221,7 +292,7 @@ public class AccountController {
 		List<Review> list = reviewRepository.findByReviewname(nickname);
 
 		mv.addObject("list", list);
-		mv.addObject("nickname");
+		mv.addObject("nickname", nickname);
 
 		mv.setViewName("mypage");
 		return mv;
@@ -232,6 +303,43 @@ public class AccountController {
 	//ログアウト
 	@RequestMapping("/logout")
 	public ModelAndView logout(ModelAndView mv) {
+
+		//トップページのランキング表示---------------------------
+		List<Store> list = storeRepository.findAll();
+
+		float best1 = 0;
+		float best2 = 0;
+		float best3 = 0;
+		float other = 0;
+		for (Store st : list) {
+			for (Store s : list) {
+				float a = s.getRankave();
+				if (a >= best1) {
+					best1 = a;
+				} else if (a < best1 && a >= best2) {
+					best2 = a;
+				} else if (a < best2 && a >= best3) {
+					best3 = a;
+				} else {
+					other = a;
+				}
+			}
+		}
+
+		//ランクの情報から店舗情報を取得
+		//1位
+		List<Store> list1 = storeRepository.findByRankave(best1);
+
+		//2位
+		List<Store> list2 = storeRepository.findByRankave(best2);
+
+		//3位
+		List<Store> list3 = storeRepository.findByRankave(best3);
+
+		mv.addObject("list1", list1);
+		mv.addObject("list2", list2);
+		mv.addObject("list3", list3);
+		//--------------------------------------------------------
 
 		session.invalidate();
 		mv.setViewName("top");
