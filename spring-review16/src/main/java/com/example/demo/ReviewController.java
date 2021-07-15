@@ -126,10 +126,11 @@ public class ReviewController {
 
 		//マップの情報を送る
 		List<Map> maplist = mapRepository.findByMapcode(storecode);
+		if (maplist.isEmpty() == false) {
 		Map map = maplist.get(0);
 		String mapurl = map.getMapurl();
 		mv.addObject("mapurl", mapurl);
-
+		}
 		//レビューの情報を送る
 		List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
 		mv.addObject("reviewlist", reviewlist);
