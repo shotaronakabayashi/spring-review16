@@ -391,7 +391,7 @@ public class StoreController {
 	//「店舗情報を変更する」ボタンがクリックされた		店舗変更ページへの遷移
 	@GetMapping("chenge/store/{code}")
 	public ModelAndView changeStore(
-			@RequestParam("code") int storecode,
+			@PathVariable("code") int storecode,
 			ModelAndView mv) {
 
 		Optional<Store> storelist01 = storeRepository.findById(storecode);
