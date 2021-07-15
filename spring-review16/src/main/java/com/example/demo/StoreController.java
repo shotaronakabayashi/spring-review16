@@ -258,8 +258,58 @@ public class StoreController {
 		return mv;
 	}
 
-	//-----新規登録終了-----
 
+	//メニュー追加画面から全て終了するが押された	確認画面への遷移
+	@GetMapping("/check/{code}")
+	public ModelAndView check(
+			@PathVariable("code") int storecode,
+			ModelAndView mv) {
+
+		// 登録された情報を送る
+		//店舗
+		Optional<Store>  storelist01 = storeRepository.findById(storecode);
+		Store store = storelist01.get();
+		List<Store> storelist = new ArrayList<>();
+		storelist.add(store);
+		mv.addObject("storelist", storelist);
+
+		//メニュー
+		List<Menu> menulist = menuRepository.findByMenucode(storecode);
+		mv.addObject("menulist", menulist);
+
+		//写真
+		List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
+		mv.addObject("picturelist", picturelist);
+
+		//マップ
+		List<Map> maplist = mapRepository.findByMapcode(storecode);
+		mv.addObject("maplist", maplist);
+
+		mv.setViewName("checkstore");
+		return mv;
+	}
+
+	//確認画面からOKが押された		登録完了画面への遷移
+	@GetMapping("/checkok/{storename}")
+	public ModelAndView checkOk (
+			@PathVariable("storename") String storename,
+			ModelAndView mv ) {
+
+		mv.addObject("storename", storename);
+		mv.setViewName("checkok");
+		return mv;
+	}
+
+
+	//確認画面からNGが押された		登録初期化
+
+
+
+
+
+
+
+	//-----新規登録終了-----
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
