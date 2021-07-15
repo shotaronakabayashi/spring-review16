@@ -40,19 +40,102 @@
 
 <a>予算　　　　　 　 </a><input type="text" name="budget" th:value="${list.budget}"><br>
 
-<a>時間              </a><input type="checkbox" name="time1" value="1" th:checked="${list.time1} == '1'">朝　　
-                     <input type="checkbox" name="time2" value="1" th:checked="${list.time2} == '1'">昼　　
-                     <input type="checkbox" name="time3" value="1" th:checked="${list.time3} == '1'">夜<br>
+<a>時間              </a>
 
-<a>シーン            </a><input type="checkbox" name="scean1" value="1" th:checked="${list.scean1} == '1'">ファミリー　　
-                     <input type="checkbox" name="scean2" value="1" th:checked="${list.scean2} == '1'">デート　　
-                     <input type="checkbox" name="scean3" value="1" th:checked="${list.scean3} == '1'">友人<br>
-                     　　
-<a>メッセージ</a><br><textarea name="message" cols="40" rows="8" th:value="${list.message}"></textarea><br>
+<div th:if="${list.time == 1}">
+                     <input type="checkbox" name="time1" value="1">朝　　
+                     <input type="checkbox" name="time2" value="1">昼　　
+                     <input type="checkbox" name="time3" value="1" checked="checked">夜<br>
+</div>
+<div th:if="${list.time == 11}">
+                     <input type="checkbox" name="time1" value="1">朝　　
+                     <input type="checkbox" name="time2" value="1" checked="checked">昼　　
+                     <input type="checkbox" name="time3" value="1" checked="checked">夜<br>
+</div>
+<div th:if="${list.time == 111}">
+                     <input type="checkbox" name="time1" value="1" checked="checked">朝　　
+                     <input type="checkbox" name="time2" value="1" checked="checked">昼　　
+                     <input type="checkbox" name="time3" value="1" checked="checked">夜<br>
+</div>
+<div th:if="${list.time == 10}">
+                     <input type="checkbox" name="time1" value="1">朝　　
+                     <input type="checkbox" name="time2" value="1"checked="checked">昼　　
+                     <input type="checkbox" name="time3" value="1">夜<br>
+</div>
+<div th:if="${list.time == 100}">
+                     <input type="checkbox" name="time1" value="1" checked="checked">朝　　
+                     <input type="checkbox" name="time2" value="1">昼　　
+                     <input type="checkbox" name="time3" value="1">夜<br>
+</div>
+<div th:if="${list.time == 101}">
+                     <input type="checkbox" name="time1" value="1" checked="checked">朝　　
+                     <input type="checkbox" name="time2" value="1">昼　　
+                     <input type="checkbox" name="time3" value="1" checked="checked">夜<br>
+</div>
+<div th:if="${list.time == 110}">
+                     <input type="checkbox" name="time1" value="1" checked="checked">朝　　
+                     <input type="checkbox" name="time2" value="1" checked="checked">昼　　
+                     <input type="checkbox" name="time3" value="1">夜<br>
+</div>
+
+
+
+
+<a>シーン            </a>
+
+<div th:if="${list.scean == 1}">
+                     <input type="checkbox" name="scean1" value="1">ファミリー　　
+                     <input type="checkbox" name="scean2" value="1">デート　　
+                     <input type="checkbox" name="scean3" value="1" checked="checked">友人<br>
+</div>
+<div th:if="${list.scean == 10}">
+                     <input type="checkbox" name="scean1" value="1">ファミリー　　
+                     <input type="checkbox" name="scean2" value="1" checked="checked">デート　　
+                     <input type="checkbox" name="scean3" value="1">友人<br>
+</div>
+<div th:if="${list.scean == 11}">
+                     <input type="checkbox" name="scean1" value="1">ファミリー　　
+                     <input type="checkbox" name="scean2" value="1" checked="checked">デート　　
+                     <input type="checkbox" name="scean3" value="1" checked="checked">友人<br>
+</div>
+<div th:if="${list.scean == 100}">
+                     <input type="checkbox" name="scean1" value="1" checked="checked">ファミリー　　
+                     <input type="checkbox" name="scean2" value="1">デート　　
+                     <input type="checkbox" name="scean3" value="1">友人<br>
+</div>
+<div th:if="${list.scean == 101}">
+                     <input type="checkbox" name="scean1" value="1" checked="checked">ファミリー　　
+                     <input type="checkbox" name="scean2" value="1">デート　　
+                     <input type="checkbox" name="scean3" value="1" checked="checked">友人<br>
+</div>
+<div th:if="${list.scean == 110}">
+                     <input type="checkbox" name="scean1" value="1" checked="checked">ファミリー　　
+                     <input type="checkbox" name="scean2" value="1" checked="checked">デート　　
+                     <input type="checkbox" name="scean3" value="1">友人<br>
+</div>
+<div th:if="${list.scean == 111}">
+                     <input type="checkbox" name="scean1" value="1" checked="checked">ファミリー　　
+                     <input type="checkbox" name="scean2" value="1" checked="checked">デート　　
+                     <input type="checkbox" name="scean3" value="1" checked="checked">友人<br>
+</div>
+
+
+    <script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		document.addEventListener("DOMContentLoaded",function() {
+			var data = /*[[${message}]]*/+"";
+            var e = document.getElementById('test')
+			e.value = data;
+
+		})
+		/*]]>*/
+	</script>
+                  　　
+<a>メッセージ</a><br><textarea name="message" cols="40" rows="8" id="test"></textarea><br>
 </div>
   <input type="submit" value="変更">
 </form>
 <br>
-<a th:text="${message}"></a>
+
 </body>
 </html>
