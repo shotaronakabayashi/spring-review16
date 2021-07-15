@@ -23,7 +23,7 @@
 </div>
 
 <div th:unless="${session.nickname == null}">
-<a th:href="'/mypage/' + ${session.nickname}">マイページに行く</a>　
+<a th:href="'/mypage/' + ${session.usercode}">マイページに行く</a>　
 <a href="/addstore">お店登録</a>　
 <a href="/logout">ログアウト</a>
 </div>
