@@ -29,6 +29,9 @@ public class ReviewController {
 	MenuRepository menuRepository;
 
 	@Autowired
+	MapRepository mapRepository;
+
+	@Autowired
 	PictureRepository pictureRepository;
 
 
@@ -120,6 +123,12 @@ public class ReviewController {
 		//写真の情報を送る
 		List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
 		mv.addObject("picturelist", picturelist);
+
+		//マップの情報を送る
+		List<Map> maplist = mapRepository.findByMapcode(storecode);
+		Map map = maplist.get(0);
+		String mapurl = map.getMapurl();
+		mv.addObject("mapurl", mapurl);
 
 		//レビューの情報を送る
 		List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);

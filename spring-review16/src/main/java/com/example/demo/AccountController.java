@@ -124,7 +124,11 @@ public class AccountController {
 		//ニックネームの重複チェック
 		//全体
 		List<Account> listall = accountRepository.findAll();
-
+		for (Account a : listall) {
+			if (a.getNickname().equals(nickname)); {
+				mv.addObject("message2", "ニックネームが登録されています。");
+			}
+		}
 
 
 		Account account = new Account(name, nickname, address, tel, email, password);

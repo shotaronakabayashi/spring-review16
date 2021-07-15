@@ -42,7 +42,6 @@ public class StoreController {
 			ModelAndView mv) {
 
 
-		Store store = null;
 		List<Store> list = storeRepository.findByCategorycode1(category);
 
 		float best1 = 0; float best2 = 0; float best3 = 0; float other = 0;
@@ -65,13 +64,31 @@ public class StoreController {
 
 			//ランクの情報から店舗情報を取得
 			//1位
-			List<Store> list1 = storeRepository.findByRankave(best1);
+			List<Store> list1 =new ArrayList<>();
+			List<Store> list01 = storeRepository.findByRankave(best1);
+			for (Store s : list) {
+				if (list01.contains(s) ) {
+					list1.add(s);
+				}
+			}
 
 			//2位
-			List<Store> list2 = storeRepository.findByRankave(best2);
+			List<Store> list2 = new ArrayList<>();
+			List<Store> list02 = storeRepository.findByRankave(best2);
+			for (Store s : list) {
+				if (list02.contains(s)) {
+					list2.add(s);
+				}
+			}
 
 			//3位
-			List<Store> list3 = storeRepository.findByRankave(best3);
+			List<Store> list3 = new ArrayList<>();
+			List<Store> list03 = storeRepository.findByRankave(best3);
+			for (Store s : list) {
+				if (list03.contains(s)) {
+					list3.add(s);
+				}
+			}
 
 			mv.addObject("list1", list1);
 			mv.addObject("list2", list2);
@@ -131,7 +148,10 @@ public class StoreController {
 			store2 = list.get();
 		}
 
+		//詳細検索とのエラー処理用
+		int flag = 0;
 
+		mv.addObject("flag", flag);
 		mv.addObject("code", store2.getCode());
 		mv.addObject("count", count);
 		mv.setViewName("addmenu");				//メニュー登録画面に遷移
@@ -330,6 +350,7 @@ public class StoreController {
 	}
 
 
+
 	//変更内容が入力されて変更するが押された
 	//メニューの変更
 	@PostMapping("/change")
@@ -392,13 +413,15 @@ public class StoreController {
 
 
 	//メニューを追加　（詳細ページ）
-	@RequestMapping("/addmenu/{code}")
+	@RequestMapping("/addmenu/{code}/{flag}")
 	public ModelAndView addmenu3 (
 			@PathVariable ("code") int code,
+			@PathVariable ("flag") int flag,
 			ModelAndView mv	) {
 
 		int count = 0;
 
+		mv.addObject("flag", flag);
 		mv.addObject("count", count);
 		mv.addObject("code", code);
 		mv.setViewName("addmenu");
