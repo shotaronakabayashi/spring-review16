@@ -337,9 +337,7 @@ public class StoreController {
 		//店舗情報を削除
 		storeRepository.deleteById(code);
 
-
-
-		mv.addObject("addstore");
+		mv.setViewName("addstore");
 		return mv;
 	}
 
