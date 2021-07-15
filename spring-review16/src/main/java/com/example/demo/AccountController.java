@@ -266,17 +266,19 @@ public class AccountController {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//「マイページに行く」がクリックされた
-	@GetMapping("mypage/{nickname}")
+	@GetMapping("mypage/{usercode}")
 	public ModelAndView mypage(
-			@PathVariable("nickname") String nickname,
+			@PathVariable("usercode") int usercode,
 			ModelAndView mv) {
 
 		//マイページの内容
-		List<Review> list = reviewRepository.findByReviewname(nickname);
+		List<Review> list = reviewRepository.findByUsercode(usercode);
+
+		Review review = list.get(0);
 
 
 		mv.addObject("list", list);
-		mv.addObject("nickname", nickname);
+		mv.addObject("nickname", review.getReviewname());
 		mv.setViewName("mypage");
 		return mv;
 
