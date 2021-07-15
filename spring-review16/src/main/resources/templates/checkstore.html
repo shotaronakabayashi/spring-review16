@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>お店詳細</title>
+<title>登録情報確認</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script
@@ -30,7 +30,7 @@
 
 
 	<a href="/">Top</a>
-	<h1>お店詳細</h1>
+	<h1>登録情報確認</h1>
 	<div th:each="storelist:${storelist}">
 		<a th:href="'/addreview/'+${storelist.name}">レビューする</a> <a
 			th:href="'/change/' +${storelist.code}">メニュー・写真変更</a> <br> <a
@@ -45,7 +45,6 @@
 			/*]]>*/
 		</script>
 
-		<a>ランク：星</a><a id="rank"></a><a>つ</a>
 	</div>
 
 	<div id="ww">
