@@ -4,6 +4,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.slider').bxSlider({
+
+		});
+	});
+</script>
+
+<style>
+#ww {
+	width: 520px;
+	height: 310px;
+}
+</style>
+
 <link th:href="@{/CSS/style.css}" rel="stylesheet">
 </head>
 <body>
@@ -46,11 +68,12 @@
 
 <section class="search_category">
 <ul>
-	<li><a href="/keyword/ファストフード">[ファストフード]</a></li>
-	<li><a href="/keyword/イタリアン">[イタリアン]</a></li>
 	<li><a href="/keyword/和食">[和食]</a></li>
+	<li><a href="/keyword/中華">[中華]</a></li>
+	<li><a href="/keyword/イタリアン">[イタリアン]</a></li>
+	<li><a href="/keyword/ファストフード">[ファストフード]</a></li>	
 	<li><a href="/keyword/おしゃれ">[おしゃれ]</a></li>
-	<li><a href="/keyword/個室">[個室]</a></li>
+	<li><a href="/keyword/完全個室">[完全個室]</a></li>
 	<li><a href="/keyword/わいわい">[わいわい]</a><li>
 </ul>
 </section>
@@ -76,6 +99,15 @@
 
 
 第１位
+
+<div id="ww">
+	<div class="slider">
+		<div th:each="pic:${picturelist1}">
+			<img th:src="${pic.pictureurl}" width="500" height="300" alt="No Image">
+		</div>
+	</div>
+</div>
+<br>
 <div th:each="list1 : ${list1}">
 	<a th:href="'/store/' + ${list1.name}" th:text="${list1.name}"></a>
 	<a th:text="${list1.address}"></a>
@@ -86,6 +118,14 @@
 <br>
 
 第２位
+<div id="ww">
+	<div class="slider">
+		<div th:each="pic:${picturelist2}">
+			<img th:src="${pic.pictureurl}" width="500" height="300" alt="No Image">
+		</div>
+	</div>
+</div>
+<br>
 <div th:each="list2 : ${list2}">
 	<a th:href="'/store/' + ${list2.name}" th:text="${list2.name}"></a>
 	<a th:text="${list2.address}"></a>
@@ -96,7 +136,14 @@
 <br>
 
 第3位
-
+<div id="ww">
+	<div class="slider">
+		<div th:each="pic:${picturelist3}">
+			<img th:src="${pic.pictureurl}" width="500" height="300" alt="No Image">
+		</div>
+	</div>
+</div>
+<br>
 <div th:each="list3 : ${list3}">
 	<a th:href="'/store/' + ${list3.name}" th:text="${list3.name}"></a>
 	<a th:text="${list3.address}"></a>

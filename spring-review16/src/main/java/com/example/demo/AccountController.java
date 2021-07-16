@@ -395,12 +395,17 @@ public class AccountController {
 			@RequestParam("address") String address,
 			@RequestParam("tel") String tel,
 			@RequestParam("email") String email,
-			@RequestParam("password") String password,
-			@RequestParam("newpassword") String newpassword,
-			@RequestParam("newpassword2") String newpassword2,
+			@RequestParam(name = "password") String password,
+			@RequestParam(name = "newpassword", defaultValue= "") String newpassword,
+			@RequestParam(name = "newpassword2", defaultValue= "") String newpassword2,
 			@RequestParam("secret") String secret,
 			@RequestParam("secret_q") String secret_q,
 			ModelAndView mv) {
+
+		if ("".equals(newpassword) && "".equals(newpassword2) ) {
+			newpassword = password;
+			newpassword2 = password;
+		}
 
 		Optional<Account> list0 = accountRepository.findById(code);
 		Account account0 = list0.get();
@@ -419,7 +424,7 @@ public class AccountController {
 
 		//パスワードチェック
 		if ( !( password.equals(account0.getPassword()) ) ) {
-			mv.addObject("message", "旧パスワードが一致しません。");
+			mv.addObject("message", "パスワードが一致しません。");
 			mv.addObject("code", code);
 			mv.addObject("list", relist);
 			mv.setViewName("changeuser");
