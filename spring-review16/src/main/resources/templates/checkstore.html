@@ -31,6 +31,8 @@
 
 	<a href="/">Top</a>
 	<h1>登録情報確認</h1>
+	<h4>以下の情報で登録致します。よろしいですか？</h4>
+
 <div th:each="storelist:${storelist}">
 <a th:href="'/checkok/' +${storelist.name}">登録する</a>　　<a th:href="'/checkng/' +${storelist.code}">キャンセル</a>
 </div>

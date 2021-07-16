@@ -75,6 +75,8 @@
 確認のためもう一度新パスワードを入力してください：<input type="password" name="newpassword" placeholder="もう一度入力"><br>
 </h4>
 <br>
+<input type="hidden" th:value="${list.secret_q}" name="secret_q">
+<input type="hidden" th:value="${list.secret}" name="secret">
 <input type="hidden" th:value="${list.password}" name="password">
 <input type="hidden" th:value="${code}" name="code">
 <input type="submit" value="変更する">
