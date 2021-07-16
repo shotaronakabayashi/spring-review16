@@ -3,6 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>検索結果</title>
+
+<style>
+.time{
+ position: relative; top:-24px; left:410px; ;
+}
+
+.scean{
+ position: relative; top:-48px; left:490px; ;
+}
+</style>
+
 </head>
 <body>
 <a href="/">Top</a>
@@ -13,6 +24,55 @@
     <a th:text="${result.address}"></a>
     <a th:text="${result.categorycode1}"></a>
     <a th:text="${result.categorycode2}"></a>
+
+    <div class="time">
+            <div th:if="${result.time == 1}">
+			<a>🌙</a>
+			</div>
+			<div th:if="${result.time == 11}">
+				<a>🕛🌙</a>
+			</div>
+			<div th:if="${result.time == 111}">
+				<a>🌞🕛🌙</a>
+			</div>
+			<div th:if="${result.time == 100}">
+				<a>🌞</a>
+			</div>
+			<div th:if="${result.time == 110}">
+				<a>🌞🕛</a>
+			</div>
+			<div th:if="${result.time == 101}">
+				<a>🌞🌙</a>
+			</div>
+			<div th:if="${result.time == 10}">
+				<a>🕛</a>
+			</div>
+    </div>
+
+    <div class="scean">
+			<div th:if="${result.scean == 1}">
+				<a>🧑‍🤝‍🧑</a>
+			</div>
+			<div th:if="${result.scean == 10}">
+				<a>💏</a>
+			</div>
+			<div th:if="${result.scean == 100}">
+				<a>👨‍👩‍👦</a>
+			</div>
+			<div th:if="${result.scean == 11}">
+				<a>💏🧑‍🤝‍🧑</a>
+			</div>
+			<div th:if="${result.scean == 111}">
+				<a>👨‍👩‍👦💏🧑‍🤝‍🧑</a>
+			</div>
+			<div th:if="${result.scean == 101}">
+				<a>👨‍👩‍👦🧑‍🤝‍🧑</a>
+			</div>
+			<div th:if="${result.scean == 110}">
+				<a>👨‍👩‍👦💏</a>
+			</div>
+	  </div>
+
 
 </div>
 
