@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link th:href="@{/ranking.css}" rel="stylesheet">
+<link th:href="@{/CSS/style.css}" rel="stylesheet">
 </head>
 <body>
+<div class="bg_pattern Polka_v2"></div>
+
 <h1 align="center">TABETELL</h1>
 
 <h3 th:if="${session.nickname == null}">
@@ -39,16 +41,20 @@
 </div>
 <br>
 
-<div><font size="4">
-　　　　　　　　<a>【カテゴリ検索】</a>　　　　　　
-<a href="/keyword/ファストフード">[ファストフード]</a>　
-<a href="/keyword/イタリアン">[イタリアン]</a>　
-<a href="/keyword/和食">[和食]</a>　
-<a href="/keyword/おしゃれ">[おしゃれ]</a>　
-<a href="/keyword/個室">[個室]</a>　
-<a href="/keyword/わいわい">[わいわい]</a>　
-</font></div>
-<br>
+<a>　　　　　　　　【カテゴリ検索】　　　　　　</a>
+
+<section class="search_category">
+<ul>
+	<li><a href="/keyword/ファストフード">[ファストフード]</a></li>
+	<li><a href="/keyword/イタリアン">[イタリアン]</a></li>
+	<li><a href="/keyword/和食">[和食]</a></li>
+	<li><a href="/keyword/おしゃれ">[おしゃれ]</a></li>
+	<li><a href="/keyword/個室">[個室]</a></li>
+	<li><a href="/keyword/わいわい">[わいわい]</a><li>
+</ul>
+
+</section>
+
 
 <div align="center"><font size="4">
 <a href="search/detail">詳細検索</a>
@@ -56,7 +62,7 @@
 <br><br>
 <br><br>
 <br>
-<div>
+<div align="center">
 <h2 align="center">ランキング</h2>
 
 <h4 align="center">
@@ -68,8 +74,7 @@
 </h4>
 <br><br>
 
-<ul class="ranking">
-<li>
+
 第１位
 <div th:each="list1 : ${list1}">
 	<a th:href="'/store/' + ${list1.name}" th:text="${list1.name}"></a>
@@ -78,9 +83,8 @@
 	<a th:text="${list1.categorycode2}"></a>
 	<a th:text="${list1.message}"></a>
 </div>
-</li>
+<br>
 
-<li>
 第２位
 <div th:each="list2 : ${list2}">
 	<a th:href="'/store/' + ${list2.name}" th:text="${list2.name}"></a>
@@ -89,10 +93,9 @@
 	<a th:text="${list2.categorycode2}"></a>
 	<a th:text="${list2.message}"></a>
 </div>
-</li>
+<br>
 
-<li>
-第3位　　　
+第3位
 
 <div th:each="list3 : ${list3}">
 	<a th:href="'/store/' + ${list3.name}" th:text="${list3.name}"></a>
@@ -101,8 +104,7 @@
 	<a th:text="${list3.categorycode2}"></a>
 	<a th:text="${list3.message}"></a>
 </div>
-</li>
-</ul>
+<br>
 
 <br>
 
