@@ -15,7 +15,7 @@
       }
       .box-pass {
         width: 200px;
-        position: relative; top:100px; left:200px; ;
+        position: relative; top:45px; left:240px; ;
       }
       .box-pass input {
         width: 170px;
@@ -26,8 +26,8 @@
       }
       .button__label {
         position: absolute;
-        right: 25px;
-        top: 2px;
+        right: 28px;
+        top: 3px;
       }
 
 </style>
@@ -71,8 +71,8 @@
         </div>
       </div>
       <h4>旧パスワード</h4>
-<h4>新パスワード　　　　　　　　　<input type="text" name="newpassword" placeholder="新パスワード"><br>
-確認のためもう一度新パスワードを入力してください：<input type="text" name="newpassword" placeholder="新パスワード"><br>
+<h4>新パスワード　　　　　　　　　<input type="password" name="newpassword" placeholder="新パスワード"><br>
+確認のためもう一度新パスワードを入力してください：<input type="password" name="newpassword" placeholder="もう一度入力"><br>
 </h4>
 <br>
 <input type="hidden" th:value="${list.password}" name="password">
