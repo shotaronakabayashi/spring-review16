@@ -112,6 +112,7 @@ public class AccountController {
 			@RequestParam("tel") String tel,
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
+			@RequestParam("password2") String password2,
 			ModelAndView mv) {
 		//エラー処理
 		if (name.length() == 0 || nickname.length() == 0 || address.length() == 0 || tel.length() == 0
@@ -125,11 +126,17 @@ public class AccountController {
 		//全体
 		List<Account> listall = accountRepository.findAll();
 		for (Account a : listall) {
-			if (a.getNickname().equals(nickname)); {
+			if (a.getNickname().equals(nickname)) {
 				mv.addObject("message", "ニックネームが登録されています。");
 				mv.setViewName("adduser");
-				return mv;
 			}
+		}
+
+		//パスワードが不一致チェック
+		if (password.equals(password2)) {
+			mv.addObject("message", "パスワードが一致しません。");
+			mv.setViewName("adduser");
+			return mv;
 		}
 
 
@@ -175,9 +182,16 @@ public class AccountController {
 		mv.addObject("list3", list3);
 		//-----------------------------------------------------------------
 
-		mv.setViewName("top");
+		mv.addObject("nickname", nickname);
+		mv.setViewName("checkuser");	//新規登録確認ページへの遷移
+
 		return mv;
 	}
+
+
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
