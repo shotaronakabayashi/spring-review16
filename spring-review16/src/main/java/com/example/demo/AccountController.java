@@ -132,19 +132,19 @@ public class AccountController {
 			if (a.getNickname().equals(nickname)) {
 				mv.addObject("message", "ニックネームが登録されています。");
 				mv.setViewName("adduser");
+				return mv;
 			}
 		}
 
 		//パスワードが不一致チェック
-		if (password.equals(password2)) {
+		if (!(password.equals(password2))) {
 			mv.addObject("message", "パスワードが一致しません。");
 			mv.setViewName("adduser");
 			return mv;
 		}
 
+		//アカウント追加
 		Account account = new Account(name, nickname, address, tel, email, password, secret, secret_q);
-
-		//追加
 		accountRepository.saveAndFlush(account);
 
 		//トップページのランキング表示-------------------------------
@@ -168,7 +168,6 @@ public class AccountController {
 				}
 			}
 		}
-
 		//ランクの情報から店舗情報を取得
 		//1位
 		List<Store> list1 = storeRepository.findByRankave(best1);
@@ -200,8 +199,6 @@ public class AccountController {
 		return mv;
 	}
 
-
-
 	//パスワードを忘れた用ページへの遷移
 	@GetMapping("/secret")
 	public ModelAndView Repass(ModelAndView mv) {
@@ -212,12 +209,12 @@ public class AccountController {
 
 	//ニックネームが入力された
 	@PostMapping("/secret")
-	public ModelAndView Repass_name (
+	public ModelAndView Repass_name(
 			@RequestParam("nickname") String nickname,
 			ModelAndView mv) {
 
 		if ("".equals(nickname)) {
-			mv.addObject("message","ニックネームを入力してください");
+			mv.addObject("message", "ニックネームを入力してください");
 			mv.setViewName("secret");
 			return mv;
 		}
@@ -238,8 +235,6 @@ public class AccountController {
 		return mv;
 	}
 
-
-
 	//秘密の質問が入力された
 	@PostMapping("/secret/q")
 	public ModelAndView Relogin(
@@ -247,24 +242,26 @@ public class AccountController {
 			@RequestParam("secret_a") String secret,
 			ModelAndView mv) {
 
-		if ("".equals(secret)) {
-			mv.addObject("message", "答えを入力してください。");
-			mv.setViewName("secret_p");
-			return mv;
-		}
-
 		Account account = null;
 
 		Optional<Account> list0 = accountRepository.findByNickname(nickname);
 		account = list0.get();
 
+		//未入力エラー処理
+		if ("".equals(secret)) {
+			mv.addObject("message", "答えを入力してください。");
+			mv.addObject("nickname", nickname);
+			mv.addObject("secret_q", account.getSecret_q());
+			mv.setViewName("secret_p");
+			return mv;
+		}
+
 		//ニックネームと秘密の質問を照合
 		if (secret.equals(account.getSecret())) {
 			mv.addObject("nickname", nickname);
 			mv.addObject("password", account.getPassword());
-			mv.setViewName("/secret_answer");
-		}
-		else {
+			mv.setViewName("secret_answer");
+		} else {
 			mv.addObject("message", "答えが一致しません。");
 			mv.addObject("nickname", nickname);
 			mv.addObject("secret_q", account.getSecret_q());
@@ -272,8 +269,6 @@ public class AccountController {
 		}
 		return mv;
 	}
-
-
 
 	//ログイン情報を入力してログインボタンが押された
 	@PostMapping("/login")
@@ -401,15 +396,50 @@ public class AccountController {
 			@RequestParam("tel") String tel,
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
+			@RequestParam("newpassword") String newpassword,
+			@RequestParam("newpassword2") String newpassword2,
 			@RequestParam("secret") String secret,
 			@RequestParam("secret_q") String secret_q,
 			ModelAndView mv) {
 
-		Account account = new Account(code, name, nickname, address, tel, email, password, secret, secret_q);
+		Optional<Account> list0 = accountRepository.findById(code);
+		Account account0 = list0.get();
+		List<Account> relist = new ArrayList<>();
+		relist.add(account0);
+
+		//未入力エラーチェック
+		if (name.length() == 0 || nickname.length() == 0 || address.length() == 0 || tel.length() == 0
+				|| email.length() == 0 || password.length() == 0 || newpassword.length() == 0) {
+			mv.addObject("message", "すべての項目に入力してください。");
+			mv.addObject("code", code);
+			mv.addObject("list", relist);
+			mv.setViewName("changeuser");
+			return mv;
+		}
+
+		//パスワードチェック
+		if ( !(password.equals(account0.getPassword())) ) {
+			mv.addObject("message", "パスワードが一致しません。");
+			mv.addObject("code", code);
+			mv.addObject("list", relist);
+			mv.setViewName("changeuser");
+			return mv;
+		}
+
+		if (!(newpassword.equals(newpassword2)) ) {
+			mv.addObject("message", "パスワードが一致しません。");
+			mv.addObject("code", code);
+			mv.addObject("list", relist);
+			mv.setViewName("changeuser");
+			return mv;
+		}
+
+		Account account = new Account(code, name, nickname, address, tel, email, newpassword, secret, secret_q);
 
 		//追加
 		accountRepository.saveAndFlush(account);
 
+		//マイページ用のレビュー情報
 		List<Review> list = reviewRepository.findByUsercode(code);
 
 		session.invalidate();
@@ -423,7 +453,7 @@ public class AccountController {
 		return mv;
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//ログアウト
 	@RequestMapping("/logout")
