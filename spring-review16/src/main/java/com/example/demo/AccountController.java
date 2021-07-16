@@ -249,7 +249,7 @@ public class AccountController {
 
 		if ("".equals(secret)) {
 			mv.addObject("message", "答えを入力してください。");
-			mv.setViewName(secret);
+			mv.setViewName("secret_p");
 			return mv;
 		}
 
