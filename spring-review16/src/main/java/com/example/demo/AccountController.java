@@ -113,8 +113,10 @@ public class AccountController {
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
 			@RequestParam("password2") String password2,
+			@RequestParam("secret_q") String secret_q,
 			@RequestParam("secret") String secret,
 			ModelAndView mv) {
+
 		//エラー処理
 		if (name.length() == 0 || nickname.length() == 0 || address.length() == 0 || tel.length() == 0
 				|| email.length() == 0 || password.length() == 0 || password2.length() == 0 || secret.length() == 0) {
@@ -140,7 +142,7 @@ public class AccountController {
 			return mv;
 		}
 
-		Account account = new Account(name, nickname, address, tel, email, password, secret);
+		Account account = new Account(name, nickname, address, tel, email, password, secret, secret_q);
 
 		//追加
 		accountRepository.saveAndFlush(account);
@@ -208,31 +210,66 @@ public class AccountController {
 		return mv;
 	}
 
-	//秘密の質問が入力された
+	//ニックネームが入力された
 	@PostMapping("/secret")
+	public ModelAndView Repass_name (
+			@RequestParam("nickname") String nickname,
+			ModelAndView mv) {
+
+		if ("".equals(nickname)) {
+			mv.addObject("message","ニックネームを入力してください");
+			mv.setViewName("secret");
+			return mv;
+		}
+
+		Optional<Account> list = accountRepository.findByNickname(nickname);
+		Account account = null;
+		if (list.isEmpty() == false) {
+			account = list.get();
+		} else {
+			mv.addObject("message", "ニックネームが見つかりませんでした。");
+			mv.setViewName("secret");
+			return mv;
+		}
+
+		mv.addObject("nickname", nickname);
+		mv.addObject("secret_q", account.getSecret_q());
+		mv.setViewName("secret_p");
+		return mv;
+	}
+
+
+
+	//秘密の質問が入力された
+	@PostMapping("/secret/q")
 	public ModelAndView Relogin(
 			@RequestParam("nickname") String nickname,
-			@RequestParam("secret") String secret,
+			@RequestParam("secret_a") String secret,
 			ModelAndView mv) {
+
+		if ("".equals("secret")) {
+			mv.addObject("message", "答えを入力してください。");
+			mv.setViewName(secret);
+			return mv;
+		}
 
 		Account account = null;
 		List<Account> list = new ArrayList<>();
+
 		Optional<Account> list0 = accountRepository.findByNickname("nickname");
-		if (list0.isEmpty() == false) {
-			account = list0.get();
-		} else {
-			mv.addObject("message", "");
-			mv.setViewName("secret");
-		}
+		account = list0.get();
 
 		//ニックネームと秘密の質問を照合
 		if (secret.equals(account.getSecret())) {
 			mv.addObject("nickname", nickname);
 			mv.addObject("password", account.getPassword());
-			mv.setViewName("/");
-		} else {
-			mv.addObject("message", "ニックネームと答えが一致しません。");
-			mv.setViewName("secret");
+			mv.setViewName("/secret_answer");
+		}
+		else {
+			mv.addObject("message", "答えが一致しません。");
+			mv.addObject("nickname", nickname);
+			mv.addObject("secret_q", account.getSecret_q());
+			mv.setViewName("secret_p");
 		}
 		return mv;
 	}
@@ -365,9 +402,11 @@ public class AccountController {
 			@RequestParam("tel") String tel,
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
+			@RequestParam("secret") String secret,
+			@RequestParam("secret_q") String secret_q,
 			ModelAndView mv) {
 
-		Account account = new Account(code, name, nickname, address, tel, email, password);
+		Account account = new Account(code, name, nickname, address, tel, email, password, secret, secret_q);
 
 		//追加
 		accountRepository.saveAndFlush(account);
