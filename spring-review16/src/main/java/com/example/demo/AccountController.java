@@ -247,16 +247,15 @@ public class AccountController {
 			@RequestParam("secret_a") String secret,
 			ModelAndView mv) {
 
-		if ("".equals("secret")) {
+		if ("".equals(secret)) {
 			mv.addObject("message", "答えを入力してください。");
 			mv.setViewName(secret);
 			return mv;
 		}
 
 		Account account = null;
-		List<Account> list = new ArrayList<>();
 
-		Optional<Account> list0 = accountRepository.findByNickname("nickname");
+		Optional<Account> list0 = accountRepository.findByNickname(nickname);
 		account = list0.get();
 
 		//ニックネームと秘密の質問を照合
