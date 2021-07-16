@@ -12,7 +12,7 @@
 
 <a th:href="'/changeuser/'+${session.usercode}">会員情報変更</a><br>
 
-<a>マイレビュー</a>
+<a>マイレビュー</a><br>
 <a>------------------------------------------------------------</a>
 <div th:each="rev:${list}">
 <a th:text="${rev.storename}"></a><a>　星：</a><a th:text="${rev.star}"></a><a>つ</a>
