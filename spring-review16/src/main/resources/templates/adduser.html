@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>新規登録</title>
@@ -34,13 +34,15 @@
 <br>
 
 <h4>
-パスワード　　　　　　　　　<input type="password" name="password">
+パスワード　　　　　　　　　<input type="password" name="password"><br>
+確認のためもう一度パスワードを入力してください<br>　　　　　　　　　　　　　　<input type="password" name="password2">
 </h4>
 <br>
 
-<h4>
-確認のためもう一度パスワードを入力してください<br>
-　　　　　　　　　　　　　　<input type="password" name="password2">
+<h4>秘密の質問　　 　　　　　　 <input type="radio" name="secret_q" value="1" checked="checked">母親の旧姓は？　　
+                                <input type="radio" name="secret_q" value="2">出身校は？
+        　　<input type="radio" name="secret_q" value="3">飼っていたペットの名前は？<br>
+　答え　　　　　　　　　　 <input type="text" name="secret_a">
 </h4>
 <br>
 
