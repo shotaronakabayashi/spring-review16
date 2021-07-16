@@ -3,6 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>会員情報変更</title>
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+<style type="text/css">
+      .box {
+        display: flex;
+        align-items: center;
+      }
+      p {
+        padding-right: 20px;
+      }
+      .box-pass {
+        width: 200px;
+        position: relative;
+      }
+      .box-pass input {
+        width: 170px;
+        height: 16px;
+      }
+      input.button__input {
+        display: none;
+      }
+      .button__label {
+        position: absolute;
+        right: 25px;
+        top: 2px;
+      }
+
+</style>
 </head>
 <body>
 <a href="/">Top</a>
@@ -35,13 +63,44 @@
 </h4>
 <br>
 
-<h4>
-パスワード　　　　　　　　　<input type="text" name="password" th:value="${list.password}">
+        <div class="box">
+        <div class="box-pass">
+        <h4>旧パスワード</h4>
+          <input class="js-password" type="password" value="" id="pass-login" name="password" maxlength="10" placeholder="旧パスワード" required="required">
+          <input class="js-password-toggle button__input" id="password--eye" type="checkbox" name="password01">
+          <label class="js-password-label button__label" for="password--eye"><i class="fas fa-eye"></i></label>
+        </div>
+      </div>
+<h4>新パスワード　　　　　　　　　<input type="text" name="newpassword" placeholder="新パスワード"><br>
+確認のためもう一度新パスワードを入力してください：<input type="text" name="newpassword" placeholder="新パスワード"><br>
 </h4>
 <br>
+<input type="hidden" th:value="${list.password}" name="password">
 <input type="hidden" th:value="${code}" name="code">
 <input type="submit" value="変更する">
 </form>
 </div>
+
+
+<script>
+
+const passwordToggles = document.querySelectorAll('.js-password-toggle');
+
+passwordToggles.forEach((el) => {
+  el.addEventListener('change', function () {
+    const password = el.previousElementSibling,
+          passwordLabel = el.nextElementSibling;
+    if (password.type === 'password') {
+      password.type = 'text';
+      passwordLabel.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    } else {
+      password.type = 'password';
+      passwordLabel.innerHTML = '<i class="fas fa-eye"></i>';
+    }
+    password.focus();
+  });
+});
+
+</script>
 </body>
 </html>
