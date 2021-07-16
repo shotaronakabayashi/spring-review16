@@ -93,7 +93,7 @@ public class AccountController {
 		return mv;
 	}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// 新規会員登録がクリックされた
 	@GetMapping("/adduser")
@@ -113,10 +113,11 @@ public class AccountController {
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
 			@RequestParam("password2") String password2,
+			@RequestParam("secret") String secret,
 			ModelAndView mv) {
 		//エラー処理
 		if (name.length() == 0 || nickname.length() == 0 || address.length() == 0 || tel.length() == 0
-				|| email.length() == 0 || password.length() == 0) {
+				|| email.length() == 0 || password.length() == 0 || password2.length() == 0 || secret.length() == 0) {
 			mv.addObject("message", "すべての項目に入力してください。");
 			mv.setViewName("adduser");
 			return mv;
@@ -139,8 +140,7 @@ public class AccountController {
 			return mv;
 		}
 
-
-		Account account = new Account(name, nickname, address, tel, email, password);
+		Account account = new Account(name, nickname, address, tel, email, password, secret);
 
 		//追加
 		accountRepository.saveAndFlush(account);
@@ -183,25 +183,61 @@ public class AccountController {
 		//-----------------------------------------------------------------
 
 		mv.addObject("nickname", nickname);
-		mv.setViewName("checkuser");	//新規登録確認ページへの遷移
+		mv.setViewName("checkuser"); //新規登録確認ページへの遷移
 
 		return mv;
 	}
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	//ログインがクリックされた
+	//ログインページへの遷移
 	@GetMapping("/login")
 	public ModelAndView login(ModelAndView mv) {
 
 		mv.setViewName("login");
 		return mv;
 	}
+
+
+
+	//パスワードを忘れた用ページへの遷移
+	@GetMapping("/secret")
+	public ModelAndView Repass(ModelAndView mv) {
+
+		mv.setViewName("secret");
+		return mv;
+	}
+
+	//秘密の質問が入力された
+	@PostMapping("/secret")
+	public ModelAndView Relogin(
+			@RequestParam("nickname") String nickname,
+			@RequestParam("secret") String secret,
+			ModelAndView mv) {
+
+		Account account = null;
+		List<Account> list = new ArrayList<>();
+		Optional<Account> list0 = accountRepository.findByNickname("nickname");
+		if (list0.isEmpty() == false) {
+			account = list0.get();
+		} else {
+			mv.addObject("message", "");
+			mv.setViewName("secret");
+		}
+
+		//ニックネームと秘密の質問を照合
+		if (secret.equals(account.getSecret())) {
+			mv.addObject("nickname", nickname);
+			mv.addObject("password", account.getPassword());
+			mv.setViewName("/");
+		} else {
+			mv.addObject("message", "ニックネームと答えが一致しません。");
+			mv.setViewName("secret");
+		}
+		return mv;
+	}
+
+
 
 	//ログイン情報を入力してログインボタンが押された
 	@PostMapping("/login")
@@ -214,70 +250,74 @@ public class AccountController {
 		if (nickname == null || nickname.length() == 0 || password == null || password.length() == 0) {
 			mv.addObject("message", "ニックネームとパスワードを入力してください");
 			mv.setViewName("login");
+			return mv;
 		}
+
 		//ログイン処理
-		else {
-			Account account = null;
-			Optional<Account> list = accountRepository.findByNickname(nickname);
+		Account account = null;
+		Optional<Account> list0 = accountRepository.findByNickname(nickname);
 
-			if (list.isEmpty() == false) {
-				account = list.get();
-
-				if (password.equals(account.getPassword())) {
-
-					session.setAttribute("usercode", account.getCode());
-					session.setAttribute("nickname", account.getNickname());
-					mv.setViewName("top");
-				} else {
-					mv.addObject("message", "ニックネームとパスワードが一致しません。");
-					mv.setViewName("login");
-				}
-			} else {
-				mv.addObject("message", "ニックネームとパスワードが一致しません。");
-				mv.setViewName("login");
-			}
+		if (list0.isEmpty() == false) {
+			account = list0.get();
+		} else {
+			mv.addObject("message", "ニックネームとパスワードが一致しません");
+			mv.setViewName("login");
+			return mv;
 		}
 
-		//トップページのランキング表示-----------------------------
-		List<Store> list = storeRepository.findAll();
+		//ニックネームとパスワードの照合
+		if (password.equals(account.getPassword())) {
 
-		float best1 = 0;
-		float best2 = 0;
-		float best3 = 0;
-		float other = 0;
-		for (Store st : list) {
-			for (Store s : list) {
-				float a = s.getRankave();
-				if (a >= best1) {
-					best1 = a;
-				} else if (a < best1 && a >= best2) {
-					best2 = a;
-				} else if (a < best2 && a >= best3) {
-					best3 = a;
-				} else {
-					other = a;
+			session.setAttribute("usercode", account.getCode());
+			session.setAttribute("nickname", account.getNickname());
+
+			//トップページのランキング表示-----------------------------
+			List<Store> list = storeRepository.findAll();
+
+			float best1 = 0;
+			float best2 = 0;
+			float best3 = 0;
+			float other = 0;
+			for (Store st : list) {
+				for (Store s : list) {
+					float a = s.getRankave();
+					if (a >= best1) {
+						best1 = a;
+					} else if (a < best1 && a >= best2) {
+						best2 = a;
+					} else if (a < best2 && a >= best3) {
+						best3 = a;
+					} else {
+						other = a;
+					}
 				}
 			}
+
+			//ランクの情報から店舗情報を取得
+			//1位
+			List<Store> list1 = storeRepository.findByRankave(best1);
+
+			//2位
+			List<Store> list2 = storeRepository.findByRankave(best2);
+
+			//3位
+			List<Store> list3 = storeRepository.findByRankave(best3);
+
+			mv.addObject("list1", list1);
+			mv.addObject("list2", list2);
+			mv.addObject("list3", list3);
+			//------------------------------------------------------------
+
+			mv.setViewName("top");
+			return mv;
+		} else {
+			mv.addObject("message", "ニックネームとパスワードが一致しません。");
+			mv.setViewName("login");
+			return mv;
 		}
-
-		//ランクの情報から店舗情報を取得
-		//1位
-		List<Store> list1 = storeRepository.findByRankave(best1);
-
-		//2位
-		List<Store> list2 = storeRepository.findByRankave(best2);
-
-		//3位
-		List<Store> list3 = storeRepository.findByRankave(best3);
-
-		mv.addObject("list1", list1);
-		mv.addObject("list2", list2);
-		mv.addObject("list3", list3);
-		//------------------------------------------------------------
-		return mv;
 	}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//「マイページに行く」がクリックされた
 	@GetMapping("mypage/{usercode}")
@@ -345,7 +385,7 @@ public class AccountController {
 		return mv;
 	}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//ログアウト
 	@RequestMapping("/logout")

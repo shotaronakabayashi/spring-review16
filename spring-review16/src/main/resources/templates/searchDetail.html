@@ -14,8 +14,11 @@
 		<input type="text" name="keyword" size="100">　
 		<input type="submit" value="検索">
 	</td>
+
 </tr>
 </table>
+<br>
+<a th:text="${message2}"></a>
 <br><br>
 
 <a>場所</a>
@@ -58,9 +61,10 @@
 		<input type="text" name="minprice">
 		　　～　　
 		<input type="text" name="maxprice">
-	</p>
-<div th:text="${message}"></div>
 
+　　　　　　　　　<a th:text="${message}"></a>
+	</p>
+<br>
 <a>シーン</a>
 	<p>
 		<input type="checkbox" name="scean1" value="1" checked="checked">ファミリー　　

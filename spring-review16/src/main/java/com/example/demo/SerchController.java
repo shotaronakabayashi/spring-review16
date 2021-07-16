@@ -27,6 +27,44 @@ public class SerchController {
 		//エラー処理
 		if (keyword.length() == 0) {
 			mv.addObject("message", "店舗名を入力してください");
+
+			//ランキング情報を表示------------------------------------
+			List<Store> list = storeRepository.findAll();
+
+			float best1 = 0;
+			float best2 = 0;
+			float best3 = 0;
+			float other = 0;
+			for (Store st : list) {
+				for (Store s : list) {
+					float a = s.getRankave();
+					if (a >= best1) {
+						best1 = a;
+					} else if (a < best1 && a >= best2) {
+						best2 = a;
+					} else if (a < best2 && a >= best3) {
+						best3 = a;
+					} else {
+						other = a;
+					}
+				}
+			}
+
+			//ランクの情報から店舗情報を取得
+			//1位
+			List<Store> list1 = storeRepository.findByRankave(best1);
+
+			//2位
+			List<Store> list2 = storeRepository.findByRankave(best2);
+
+			//3位
+			List<Store> list3 = storeRepository.findByRankave(best3);
+
+			mv.addObject("list1", list1);
+			mv.addObject("list2", list2);
+			mv.addObject("list3", list3);
+			//-----------------------------------------------------------
+
 			mv.setViewName("top");
 			return mv;
 		} else {
@@ -271,6 +309,13 @@ public class SerchController {
 			if (pdlist.contains(s)) {
 				list.add(s);
 			}
+		}
+
+		//検索結果がnullの場合のエラー処理
+		if (list.isEmpty() == true) {
+			mv.addObject("message2", "検索項目に当てはまる店舗が登録されていません。");
+			mv.setViewName("searchDetail");
+			return mv;
 		}
 
 		mv.addObject("result", list);

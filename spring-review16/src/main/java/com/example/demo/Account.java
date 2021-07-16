@@ -21,6 +21,7 @@ public class Account {
 	private String tel;
 	private String email;
 	private String password;
+	private String secret;
 
 	//コンストラクタ
 	public Account () {
@@ -37,13 +38,14 @@ public class Account {
 		this.password = password;
 	}
 
-	public Account (String name, String nickname, String address, String tel, String email, String password) {
+	public Account (String name, String nickname, String address, String tel, String email, String password, String secret) {
 		this.name = name;
 		this.nickname = nickname;
 		this.address = address;
 		this.tel = tel;
 		this.email = email;
 		this.password = password;
+		this.secret = secret;
 	}
 
 
@@ -116,6 +118,14 @@ public class Account {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getSecret() {
+		return secret;
+	}
+
+	public void setSecret(String secret) {
+		this.secret = secret;
 	}
 
 
