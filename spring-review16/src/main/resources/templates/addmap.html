@@ -12,6 +12,13 @@
 
 <h2>MAPを登録</h2>
 
+<form action="/addmap" method="POST">
+<a>URL貼り付け：</a>
+<input th:type="text" name="url">
+<input type="hidden" name="code" th:value="${code}">
+<input type="submit" value="登録"><span th:text="${message}" style="color:red"></span>
+</form>
+
 <a>・手順(1):GoogleMAPで登録したいお店の住所を検索する　　　　　　　　　　　　 </a><a>・手順(2):『共有』をクリックする</a><br>
 <img th:src="@{/img/t1.png}" width="300" height="450"><a>　　　　　　　　　　　　　　　　　　　</a><img th:src="@{/img/t2.png}" width="300" height="450"><br>
 <a>・手順(3):『地図を埋め込む』をクリックし、『HTMLをコピー』をクリックする　　</a><a>・手順(4):MAP登録画面でコピーしたURLを貼り付けて登録ボタンをクリックする</a><br>
@@ -21,12 +28,13 @@
 
 <img th:src="${pictureurl}">
 
+<!--
 <form action="/addmap" method="POST">
 <a>URL貼り付け：</a>
 <input th:type="text" name="url">
 <input type="hidden" name="code" th:value="${code}">
 <input type="submit" value="登録"><span th:text="${message}" style="color:red"></span>
 </form>
-
+-->
 </body>
 </html>
