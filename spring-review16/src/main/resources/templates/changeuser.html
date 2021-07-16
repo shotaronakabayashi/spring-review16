@@ -65,16 +65,34 @@
 
         <div class="box">
         <div class="box-pass">
-          <input class="js-password" type="password" value="" id="pass-login" name="password" maxlength="10" placeholder="旧パスワード" required="required">
+          <input class="js-password" type="password" value="" id="pass-login" name="password" maxlength="10" placeholder="パスワード" required="required">
           <input class="js-password-toggle button__input" id="password--eye" type="checkbox" name="password01">
           <label class="js-password-label button__label" for="password--eye"><i class="fas fa-eye"></i></label>
         </div>
       </div>
-      <h4>旧パスワード</h4>
+      <h4>パスワード</h4>
+
+      <!-- 折りたたみ展開ボタン -->
+<div onclick="obj=document.getElementById('menu1').style; obj.display=(obj.display=='none')?'block':'none';">
+<a style="cursor:pointer;">▼ パスワード変更</a>
+</div>
+<!--// 折りたたみ展開ボタン -->
+
+<!-- ここから先を折りたたむ -->
+<div id="menu1" style="display:none;clear:both;">
+
+<!--この部分が折りたたまれ、展開ボタンをクリックすることで展開します。-->
+ <h4>新パスワード　　　　　　　　　<input type="password" name="newpassword" placeholder="新パスワード"><br>
+確認のためもう一度新パスワードを入力してください：<input type="password" name="newpassword2" placeholder="もう一度入力"><br>
+</h4>
+</div>
+<!--// ここまでを折りたたむ -->
+
+ <!--
 <h4>新パスワード　　　　　　　　　<input type="password" name="newpassword" placeholder="新パスワード"><br>
 確認のためもう一度新パスワードを入力してください：<input type="password" name="newpassword2" placeholder="もう一度入力"><br>
 </h4>
-<br>
+<br> -->
 <input type="hidden" th:value="${list.secret_q}" name="secret_q">
 <input type="hidden" th:value="${list.secret}" name="secret">
 
