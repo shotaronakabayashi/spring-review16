@@ -167,10 +167,20 @@ public class StoreController {
 	@RequestMapping("/addmenu")
 	public ModelAndView addmenu2(
 			@RequestParam("code") int menucode,
-			@RequestParam("menuname") String menuname,
-			@RequestParam("menuprice") int menuprice,
+			@RequestParam(name = "menuname", defaultValue="0") String menuname,
+			@RequestParam(name = "menuprice", defaultValue="0") int menuprice,
 			@RequestParam("count") int count,
 			ModelAndView mv) {
+
+		//未入力エラーチェック
+		if ("".equals(menuname) || menuprice == 0) {
+			mv.addObject("message", "メニューを入力してください。");
+			mv.addObject("code", menucode);
+			mv.addObject("count", count);
+			mv.setViewName("addmenu");
+			return mv;
+		}
+
 
 		//何回メニューを登録したかのカウント変数
 		count++;
@@ -208,9 +218,10 @@ public class StoreController {
 	@PostMapping("/addpicture")
 	public ModelAndView addpicture2(
 			@RequestParam("code") int picturecode,
-			@RequestParam("pictureurl") String pictureurl,
+			@RequestParam(name = "pictureurl", defaultValue="") String pictureurl,
 			@RequestParam("count") int count,
 			ModelAndView mv) {
+
 
 		Picture picture = new Picture(picturecode, pictureurl);
 
@@ -252,8 +263,16 @@ public class StoreController {
 	@PostMapping("/addmap")
 	public ModelAndView addmap2(
 			@RequestParam("code") int mapcode,
-			@RequestParam("url") String mapurl,
+			@RequestParam(name = "url", defaultValue = "") String mapurl,
 			ModelAndView mv) {
+
+		//未入力エラーチェック
+		if ("".equals(mapurl)) {
+			mv.addObject("message", "マップを入力してください。");
+			mv.addObject("code", mapcode);
+			mv.setViewName("addmap");
+			return mv;
+		}
 
 		Map map = new Map(mapcode, mapurl);
 		mapRepository.saveAndFlush(map);
@@ -430,7 +449,6 @@ public class StoreController {
 		storelist.add(store);
 
 		mv.addObject("message", store.getMessage());
-		mv.addObject("time", store.getTime());
 		mv.addObject("storelist", storelist);
 		mv.setViewName("changestore");
 		return mv;
@@ -464,8 +482,16 @@ public class StoreController {
 		if ("".equals(name) || "".equals(categorycode1) || "".equals(categorycode2) || "".equals(address)
 				|| "".equals(tel) || "".equals(message) ||
 				budget == 0 || time == 0 || scean == 0) {
-			mv.addObject("message", "全ての項目を入力してください。");
-			mv.setViewName("addstore");
+
+			Optional<Store> storelist01 = storeRepository.findById(code);
+			Store store = storelist01.get();
+			List<Store> storelist = new ArrayList<>();
+			storelist.add(store);
+
+			mv.addObject("message", store.getMessage());
+			mv.addObject("storelist", storelist);
+			mv.addObject("message2", "全ての項目を入力してください。");
+			mv.setViewName("changestore");
 			return mv;
 		}
 

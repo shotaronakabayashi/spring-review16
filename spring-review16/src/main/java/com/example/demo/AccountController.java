@@ -418,16 +418,17 @@ public class AccountController {
 		}
 
 		//パスワードチェック
-		if ( !(password.equals(account0.getPassword())) ) {
-			mv.addObject("message", "パスワードが一致しません。");
+		if ( !( password.equals(account0.getPassword()) ) ) {
+			mv.addObject("message", "旧パスワードが一致しません。");
 			mv.addObject("code", code);
 			mv.addObject("list", relist);
 			mv.setViewName("changeuser");
 			return mv;
 		}
 
+		//新パスワードチェック
 		if (!(newpassword.equals(newpassword2)) ) {
-			mv.addObject("message", "パスワードが一致しません。");
+			mv.addObject("message", "新パスワードが一致しません。");
 			mv.addObject("code", code);
 			mv.addObject("list", relist);
 			mv.setViewName("changeuser");
