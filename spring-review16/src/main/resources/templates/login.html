@@ -3,16 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+<style type="text/css">
+      .box {
+        display: flex;
+        align-items: center;
+      }
+      p {
+        padding-right: 20px;
+      }
+      .box-pass {
+        width: 200px;
+        position: relative;
+      }
+      .box-pass input {
+        width: 170px;
+        height: 16px;
+      }
+      input.button__input {
+        display: none;
+      }
+      .button__label {
+        position: absolute;
+        right: 25px;
+        top: 2px;
+      }
+
+</style>
 </head>
 <body>
 <a href="/">Top</a>
 <form action="/login" method="post">
     <input type="text" name="nickname" placeholder="ニックネーム">
-	<input type="text" name="password" placeholder="パスワード">
+
+
+      <div class="box">
+        <div class="box-pass">
+          <input class="js-password" type="password" value="" id="pass-login" name="password" maxlength="10" placeholder="パスワード" required="required">
+          <input class="js-password-toggle button__input" id="password--eye" type="checkbox" name="password01">
+          <label class="js-password-label button__label" for="password--eye"><i class="fas fa-eye"></i></label>
+        </div>
+      </div>
+
+
+<!--  <input type="password" name="password" placeholder="パスワード"> -->
 	<input type="submit" value="ログイン">
 	<br>
 	<span th:text="${message}" style="color:red"></span>
 </form>
+
+<script>
+
+const passwordToggles = document.querySelectorAll('.js-password-toggle');
+
+passwordToggles.forEach((el) => {
+  el.addEventListener('change', function () {
+    const password = el.previousElementSibling,
+          passwordLabel = el.nextElementSibling;
+    if (password.type === 'password') {
+      password.type = 'text';
+      passwordLabel.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    } else {
+      password.type = 'password';
+      passwordLabel.innerHTML = '<i class="fas fa-eye"></i>';
+    }
+    password.focus();
+  });
+});
+
+</script>
 
 </body>
 </html>
