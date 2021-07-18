@@ -15,30 +15,44 @@
       }
       .box-pass {
         width: 200px;
-        position: relative;
+        position: relative; top:40px; left:-5%;
       }
       .box-pass input {
-        width: 170px;
-        height: 16px;
+        width: 400px;
+        height: 40px;
       }
       input.button__input {
         display: none;
       }
       .button__label {
         position: absolute;
-        right: 25px;
-        top: 2px;
+        right: -95%;
+        top: 13px;
       }
 
 </style>
+
+<link th:href="@{/CSS/login.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
-<a href="/secret">パスワードを忘れた方はこちら</a>
+<div id="Title">
+
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="login">
+
+<a href="/secret">※パスワードを忘れた方はこちら</a>
 
 <form action="/login" method="post">
+<div id="nick">
     <input type="text" name="nickname" placeholder="ニックネーム">
-
+</div>
 
       <div class="box">
         <div class="box-pass">
@@ -50,7 +64,9 @@
 
 
 <!--  <input type="password" name="password" placeholder="パスワード"> -->
+<div id="sub">
 	<input type="submit" value="ログイン">
+</div>
 	<br>
 	<span th:text="${message}" style="color:red"></span>
 </form>
@@ -76,5 +92,6 @@ passwordToggles.forEach((el) => {
 
 </script>
 
+</div>
 </body>
 </html>

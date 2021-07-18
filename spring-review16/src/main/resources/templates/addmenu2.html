@@ -3,12 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>メニュー追加</title>
+<link th:href="@{/CSS/addmenu.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="store">
 <h2>メニュー追加</h2>
 <br>
-<a th:text="${code}"></a>
+
 <a th:text="${count}"></a>:メニュー登録完了<br>
 
 <form action="/addmenu2" method="POST">
@@ -17,12 +27,15 @@
 
 <a>メニュー名　　　　 　  </a><input type="text" name="menuname"><br>
 
-<a>値段　</a><input type="text" name="menuprice">
+<a>値段　　　　　 　　　 </a><input type="text" name="menuprice">
 <a>　</a>
-
-<input type="submit" value="メニュー登録へ"><span th:text="${message}" style="color:red"></span>
+<div>
+<input type="submit" value="メニュー登録へ"></div>
+<span th:text="${message}" style="color:red"></span>
 </form>
-
-<a th:href="'/addmenu2/return/'+${code}">終了</a>
+<br>
+<br>
+<a th:href="'/addmenu2/return/'+${code}">➡終了</a>
+</div>
 </body>
 </html>

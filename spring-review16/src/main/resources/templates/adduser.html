@@ -3,10 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>新規登録</title>
+<link th:href="@{/CSS/adduser.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
 <br><br><br>
+
+
+<div id="user">
 <form action="/adduser" method="POST">
 <h4 >
 名前　　　　　　　　　　　　<input type="text" name="name">
@@ -46,8 +57,14 @@
 </h4>
 <br>
 
+<div id="sub">
 <input type="submit" value="登録する">
+</div>
+
 <a th:text="${message}"></a>
 </form>
+</div>
+
+
 </body>
 </html>

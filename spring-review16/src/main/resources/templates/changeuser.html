@@ -31,11 +31,25 @@
       }
 
 </style>
+
+<link th:href="@{/CSS/changeuser.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="my">
 <h2>会員情報変更</h2>
 <a>会員ID：</a><a th:text="${code}"></a>
+</div>
+
+<div id="user">
 <div th:each="list:${list}">
 <form action="/changeuser" method="POST">
 <h4 >
@@ -123,5 +137,6 @@ passwordToggles.forEach((el) => {
 });
 
 </script>
+</div>
 </body>
 </html>

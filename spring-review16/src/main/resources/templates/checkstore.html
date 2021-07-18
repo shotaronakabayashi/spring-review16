@@ -25,19 +25,34 @@
 }
 </style>
 
+<link th:href="@{/CSS/checkstore.css}" rel="stylesheet">
 </head>
 <body>
 
 
-	<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+
+<div id="store">
 	<h1>登録情報確認</h1>
 	<h4>以下の情報で登録致します。よろしいですか？</h4>
 
 <div th:each="storelist:${storelist}">
-<a th:href="'/checkok/' +${storelist.name}">登録する</a>　　<a th:href="'/checkng/' +${storelist.code}">キャンセル</a>
+<a th:href="'/checkok/' +${storelist.name}">➡登録する</a>　　<a th:href="'/checkng/' +${storelist.code}">➡キャンセル</a>
 </div>
+
+<br>
+
+<div id="Img">
 <div th:each="storelist:${storelist}">
-<a>店名：</a><a th:text="${storelist.name}"></a>
+<a>店名：</a><b th:text="${storelist.name}"></b>
 </div>
 	<div id="ww">
 		<div class="slider">
@@ -46,7 +61,7 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 
 	<script type="text/javascript" th:inline="javascript">
 		/*<![CDATA[*/
@@ -68,12 +83,16 @@
 
 	<br>
 	<br>
-
+<div id="Map">
 	<iframe src="" width="400" height="300" style="border: 0;"
 		allowfullscreen="" loading="lazy" id="map"></iframe>
+</div>
 
 	<br>
 	<br>
+
+
+	<div id="Cate">
 	<div th:each="storelist:${storelist}">
 		<div>
 			<a>カテゴリー：</a> <a th:text="${storelist.categorycode1}"></a><br>
@@ -138,12 +157,15 @@
 	<h3>メッセージ：</h3><a th:text="${storelist.message}"></a>
 
 	</div>
+	</div>
+
+	<div id="Menu">
 
 	<h4>メニュー</h4>
-	<a>--------------------------------------------------------------</a>
+	<a>-------------------------------------------------</a>
 	<div th:each="menu:${menulist}">
 		<p th:text="${menu.menuname}"></p>
-		<a>値段：</a><a th:text="${menu.menuprice}"></a><br> <a>--------------------------------------------------------------</a>
+		<a>値段：</a><a th:text="${menu.menuprice}"></a><br> <a>-------------------------------------------------</a>
 	</div>
 
 	<div th:each="i : ${#numbers.sequence(0, 0)}">
@@ -161,6 +183,8 @@
 				th:text="'もっとみる('+(${count} - 1)+')'"></a>
 		</div>
 	</div>
+	</div>
 
+</div>
 </body>
 </html>

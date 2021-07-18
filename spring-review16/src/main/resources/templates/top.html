@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TABETELL</title>
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
@@ -26,44 +26,53 @@
 }
 </style>
 
-<link th:href="@{/CSS/style.css}" rel="stylesheet">
+<link th:href="@{/CSS/top.css}" rel="stylesheet">
 </head>
 <body>
-<div class="bg_pattern Polka_v2"></div>
+<div class="Title">
+<br>
+<br>
+<a id="tabetell">TABETELL</a>
 
-<h1 align="center">TABETELL</h1>
 
+<div id="ac1">
 <h3 th:if="${session.nickname == null}">
 ようこそゲストさん<br>
 </h3>
-
 <h3 th:unless="${session.nickname == null}">
 ようこそ<a th:text="${session.nickname}"></a>さん<br>
 </h3>
+</div>
 
+<div id="ac2">
 <div th:if="${session.nickname == null}">
-<a href="/adduser">新規登録</a>　　
+<a href="/adduser">新規登録</a>　
 <a href="/login">ログイン</a>
 </div>
 
 <div th:unless="${session.nickname == null}">
 <a th:href="'/mypage/' + ${session.usercode}">マイページに行く</a>　
-<a href="/addstore">お店登録</a>　
-<a href="/logout">ログアウト</a>
+<a href="/logout">ログアウト</a><br>
+<a href="/addstore" id="sto">🍴 お店登録 🍴</a>　
+</div>
 </div>
 <br>
+</div>
+<br><br>
 
-
+<br>
 <div align="center">
-<form action="/keyword">
-<input type="text" name="keyword" size="100">　
-<input type="submit" value="検索">　　
+<form action="/keyword"><div id="sear">
+<input type="text" name="keyword" size="100" id="te" placeholder="キーワードで検索">
+<input type="submit" value="検索">
+</div>　
+<div id="ken"></div>
 <a th:text="${message}"></a>
 </form>
 </div>
 <br>
 
-<a>　　　　　　　　【カテゴリ検索】　　　　　　</a>
+<h3 align="center">【カテゴリ検索】</h3>
 
 
 <section class="search_category">
@@ -82,27 +91,28 @@
 <br><br>
 
 <div align="center"><font size="4">
-<a href="search/detail">詳細検索</a>
+<a href="search/detail" id="detail">詳細検索</a>
 </font></div>
-<br><br>
-<br><br>
+
 <br>
+
 <div align="center">
-<h2 align="center">ランキング</h2>
+<h2 align="center">🏴ランキング</h2>
 
 <h4 align="center">
-【カテゴリー別ランキング】
+【カテゴリー別ランキング】　　
 <a href="/">[総合]</a>　　
 <a href="/和食">[和食]</a>　　
 <a href="/中華">[中華]</a>　　
-<a href="/イタリアン">[イタリアン]</a>
+<a href="/イタリアン">[イタリアン]</a>　　
 <a href="/ラーメン">[ラーメン]</a>　　
 </h4>
 <br><br>
 
 
-第１位
-
+<div id="r1">
+<font size="6">👑第１位</font>
+</div>
 <div id="ww">
 	<div class="slider">
 		<div th:each="pic:${picturelist1}">
@@ -112,48 +122,58 @@
 </div>
 <br>
 <div th:each="list1 : ${list1}">
-	<a th:href="'/store/' + ${list1.name}" th:text="${list1.name}"></a>
-	<a th:text="${list1.address}"></a>
-	<a th:text="${list1.categorycode1}"></a>
-	<a th:text="${list1.categorycode2}"></a>
+	【<a th:href="'/store/' + ${list1.name}" th:text="${list1.name}"></a>】
+	<a th:text="${list1.address}"></a> /
+	<a th:text="${list1.categorycode1}"></a> /
+	<a th:text="${list1.categorycode2}"></a> /
 	<a th:text="${list1.message}"></a>
 </div>
 <br>
 
-第２位
-<div id="ww">
+
+
+<div id="r2"><div id="r2s">
+<font size="5">🥈第２位</font></div>
+<div>
 	<div class="slider">
 		<div th:each="pic:${picturelist2}">
-			<img th:src="${pic.pictureurl}" width="500" height="300" alt="No Image">
+			<img th:src="${pic.pictureurl}" width="390" height="270" alt="No Image">
 		</div>
 	</div>
 </div>
 <br>
 <div th:each="list2 : ${list2}">
-	<a th:href="'/store/' + ${list2.name}" th:text="${list2.name}"></a>
-	<a th:text="${list2.address}"></a>
-	<a th:text="${list2.categorycode1}"></a>
-	<a th:text="${list2.categorycode2}"></a>
+	【<a th:href="'/store/' + ${list2.name}" th:text="${list2.name}"></a>】
+	<a th:text="${list2.address}"></a> /
+	<a th:text="${list2.categorycode1}"></a> /
+	<a th:text="${list2.categorycode2}"></a> /
 	<a th:text="${list2.message}"></a>
+</div>
 </div>
 <br>
 
-第3位
-<div id="ww">
+
+
+
+<div id="r3"><div id="r3s">
+<font size="4">🥉第3位</font></div>
+<div>
 	<div class="slider">
 		<div th:each="pic:${picturelist3}">
-			<img th:src="${pic.pictureurl}" width="500" height="300" alt="No Image">
+			<img th:src="${pic.pictureurl}" width="390" height="270" alt="No Image">
 		</div>
 	</div>
 </div>
 <br>
 <div th:each="list3 : ${list3}">
-	<a th:href="'/store/' + ${list3.name}" th:text="${list3.name}"></a>
-	<a th:text="${list3.address}"></a>
-	<a th:text="${list3.categorycode1}"></a>
-	<a th:text="${list3.categorycode2}"></a>
+	【<a th:href="'/store/' + ${list3.name}" th:text="${list3.name}"></a>】
+	<a th:text="${list3.address}"></a> /
+	<a th:text="${list3.categorycode1}"></a> /
+	<a th:text="${list3.categorycode2}"></a> /
 	<a th:text="${list3.message}"></a>
 </div>
+</div>
+
 <br>
 
 <br>

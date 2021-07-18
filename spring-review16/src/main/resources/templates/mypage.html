@@ -3,22 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>マイページ</title>
+<link th:href="@{/CSS/mypage.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
-<h1>マイページ</h1>
-
-<a th:text="${session.nickname}"></a><a>さんのマイページ</a><br>
-
-<a th:href="'/changeuser/'+${session.usercode}">会員情報変更</a><br>
-
-<a>マイレビュー</a><br>
-<a>------------------------------------------------------------</a>
-<div th:each="rev:${list}">
-<a th:text="${rev.storename}"></a><a>　星：</a><a th:text="${rev.star}"></a><a>つ</a>
-<p th:text="${rev.review}"></p>
-<a>------------------------------------------------------------</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
 </div>
 
+<div id="my">
+<b th:text="${session.nickname}"></b><a>さんのマイページ</a>
+ <a th:href="'/changeuser/'+${session.usercode}" id="change">会員情報変更</a>
+</div>
+
+
+<div id="user">
+<br>
+<br>
+
+<h3>マイレビュー</h3><br>
+<a>🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳</a>
+<div th:each="rev:${list}">
+<b th:text="${rev.storename}"></b><a>　星：</a><a th:text="${rev.star}"></a><a>つ</a>
+<p th:text="${rev.review}"></p>
+<a>🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳🔳</a>
+</div>
+</div>
 </body>
 </html>

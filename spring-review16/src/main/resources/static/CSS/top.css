@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+
+/* カテゴリー検索用 */
+.search_category ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 0;
+	position: relative; top:10px; left:430px; ;
+}
+.search_category ul li {
+  margin: 0 .3em .3em 3;
+  display: inline-block;
+  font-size: 10pt;
+}
+.search_category ul li a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 34px;
+  padding: 0 2.5em 0 1em;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #333;
+  font-size: 12px;
+  text-decoration: none;
+  -webkit-transition: .2s;
+  transition: .2s;
+  box-sizing: border-box;
+}
+.search_category li span {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background-color: #2196F3;
+  border-radius: 100%;
+  color: #fff;
+  font-size: 11px;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+.search_category ul li a:hover {
+  background-color: #2196F3;
+  border: 1px solid #2196F3;
+  color: #fff;
+}
+.search_category ul li a:hover span {
+  background-color: #fff;
+  color: #2196F3;
+}
+.search_category ul li a:before {
+  content: "#";
+  padding-right: 2px;
+}
+
+.Title {
+	 background-color: #000000;
+	 color: #FFFFFF;
+}
+
+.Title #tabetell{
+	font-size: 60px;
+	position: absolute;
+	left:42.5%;
+}
+
+.Title #ac1{
+	position: relative; top:-30px; left:1400px; ;
+	font-size: 17px;
+}
+
+.Title #ac2{
+	position: relative; top:-80px; left:1600px; ;
+	font-size: 17px;
+}
+
+.Title #ac2 #sto{
+	font-size: 20px;
+}
+
+#r1 {
+	background-color: #000000;
+	color: #FFFFFF;
+    width: 520px;
+
+}
+
+
+
+#r2 {
+    position: relative; top:0px; left:-240px; ;
+    width: 400px;
+	height: 280px;
+}
+
+#r2s {
+	width: 400px;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#r3 {
+    position: relative; top:-295px; left:230px; ;
+    width: 400px;
+	height: 280px;
+}
+
+#r3s {
+	width: 400px;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#detail {
+   font-size: 20px;
+}
+
+#sear input[type="text"]{
+	width: 900px;
+    height: 40px;
+    position: relative; top:-20px;
+    display: block;
+}
+
+#sear input[type="submit"] {
+	 height: 40px;
+	 width: 60px;
+	 position: relative; top:-63px; left:490px;
+}
+
+body { background: url(/img/wain.png) right 90% bottom 40% / 10% auto no-repeat,
+                   url(/img/ke-ki.png) right 10% bottom 40% / 10% auto no-repeat,
+                   url(/img/ra-men.png) right 90% bottom 60% / 10% auto no-repeat,
+                   url(/img/kare-.png) right 10% bottom 60% / 10% auto no-repeat,
+                   url(/img/yakitori.png) right 10% bottom 80% / 10% auto no-repeat,
+                   url(/img/sakana.png) right 90% bottom 80% / 10% auto no-repeat,
+                   url(/img/ko-hi-.png) right 90% bottom 20% / 10% auto no-repeat,
+                   url(/img/susi.png) right 10% bottom 20% / 10% auto no-repeat;
+}

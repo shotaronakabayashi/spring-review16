@@ -3,12 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>写真登録</title>
+<link th:href="@{/CSS/addpicture.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="store">
 <h2>写真登録</h2>
 <br>
-<a>最大5枚まで登録できます。</a>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 
@@ -39,12 +48,9 @@ $(function(){
 </script>
 
 
-<a th:text="${code}"></a>
 <a th:text="${count}"></a>:枚写真登録完了<br>
 
-<div th:if="${count == 5}">
-<a style="color:red">これ以上登録できません。</a>
-</div>
+
 
 <div th:if="${count < 5}">
 <form action="/addpicture" method="POST">
@@ -87,7 +93,8 @@ function getBase64(){
 <input type="submit" value="写真を投稿する" onclick="getBase64();">
 </form>
 </div>
-<a th:href="'/addmenu/return/'+${code}">写真登録終了</a>
-
+<br><br>
+<a th:href="'/addmenu/return/'+${code}">➡写真登録終了</a>
+</div>
 </body>
 </html>

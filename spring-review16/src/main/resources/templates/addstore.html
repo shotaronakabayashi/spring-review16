@@ -3,11 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>店舗登録</title>
+<link th:href="@{/CSS/addstore.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
 <h2>店舗登録</h2>
 <br>
+
+
+<div id="store">
 <form action="/addstore" method="POST">
 
 <a>店舗名　　　　 　  </a><input type="text" name="name"><br>
@@ -40,19 +51,20 @@
 
 <a>予算　　　　　 　 </a><input type="text" name="budget"><br>
 
-<a>時間              </a><input type="checkbox" name="time1" value="1">朝　　
+<a>時間            　　　　　  </a><input type="checkbox" name="time1" value="1">朝　　
                      <input type="checkbox" name="time2" value="1">昼　　
                      <input type="checkbox" name="time3" value="1">夜<br>
 
-<a>シーン            </a><input type="checkbox" name="scean1" value="1">ファミリー　　
+<a>シーン           　　　　 </a><input type="checkbox" name="scean1" value="1">ファミリー　　
                      <input type="checkbox" name="scean2" value="1">デート　　
                      <input type="checkbox" name="scean3" value="1">友人<br>
-                     　　
-<a>メッセージ</a><br><textarea name="message" cols="40" rows="8"></textarea><br>
+<br>
+<a>メッセージ</a><br><textarea name="message" cols="80" rows="8"></textarea><br>
 
   <input type="submit" value="メニュー・写真登録へ">
 </form>
-<br>
-<a th:text="${message}"></a>
+<a th:text="${message}" style="color:red"></a>
+
+</div>
 </body>
 </html>

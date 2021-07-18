@@ -3,13 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>登録完了</title>
+<link th:href="@{/CSS/checkuser.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="user">
 <h3>アカウント登録が完了しました。</h3>
 <a>ご登録ありがとうございました。</a><br>
 <a>ニックネーム：</a><a th:text="${nickname}"></a><br>
+<br>
+　　●<a href="/login">ログイン</a>●
+</div>
 
-<a href="/login">ログイン</a>
 </body>
 </html>

@@ -3,11 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>詳細検索</title>
+<link th:href="@{/CSS/searchDetail.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="store">
 <form action="/search/detail" method="POST">
 <br><br><br>
+<div id="se">
 <table align="center">
 <tr>
 	<td>
@@ -17,6 +28,7 @@
 
 </tr>
 </table>
+</div>
 <br>
 <a th:text="${message2}"></a>
 <br><br>
@@ -73,6 +85,8 @@
 	</p>
 
 </form>
+
+</div>
 </body>
 </html>
 

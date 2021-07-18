@@ -3,9 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>写真追加</title>
+<link th:href="@{/CSS/addpicture.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="store">
 <h2>写真追加</h2>
 <br>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -81,8 +91,8 @@ function getBase64(){
 
 <input type="submit" value="写真を投稿する" onclick="getBase64();">
 </form>
-
-<a th:href="'/addpicture2/return/'+${code}">写真登録終了</a>
-
+<br><br>
+<a th:href="'/addpicture2/return/'+${code}">➡写真登録終了</a>
+</div>
 </body>
 </html>

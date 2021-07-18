@@ -6,76 +6,87 @@
 
 <style>
 .time{
- position: relative; top:-24px; left:410px; ;
+ position: relative; top:-24px; left:530px; ;
 }
 
 .scean{
- position: relative; top:-48px; left:490px; ;
+ position: relative; top:-48px; left:650px; ;
 }
 </style>
 
+<link th:href="@{/CSS/result.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="store">
 <a th:text="${test}"></a>
 
 <div th:each="result:${result}">
-    <a th:href="'/store/'+${result.name}" th:text="${result.name}"></a>
+
+    ◀<a th:href="'/store/'+${result.name}" th:text="${result.name}"></a>▶
     <a th:text="${result.address}"></a>
     <a th:text="${result.categorycode1}"></a>
     <a th:text="${result.categorycode2}"></a>
 
     <div class="time">
             <div th:if="${result.time == 1}">
-			<a>🌙</a>
+			<a>時間:🌙</a>
 			</div>
 			<div th:if="${result.time == 11}">
-				<a>🕛🌙</a>
+				<a>時間:🕛🌙</a>
 			</div>
 			<div th:if="${result.time == 111}">
-				<a>🌞🕛🌙</a>
+				<a>時間:🌞🕛🌙</a>
 			</div>
 			<div th:if="${result.time == 100}">
-				<a>🌞</a>
+				<a>時間:🌞</a>
 			</div>
 			<div th:if="${result.time == 110}">
-				<a>🌞🕛</a>
+				<a>時間:🌞🕛</a>
 			</div>
 			<div th:if="${result.time == 101}">
-				<a>🌞🌙</a>
+				<a>時間:🌞🌙</a>
 			</div>
 			<div th:if="${result.time == 10}">
-				<a>🕛</a>
+				<a>時間:🕛</a>
 			</div>
     </div>
 
     <div class="scean">
 			<div th:if="${result.scean == 1}">
-				<a>🧑‍🤝‍🧑</a>
+				<a>シーン:🧑‍🤝‍🧑</a>
 			</div>
 			<div th:if="${result.scean == 10}">
-				<a>💏</a>
+				<a>シーン:💏</a>
 			</div>
 			<div th:if="${result.scean == 100}">
-				<a>👨‍👩‍👦</a>
+				<a>シーン:👨‍👩‍👦</a>
 			</div>
 			<div th:if="${result.scean == 11}">
-				<a>💏🧑‍🤝‍🧑</a>
+				<a>シーン:💏🧑‍🤝‍🧑</a>
 			</div>
 			<div th:if="${result.scean == 111}">
-				<a>👨‍👩‍👦💏🧑‍🤝‍🧑</a>
+				<a>シーン:👨‍👩‍👦💏🧑‍🤝‍🧑</a>
 			</div>
 			<div th:if="${result.scean == 101}">
-				<a>👨‍👩‍👦🧑‍🤝‍🧑</a>
+				<a>シーン:👨‍👩‍👦🧑‍🤝‍🧑</a>
 			</div>
 			<div th:if="${result.scean == 110}">
-				<a>👨‍👩‍👦💏</a>
+				<a>シーン:👨‍👩‍👦💏</a>
 			</div>
 	  </div>
 
 
 </div>
 
-
+</div>
 </body>
 </html>

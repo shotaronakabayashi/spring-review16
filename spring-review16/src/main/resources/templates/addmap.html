@@ -4,37 +4,44 @@
 <meta charset="UTF-8">
 <title>MAPを登録</title>
 
-
+<link th:href="@{/CSS/addmap.css}" rel="stylesheet">
 </head>
 <body>
 
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="store">
 
 <h2>MAPを登録</h2>
 
+<a href="https://www.google.co.jp/maps/@35.7531648,139.4601579,14z" target="_blank">【GoogleMAPへ】</a>
 <form action="/addmap" method="POST">
+<br>
 <a>URL貼り付け：</a>
 <input th:type="text" name="url">
 <input type="hidden" name="code" th:value="${code}">
 <input type="submit" value="登録"><span th:text="${message}" style="color:red"></span>
 </form>
-
-<a>・手順(1):GoogleMAPで登録したいお店の住所を検索する　　　　　　　　　　　　 </a><a>・手順(2):『共有』をクリックする</a><br>
+<br>
+<br>
+<a>手順1⃣：GoogleMAPで登録したいお店の住所を検索する。　　　　　　 </a><a>　 手順2⃣：『共有』をクリックする。</a><br>
 <img th:src="@{/img/t1.png}" width="300" height="450"><a>　　　　　　　　　　　　　　　　　　　</a><img th:src="@{/img/t2.png}" width="300" height="450"><br>
-<a>・手順(3):『地図を埋め込む』をクリックし、『HTMLをコピー』をクリックする　　</a><a>・手順(4):MAP登録画面でコピーしたURLを貼り付けて登録ボタンをクリックする</a><br>
-<img th:src="@{/img/t3.png}" width="300" height="300"><br>
-<img th:src="@{/img/t4.png}" width="300" height="300"><br>
-<a href="https://www.google.co.jp/maps/@35.7531648,139.4601579,14z" target="_blank">【GoogleMAPへ】</a>
+<br>
+<a>手順3⃣：『地図を埋め込む』をクリックし、『HTMLをコピー』を</a><a>　　　　　手順4⃣：MAP登録画面でコピーしたURLを貼り付けて</a><br>
+　　　　クリックする。　　　　　　　　　　　　　　　　　　　　　　　　　　　 登録ボタンをクリックする。<br>
+<img th:src="@{/img/t3.png}" width="300" height="300"> <img th:src="@{/img/t4.png}" width="300" height="300">　　　 　<img th:src="@{/img/t5.png}" width="330" height="300"><br>
+
+
 
 <img th:src="${pictureurl}">
 
-<!--
-<form action="/addmap" method="POST">
-<a>URL貼り付け：</a>
-<input th:type="text" name="url">
-<input type="hidden" name="code" th:value="${code}">
-<input type="submit" value="登録"><span th:text="${message}" style="color:red"></span>
-</form>
--->
+</div>
 </body>
 </html>

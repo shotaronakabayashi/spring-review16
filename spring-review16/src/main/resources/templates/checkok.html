@@ -3,11 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>登録完了</title>
+<link th:href="@{/CSS/checkok.css}" rel="stylesheet">
 </head>
 <body>
-<a href="/">Top</a>
-<h3>登録が完了しました。</h3>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="store">
+<h2>登録が完了しました。</h2>
 <a>ご登録ありがとうございました。</a><br>
-<a>登録店名：</a><a th:text="${storename}"></a>
+<a>登録店名：</a><b th:text="${storename}"></b>
+</div>
 </body>
 </html>

@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+#secret {
+	   position: relative; top:105px; left:44.5%;
+
+}
+
+#Title {
+	 background-color: #000000;
+	 color: #FFFFFF;
+	 font-size: 23px;
+}
+
+body { background: url(/img/wain.png) 100px 250px no-repeat ,
+                   url(/img/ke-ki.png) 1600px 250px no-repeat,
+                   url(/img/ra-men.png) 100px 600px no-repeat,
+                   url(/img/kare-.png) 1600px 600px no-repeat,
+                   url(/img/sute-ki.png) 100px 950px no-repeat ,
+                   url(/img/pan.png) 1600px 950px no-repeat,
+                   url(/img/soba.png) 100px 1300px no-repeat,
+                   url(/img/be-guru.png) 1600px 1300px no-repeat;
+                   background-size: 10% auto;
+}
+
+
+
+#store input[type="submit"]{
+	 position: relative; top:20px; left:20%;
+	 width: 160px;
+	 height: 40px;
+}
+
+#store{
+	position: relative; top:-20px; left:25%;
+	font-size: 15px;
+
+}
+
+#name{
+	position: relative; top:0px; left:0%;
+	font-size: 25px;
+
+}

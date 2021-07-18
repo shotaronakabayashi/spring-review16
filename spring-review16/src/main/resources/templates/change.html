@@ -11,10 +11,21 @@
 }
 
 </style>
+
+<link th:href="@{/CSS/change.css}" rel="stylesheet">
 </head>
 
 <body>
-<a href="/">Top</a>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
+</div>
+
+<div id="store">
 <h2>メニュー・写真変更</h2>
 <a th:href="'/addmenu/'+${addcode}">メニュー追加</a>
 <a th:href="'/addpicture2/'+${addcode}">写真追加</a><br>
@@ -25,16 +36,18 @@
 <form action="/change" method="POST">
 <a>メニュー名：</a>
 <input type="text" th:value="${menu.menuname}" th:name="menuname"><br>
-<a>値段：</a><input th:type="text" th:value="${menu.menuprice}" th:name="menuprice">
+<a>値段：　　　 </a><input th:type="text" th:value="${menu.menuprice}" th:name="menuprice">
 <input type="hidden" th:value="${menu.code}" th:name="code">
 <input type="hidden" th:value="${menu.menucode}" th:name="menucode">
-<input type="submit" value="変更">
+<div id="he">
+<input type="submit" value="変更"></div>
 </form>
 
 <form action="/delete" method="POST">
 <input type="hidden" th:value="${menu.code}" th:name="md">
 <input type="hidden" th:value="${menu.menucode}" th:name="md2">
-<input type="submit" value="削除">
+<div id="sa">
+<input type="submit" value="削除"></div>
 </form>
 <a>--------------------------------------------------------------</a>
 </div>
@@ -53,6 +66,6 @@
 </table>
 </div>
 
-
+</div>
 </body>
 </html>

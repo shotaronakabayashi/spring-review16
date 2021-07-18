@@ -3,16 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <title>レビュー</title>
+<link th:href="@{/CSS/review.css}" rel="stylesheet">
 </head>
-<h1>レビュー</h1>
 <body>
-<a href="/">Top</a>
-
-<div th:each="rev:${list}">
- <a th:text="${rev.reviewname}"></a><a>　星</a><a th:text="${rev.star}"></a><a>つ</a>
- <p th:text="${rev.review}"></p>
- <p>------------------------------------------------------------------------------------------</p>
+<div id="Title">
+<br>
+<br>
+　<a href="/">☝Top☝</a>
+<br>
+<br>
+<br>
 </div>
-
+<div id="rev">
+<h1>レビュー</h1></div>
+<br>
+<br>
+<div id="store">
+<div th:each="rev:${list}">
+ <b th:text="${rev.reviewname}"></b>:<a>　星</a><a th:text="${rev.star}"></a><a>つ</a>
+ <p th:text="${rev.review}"></p>
+ <p>-------------------------------------------------------------------------------------------------------</p>
+</div>
+</div>
 </body>
 </html>
