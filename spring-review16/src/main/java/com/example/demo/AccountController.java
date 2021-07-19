@@ -93,7 +93,7 @@ public class AccountController {
 		return mv;
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// 新規会員登録がクリックされた
 	@GetMapping("/adduser")
@@ -189,7 +189,7 @@ public class AccountController {
 		return mv;
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//ログインページへの遷移
 	@GetMapping("/login")
@@ -337,6 +337,23 @@ public class AccountController {
 			mv.addObject("list1", list1);
 			mv.addObject("list2", list2);
 			mv.addObject("list3", list3);
+
+
+			//店舗の画像の情報を取得
+			Store store1 = list1.get(0);
+			int storecode1 = store1.getCode();
+			List<Picture> picturelist1 = pictureRepository.findByPicturecode(storecode1);
+			mv.addObject("picturelist1", picturelist1);
+
+			Store store2 = list2.get(0);
+			int storecode2 = store2.getCode();
+			List<Picture> picturelist2 = pictureRepository.findByPicturecode(storecode2);
+			mv.addObject("picturelist2", picturelist2);
+
+			Store store3 = list3.get(0);
+			int storecode3 = store3.getCode();
+			List<Picture> picturelist3 = pictureRepository.findByPicturecode(storecode3);
+			mv.addObject("picturelist3", picturelist3);
 			//------------------------------------------------------------
 
 			mv.setViewName("top");
@@ -348,7 +365,7 @@ public class AccountController {
 		}
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//「マイページに行く」がクリックされた
 	@GetMapping("mypage/{usercode}")
@@ -500,7 +517,23 @@ public class AccountController {
 		mv.addObject("list1", list1);
 		mv.addObject("list2", list2);
 		mv.addObject("list3", list3);
-		//--------------------------------------------------------
+
+				//店舗の画像の情報を取得
+				Store store1 = list1.get(0);
+				int storecode1 = store1.getCode();
+				List<Picture> picturelist1 = pictureRepository.findByPicturecode(storecode1);
+				mv.addObject("picturelist1", picturelist1);
+
+				Store store2 = list2.get(0);
+				int storecode2 = store2.getCode();
+				List<Picture> picturelist2 = pictureRepository.findByPicturecode(storecode2);
+				mv.addObject("picturelist2", picturelist2);
+
+				Store store3 = list3.get(0);
+				int storecode3 = store3.getCode();
+				List<Picture> picturelist3 = pictureRepository.findByPicturecode(storecode3);
+				mv.addObject("picturelist3", picturelist3);
+				//--------------------------------------------------------
 
 		session.invalidate();
 		mv.setViewName("top");
