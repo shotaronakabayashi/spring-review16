@@ -23,7 +23,7 @@
 <table align="center">
 <tr>
 	<td>
-		<input type="text" name="keyword" size="100">　
+		<input type="text" name="keyword" size="100" placeholder="キーワードで検索">　
 		<input type="submit" value="検索">
 	</td>
 
@@ -36,7 +36,7 @@
 
 <a>場所</a>
 	<p>
-		<input type="text" name="address">
+		<input type="text" name="address" placeholder="場所で検索">
 	</p>
 
 <a>カテゴリー</a>
@@ -72,9 +72,9 @@
 
 <a>値段</a>
 	<p>
-		<input type="text" name="minprice">
+		<input type="text" name="minprice" placeholder="Low price">
 		　　～　　
-		<input type="text" name="maxprice">
+		<input type="text" name="maxprice" placeholder="High price">
 
 　　　　　　　　　<a th:text="${message}" style="color:red"></a>
 	</p>
