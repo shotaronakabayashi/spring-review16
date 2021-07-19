@@ -41,3 +41,9 @@ body { background: url(/img/wain.png) 100px 250px no-repeat ,
 	font-size: 25px;
 
 }
+
+#TT{
+	color: #FFFFFF;
+	 font-size: 50px;
+	 position: relative; top:-120px; left:43%;
+}

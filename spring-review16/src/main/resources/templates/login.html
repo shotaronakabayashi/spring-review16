@@ -45,7 +45,7 @@
 <br>
 <br>
 </div>
-
+<div id="TT"><b>ログイン</b></div>
 <div id="login">
 
 <a href="/secret">※パスワードを忘れた方はこちら</a>
@@ -64,12 +64,11 @@
       </div>
 
 
-<!--  <input type="password" name="password" placeholder="パスワード"> -->
 <div id="sub">
 	<input type="submit" value="ログイン">
 </div>
-	<br>
-	<span th:text="${message}" style="color:red"></span>
+	<br><br><br>
+	<span th:text="${message}" style="color:red" id="ms"></span>
 </form>
 
 <script>

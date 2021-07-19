@@ -17,10 +17,9 @@
 <br>
 <br>
 </div>
-
+<div id="TT"><b>MAPを登録</b></div>
 <div id="store">
 
-<h2>MAPを登録</h2>
 
 <a href="https://www.google.co.jp/maps/@35.7531648,139.4601579,14z" target="_blank">【GoogleMAPへ】</a>
 <form action="/addmap" method="POST">
@@ -28,7 +27,7 @@
 <a>URL貼り付け：</a>
 <input th:type="text" name="url">
 <input type="hidden" name="code" th:value="${code}">
-<input type="submit" value="登録"><span th:text="${message}" style="color:red"></span>
+<input type="submit" value="登録">　<span th:text="${message}" style="color:red"></span>
 </form>
 <br>
 <br>

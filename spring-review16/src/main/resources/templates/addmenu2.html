@@ -15,12 +15,12 @@
 <br>
 <br>
 </div>
-
+<div id="TT"><b>メニュー追加</b></div>
 <div id="store">
-<h2>メニュー追加</h2>
+
 <br>
 
-<a th:text="${count}"></a>:メニュー登録完了<br>
+
 
 <form action="/addmenu2" method="POST">
 <input type="hidden" th:value="${count}" th:name="count">
@@ -32,6 +32,7 @@
 <a>　</a>
 <div>
 <input type="submit" value="メニュー登録へ"></div>
+<br>
 <span th:text="${message}" style="color:red"></span>
 </form>
 <br>

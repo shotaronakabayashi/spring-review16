@@ -45,9 +45,10 @@
 <br>
 </div>
 
+<div id="TT"><b>会員情報変更</b></div>
+
 <div id="my">
-<h2>会員情報変更</h2>
-<a>会員ID：</a><a th:text="${code}"></a>
+<a>　　　　　　　　　　　　　　　会員ID：</a><a th:text="${code}"></a>
 </div>
 
 <div id="user">
@@ -113,7 +114,7 @@
 <input type="hidden" th:value="${list.secret}" name="secret">
 
 <input type="hidden" th:value="${code}" name="code">
-<input type="submit" value="変更する"><span th:text="${message}" style="color:red"></span>
+<input type="submit" value="変更する"><br><br><span th:text="${message}" style="color:red"></span>
 </form>
 </div>
 

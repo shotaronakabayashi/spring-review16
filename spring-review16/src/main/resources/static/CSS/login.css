@@ -29,3 +29,13 @@ body { background: url(/img/wain.png) 100px 250px no-repeat ,
 #sub {
 	 position: relative; top:50px; left:4%;
 }
+
+#TT{
+	color: #FFFFFF;
+	 font-size: 50px;
+	 position: relative; top:-120px; left:43%;
+}
+
+#ms {
+	 position: relative; top:0px; left:-2%;
+}
