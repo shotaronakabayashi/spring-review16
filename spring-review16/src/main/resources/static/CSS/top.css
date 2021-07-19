@@ -149,3 +149,11 @@ body { background: url(/img/wain.png) right 90% bottom 40% / 10% auto no-repeat,
                    url(/img/ko-hi-.png) right 90% bottom 20% / 10% auto no-repeat,
                    url(/img/susi.png) right 10% bottom 20% / 10% auto no-repeat;
 }
+
+#r3t{
+	position: relative; top:-50px; left:0px;
+}
+
+#r2t{
+	position: relative; top:-50px; left:0px;
+}

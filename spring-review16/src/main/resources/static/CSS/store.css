@@ -71,3 +71,8 @@ body { background: url(/img/wain.png) 100px 250px no-repeat ,
 	 font-size: 50px;
 	 position: relative; top:-120px; left:45%;
 }
+
+#h{
+	 font-size: 40px;
+	 position: relative; top:5px; left:0%;
+}

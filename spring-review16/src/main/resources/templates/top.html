@@ -24,7 +24,6 @@
 #ww {
 	width: 520px;
 	height: 310px;
-
 }
 </style>
 
@@ -146,7 +145,7 @@
 	</div>
 </div>
 <br>
-<div th:each="list2 : ${list2}">
+<div th:each="list2 : ${list2}" id="r2t">
 	【<a th:href="'/store/' + ${list2.name}" th:text="${list2.name}"></a>】
 	<a th:text="${list2.address}"></a> /
 	<a th:text="${list2.categorycode1}"></a> /
@@ -169,7 +168,7 @@
 	</div>
 </div>
 <br>
-<div th:each="list3 : ${list3}">
+<div th:each="list3 : ${list3}" id="r3t">
 	【<a th:href="'/store/' + ${list3.name}" th:text="${list3.name}"></a>】
 	<a th:text="${list3.address}"></a> /
 	<a th:text="${list3.categorycode1}"></a> /
