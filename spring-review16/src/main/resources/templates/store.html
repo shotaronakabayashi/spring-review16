@@ -61,7 +61,8 @@
 			/*]]>*/
 		</script>
 
-		<a>ランク：星</a><a id="rank"></a><a>つ</a>
+		<a>ランク：★</a><a id="rank"></a><a>つ</a>
+
 	</div>
 	</div>
 
@@ -175,7 +176,7 @@
 		<div th:each="i : ${#numbers.sequence(0, 0)}">
 		<div th:if="${#lists.size(reviewlist) gt __${i}__}">
 			<h4>ユーザレビュー</h4>
-			<b th:text="${reviewlist[__${i}__].reviewname}"></b>:<a> 星</a>
+			<b th:text="${reviewlist[__${i}__].reviewname}"></b>:<a> ★</a>
 			<a th:text="${reviewlist[__${i}__].star}"></a><a>つ</a><br>
 				<a th:text="${reviewlist[__${i}__].review}"></a>
 		</div>
