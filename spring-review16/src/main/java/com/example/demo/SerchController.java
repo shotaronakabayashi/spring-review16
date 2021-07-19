@@ -16,6 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class SerchController {
 
 	@Autowired
+	PictureRepository pictureRepository;
+
+	@Autowired
 	StoreRepository storeRepository;
 
 	//キーワード検索
@@ -73,6 +76,15 @@ public class SerchController {
 			List<Store> list = storeRepository.findByNameLike("%" + keyword + "%");
 
 			mv.addObject("result", list);
+
+			//写真のデータを送る
+			List<Picture> picturelist = new ArrayList<>();
+			for (Store s : list) {
+				List<Picture> plist = pictureRepository.findByPicturecode(s.getCode());
+				picturelist.addAll(plist);
+			}
+
+			mv.addObject("picturelist", picturelist);
 
 			mv.setViewName("result");
 			return mv;
