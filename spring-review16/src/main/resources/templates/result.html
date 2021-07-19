@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <title>検索結果</title>
 
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
 <style>
 .time{
  position: relative; top:-24px; left:530px; ;
@@ -11,6 +18,21 @@
 
 .scean{
  position: relative; top:-48px; left:650px; ;
+}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.slider').bxSlider({
+
+		});
+	});
+</script>
+
+<style>
+#ww {
+	width: 520px;
+	height: 310px;
 }
 </style>
 
@@ -86,6 +108,14 @@
 
 
 </div>
+
+    <div id="ww">
+		<div class="slider">
+			<div th:each="pic:${picturelist}">
+				<img th:src="${pic.pictureurl}" width="500" height="300" alt="No Image!">
+			</div>
+		</div>
+	</div>
 
 </div>
 </body>
