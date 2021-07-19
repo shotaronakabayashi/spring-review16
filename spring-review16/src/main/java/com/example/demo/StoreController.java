@@ -712,6 +712,16 @@ public class StoreController {
 			@RequestParam("menuprice") int menuprice,
 			ModelAndView mv) {
 
+		//未入力エラーチェック
+		if ("".equals(menuname) || menuprice == 0) {
+
+			mv.addObject("code", menucode);
+			mv.addObject("messge", "メニュー名と価格を入力してください。");
+			mv.setViewName("addmenu2");
+			return mv;
+		}
+
+
 		//メニューを登録
 		Menu menu = new Menu(menucode, menuname, menuprice);
 
