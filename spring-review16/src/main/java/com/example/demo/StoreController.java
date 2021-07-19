@@ -716,7 +716,7 @@ public class StoreController {
 		if ("".equals(menuname) || menuprice == 0) {
 
 			mv.addObject("code", menucode);
-			mv.addObject("messge", "メニュー名と価格を入力してください。");
+			mv.addObject("message", "メニュー名と価格を入力してください。");
 			mv.setViewName("addmenu2");
 			return mv;
 		}
