@@ -84,7 +84,10 @@ public class SerchController {
 				picturelist.addAll(plist);
 			}
 
-			mv.addObject("picturelist", picturelist);
+			Picture picture2 = picturelist.get(0);
+			String pictureurl = picture2.getPictureurl();
+
+			mv.addObject("pictureurl", pictureurl);
 
 			mv.setViewName("result");
 			return mv;
