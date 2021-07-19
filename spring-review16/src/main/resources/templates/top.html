@@ -14,7 +14,8 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.slider').bxSlider({
-
+			auto: true,
+            pause: 5000,
 		});
 	});
 </script>
@@ -23,10 +24,12 @@
 #ww {
 	width: 520px;
 	height: 310px;
+
 }
 </style>
 
 <link th:href="@{/CSS/top.css}" rel="stylesheet">
+<link rel="shortcut icon" th:href="@{/img/cc.ico}">
 </head>
 <body>
 <div class="Title">
