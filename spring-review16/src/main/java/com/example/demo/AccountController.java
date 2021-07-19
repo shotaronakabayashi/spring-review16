@@ -338,7 +338,6 @@ public class AccountController {
 			mv.addObject("list2", list2);
 			mv.addObject("list3", list3);
 
-
 			//店舗の画像の情報を取得
 			Store store1 = list1.get(0);
 			int storecode1 = store1.getCode();
@@ -413,13 +412,13 @@ public class AccountController {
 			@RequestParam("tel") String tel,
 			@RequestParam("email") String email,
 			@RequestParam(name = "password") String password,
-			@RequestParam(name = "newpassword", defaultValue= "") String newpassword,
-			@RequestParam(name = "newpassword2", defaultValue= "") String newpassword2,
+			@RequestParam(name = "newpassword", defaultValue = "") String newpassword,
+			@RequestParam(name = "newpassword2", defaultValue = "") String newpassword2,
 			@RequestParam("secret") String secret,
 			@RequestParam("secret_q") String secret_q,
 			ModelAndView mv) {
 
-		if ("".equals(newpassword) && "".equals(newpassword2) ) {
+		if ("".equals(newpassword) && "".equals(newpassword2)) {
 			newpassword = password;
 			newpassword2 = password;
 		}
@@ -440,7 +439,7 @@ public class AccountController {
 		}
 
 		//パスワードチェック
-		if ( !( password.equals(account0.getPassword()) ) ) {
+		if (!(password.equals(account0.getPassword()))) {
 			mv.addObject("message", "パスワードが一致しません。");
 			mv.addObject("code", code);
 			mv.addObject("list", relist);
@@ -449,7 +448,7 @@ public class AccountController {
 		}
 
 		//新パスワードチェック
-		if (!(newpassword.equals(newpassword2)) ) {
+		if (!(newpassword.equals(newpassword2))) {
 			mv.addObject("message", "新パスワードが一致しません。");
 			mv.addObject("code", code);
 			mv.addObject("list", relist);
@@ -504,7 +503,7 @@ public class AccountController {
 			}
 		}
 
-		//ランクの情報から店舗情報を取得
+		//ランクの情報から店舗情報を取得----------------------------
 		//1位
 		List<Store> list1 = storeRepository.findByRankave(best1);
 
@@ -518,22 +517,22 @@ public class AccountController {
 		mv.addObject("list2", list2);
 		mv.addObject("list3", list3);
 
-				//店舗の画像の情報を取得
-				Store store1 = list1.get(0);
-				int storecode1 = store1.getCode();
-				List<Picture> picturelist1 = pictureRepository.findByPicturecode(storecode1);
-				mv.addObject("picturelist1", picturelist1);
+		//店舗の画像の情報を取得
+		Store store1 = list1.get(0);
+		int storecode1 = store1.getCode();
+		List<Picture> picturelist1 = pictureRepository.findByPicturecode(storecode1);
+		mv.addObject("picturelist1", picturelist1);
 
-				Store store2 = list2.get(0);
-				int storecode2 = store2.getCode();
-				List<Picture> picturelist2 = pictureRepository.findByPicturecode(storecode2);
-				mv.addObject("picturelist2", picturelist2);
+		Store store2 = list2.get(0);
+		int storecode2 = store2.getCode();
+		List<Picture> picturelist2 = pictureRepository.findByPicturecode(storecode2);
+		mv.addObject("picturelist2", picturelist2);
 
-				Store store3 = list3.get(0);
-				int storecode3 = store3.getCode();
-				List<Picture> picturelist3 = pictureRepository.findByPicturecode(storecode3);
-				mv.addObject("picturelist3", picturelist3);
-				//--------------------------------------------------------
+		Store store3 = list3.get(0);
+		int storecode3 = store3.getCode();
+		List<Picture> picturelist3 = pictureRepository.findByPicturecode(storecode3);
+		mv.addObject("picturelist3", picturelist3);
+		//--------------------------------------------------------
 
 		session.invalidate();
 		mv.setViewName("top");
