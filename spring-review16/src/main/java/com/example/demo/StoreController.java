@@ -709,7 +709,7 @@ public class StoreController {
 	public ModelAndView addmenu22(
 			@RequestParam("code") int menucode,
 			@RequestParam("menuname") String menuname,
-			@RequestParam("menuprice") int menuprice,
+			@RequestParam(name="menuprice", defaultValue="0") int menuprice,
 			ModelAndView mv) {
 
 		//未入力エラーチェック
