@@ -77,18 +77,6 @@ public class SerchController {
 
 			mv.addObject("result", list);
 
-			//写真のデータを送る
-			List<Picture> picturelist = new ArrayList<>();
-			for (Store s : list) {
-				List<Picture> plist = pictureRepository.findByPicturecode(s.getCode());
-				picturelist.addAll(plist);
-			}
-
-			Picture picture2 = picturelist.get(0);
-			String pictureurl = picture2.getPictureurl();
-
-			mv.addObject("pictureurl", pictureurl);
-
 			mv.setViewName("result");
 			return mv;
 		}
@@ -325,6 +313,8 @@ public class SerchController {
 				list.add(s);
 			}
 		}
+
+
 
 		//検索結果がnullの場合のエラー処理
 		if (list.isEmpty() == true) {
