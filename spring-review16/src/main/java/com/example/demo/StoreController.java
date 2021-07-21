@@ -451,7 +451,6 @@ public class StoreController {
 		//レビューの情報を送る
 		List<Review> reviewlist = reviewRepository.findByReviewcode(code);
 		mv.addObject("list", reviewlist);
-		mv.addObject("code", code);
 
 		mv.setViewName("review");
 		return mv;
@@ -483,7 +482,7 @@ public class StoreController {
 		}
 		//レビューの情報を送る
 		List<Review> reviewlist = reviewRepository.findByStorename(storename);
-		mv.addObject("reviewlist", reviewlist);
+		mv.addObject("list", reviewlist);
 
 		mv.setViewName("review");
 		return mv;
