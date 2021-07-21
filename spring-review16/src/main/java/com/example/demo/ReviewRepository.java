@@ -12,4 +12,6 @@ public interface ReviewRepository extends JpaRepository<Review, Integer>{
 
 	List<Review> findByUsercode(int usercode);
 
+	List<Review> findByStorename(String storename);
+
 }

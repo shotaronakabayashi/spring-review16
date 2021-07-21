@@ -144,9 +144,9 @@ public class ReviewController {
 
 		//付けられた星の数の平均をStoreDBに追加
 
-		int count_a = count + count * 10;
+		int count_a = count + count * 3;
 		int rank = store2.getRank() + star;
-		int rank_a = rank + count * 10 * 3;
+		int rank_a = rank + count * 3 * 3;
 		float rankave = (float) rank_a / (float) count_a;
 
 		store2.setRank(rank);

@@ -34,6 +34,9 @@ public class StoreController {
 	MapRepository mapRepository;
 
 	@Autowired
+	AccountRepository accountRepository;
+
+	@Autowired
 	HttpSession session;
 
 	//カテゴリー別のランキングを表示
@@ -448,11 +451,43 @@ public class StoreController {
 		//レビューの情報を送る
 		List<Review> reviewlist = reviewRepository.findByReviewcode(code);
 		mv.addObject("list", reviewlist);
+		mv.addObject("code", code);
 
 		mv.setViewName("review");
 		return mv;
 	}
 
+	//レビューのグッドが押された
+	@PostMapping("/good")
+	public ModelAndView GoodReview(
+			@RequestParam("name") String name,
+			@RequestParam("storename") String storename,
+			@RequestParam("flag") int flag,
+			ModelAndView mv) {
+
+		if (flag == 1) {
+			Optional<Account> list0 = accountRepository.findByNickname(name);
+			Account account = list0.get();
+			//グッドを押された回数を加算
+			int rank = account.getRank() + 1;
+			account.setRank(rank);
+			accountRepository.saveAndFlush(account);
+		}
+		else if (flag == 0) {
+			Optional<Account> list0 = accountRepository.findByNickname(name);
+			Account account = list0.get();
+			//グッドを取り消し
+			int rank = account.getRank() - 1;
+			account.setRank(rank);
+			accountRepository.saveAndFlush(account);
+		}
+		//レビューの情報を送る
+		List<Review> reviewlist = reviewRepository.findByStorename(storename);
+		mv.addObject("reviewlist", reviewlist);
+
+		mv.setViewName("review");
+		return mv;
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//店舗の登録内容の変更

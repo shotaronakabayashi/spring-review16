@@ -23,6 +23,8 @@ public class Account {
 	private String password;
 	private String secret;
 	private String secret_q;
+	private int rank;
+	private float rankave;
 
 	//コンストラクタ
 	public Account () {
@@ -39,6 +41,21 @@ public class Account {
 		this.password = password;
 		this.secret = secret;
 		this.secret_q = secret_q;
+
+	}
+
+	public Account (int code, String name, String nickname, String address, String tel, String email, String password, String secret, String secret_q, int rank, float rankave) {
+		this.code = code;
+		this.name = name;
+		this.nickname = nickname;
+		this.address = address;
+		this.tel = tel;
+		this.email = email;
+		this.password = password;
+		this.secret = secret;
+		this.secret_q = secret_q;
+		this.rank = rank;
+		this.rankave = rankave;
 	}
 
 	public Account (String name, String nickname, String address, String tel, String email, String password, String secret, String secret_q) {
@@ -138,6 +155,22 @@ public class Account {
 
 	public void setSecret_q(String secret_q) {
 		this.secret_q = secret_q;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	public float getRankave() {
+		return rankave;
+	}
+
+	public void setRankave(float rankave) {
+		this.rankave = rankave;
 	}
 
 
