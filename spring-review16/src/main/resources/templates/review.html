@@ -54,7 +54,7 @@
  <form action="/good" method="POST">
  <input type="hidden" th:value="rev.reviewname" name="name">
  <input type="hidden" th:value="rev.storename" name="storename">
- <button type="submit" class="a" value="1" name="flag">👍</button>
+ <button type="submit" class="a" th:value="1" name="flag">👍</button>
  </form>
  <p th:text="${rev.review}"></p>
  <p>-------------------------------------------------------------------------------------------------------</p>
