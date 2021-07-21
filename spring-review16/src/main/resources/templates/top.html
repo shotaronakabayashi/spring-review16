@@ -26,6 +26,14 @@
 	height: 310px;
 }
 </style>
+ <style type="text/css">
+ <!--
+        .menu:link {color:#ffffee;}
+        .menu:visited{color:#ff8888;}
+        .menu:hover{color:#8888ff;}
+        .menu:active{color:#ffff88;}
+ -->
+ </style>
 
 <link th:href="@{/CSS/top.css}" rel="stylesheet">
 <link rel="shortcut icon" th:href="@{/img/cc.ico}">
@@ -48,14 +56,14 @@
 
 <div id="ac2">
 <div th:if="${session.nickname == null}">
-<a href="/adduser">新規登録</a>　
-<a href="/login">ログイン</a>
+<a href="/adduser" class="menu">新規登録</a>　
+<a href="/login" class="menu">ログイン</a>
 </div>
 
 <div th:unless="${session.nickname == null}">
-<a th:href="'/mypage/' + ${session.usercode}">マイページに行く</a>　
-<a href="/logout">ログアウト</a><br>
-<a href="/addstore" id="sto">🍴 お店登録 🍴</a>　
+<a th:href="'/mypage/' + ${session.usercode}" class="menu">マイページに行く</a>　
+<a href="/logout" class="menu">ログアウト</a><br>
+<a href="/addstore" class="menu">🍴 お店登録 🍴</a>　
 </div>
 </div>
 <br>
