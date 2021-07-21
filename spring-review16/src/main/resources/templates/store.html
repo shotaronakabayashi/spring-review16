@@ -57,9 +57,10 @@
 
 	<div th:each="storelist:${storelist}">
 	<h2 th:text="${storelist.name}"></h2>
-		<a th:href="'/addreview/'+${storelist.name}">➡レビューする</a><br>
+		<a th:href="'/addreview/'+${storelist.name}+'/'+${storelist.code}">➡レビューする</a><br>
 		<a th:href="'/change/store/' +${storelist.code}">➡店舗情報変更</a>
-		<a th:href="'/change/' +${storelist.code}">➡メニュー・写真変更</a> <br><br>
+		<a th:href="'/change/' +${storelist.code}">➡メニュー・写真変更</a>
+		<a th:text="${message}" style="color:red"></a><br><br>
 
 
 		<script type="text/javascript" th:inline="javascript">
