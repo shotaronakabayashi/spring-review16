@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,9 @@ public class StoreController {
 
 	@Autowired
 	MapRepository mapRepository;
+
+	@Autowired
+	HttpSession session;
 
 	//カテゴリー別のランキングを表示
 	//トップページを表示
@@ -457,6 +462,46 @@ public class StoreController {
 			@PathVariable("code") int storecode,
 			ModelAndView mv) {
 
+		//ゲストが店舗編集しようとした際のエラー処理
+		List<Store> restorelist = new ArrayList<>();
+		Store store0 = null;
+
+		if ((String) session.getAttribute("nickname") == null) {
+			Optional<Store> list0 = storeRepository.findById(storecode);
+			store0 = list0.get();
+			restorelist.add(store0);
+			float rankave = store0.getRankave();
+			mv.addObject("storelist", restorelist);
+			mv.addObject("rankave", rankave);
+			//メニュー情報を送る
+			List<Menu> menulist = menuRepository.findByMenucode(storecode);
+			mv.addObject("menulist", menulist);
+			//写真の情報を送る
+			List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
+			mv.addObject("picturelist", picturelist);
+			//マップの情報を送る
+			List<Map> maplist = mapRepository.findByMapcode(storecode);
+			Map map = null;
+			if (maplist.isEmpty() == false) {
+				map = maplist.get(0);
+				String mapurl = map.getMapurl();
+				mv.addObject("mapurl", mapurl);
+			}
+			//レビューの情報を送る
+			List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
+			mv.addObject("reviewlist", reviewlist);
+			//レビューの数を送る
+			int count = 0;
+			for (Review r : reviewlist) {
+				count++;
+			}
+			mv.addObject("count", count);
+
+			mv.addObject("message", "ログインしてください。");
+			mv.setViewName("store");
+			return mv;
+		}
+
 		Optional<Store> storelist01 = storeRepository.findById(storecode);
 		Store store = storelist01.get();
 		List<Store> storelist = new ArrayList<>();
@@ -562,6 +607,46 @@ public class StoreController {
 	public ModelAndView change(
 			@PathVariable("code") int storecode,
 			ModelAndView mv) {
+
+		//ゲストが店舗編集しようとした際のエラー処理
+		List<Store> restorelist = new ArrayList<>();
+		Store store0 = null;
+
+		if ((String) session.getAttribute("nickname") == null) {
+			Optional<Store> list0 = storeRepository.findById(storecode);
+			store0 = list0.get();
+			restorelist.add(store0);
+			float rankave = store0.getRankave();
+			mv.addObject("storelist", restorelist);
+			mv.addObject("rankave", rankave);
+			//メニュー情報を送る
+			List<Menu> menulist = menuRepository.findByMenucode(storecode);
+			mv.addObject("menulist", menulist);
+			//写真の情報を送る
+			List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
+			mv.addObject("picturelist", picturelist);
+			//マップの情報を送る
+			List<Map> maplist = mapRepository.findByMapcode(storecode);
+			Map map = null;
+			if (maplist.isEmpty() == false) {
+				map = maplist.get(0);
+				String mapurl = map.getMapurl();
+				mv.addObject("mapurl", mapurl);
+			}
+			//レビューの情報を送る
+			List<Review> reviewlist = reviewRepository.findByReviewcode(storecode);
+			mv.addObject("reviewlist", reviewlist);
+			//レビューの数を送る
+			int count = 0;
+			for (Review r : reviewlist) {
+				count++;
+			}
+			mv.addObject("count", count);
+
+			mv.addObject("message", "ログインしてください。");
+			mv.setViewName("store");
+			return mv;
+		}
 
 		List<Menu> menulist = menuRepository.findByMenucode(storecode);
 		List<Picture> picturelist = pictureRepository.findByPicturecode(storecode);
@@ -709,7 +794,7 @@ public class StoreController {
 	public ModelAndView addmenu22(
 			@RequestParam("code") int menucode,
 			@RequestParam("menuname") String menuname,
-			@RequestParam(name="menuprice", defaultValue="0") int menuprice,
+			@RequestParam(name = "menuprice", defaultValue = "0") int menuprice,
 			ModelAndView mv) {
 
 		//未入力エラーチェック
@@ -720,7 +805,6 @@ public class StoreController {
 			mv.setViewName("addmenu2");
 			return mv;
 		}
-
 
 		//メニューを登録
 		Menu menu = new Menu(menucode, menuname, menuprice);

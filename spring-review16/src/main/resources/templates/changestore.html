@@ -23,6 +23,7 @@
 <h2>店舗情報変更</h2></div>
 <br>
 <form action="/change/store2/" method="POST">
+
 <div th:each="list:${storelist}">
 <input type="hidden" name="code" th:value="${list.code}">
 <a>店舗名　　　　 　  </a><input type="text" name="name" th:value="${list.name}"><br>

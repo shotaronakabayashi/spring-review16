@@ -7,10 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="Store")
+@Table(name = "Store")
 public class Store {
-
-
 
 	//フィールド
 	@Id
@@ -29,12 +27,12 @@ public class Store {
 	private int rank;
 	private float rankave;
 
-
 	//コンストラクタ
-	public Store () {
+	public Store() {
 	}
 
-	public Store (String name, String categorycode1, String categorycode2, String address, String tel, int budget, int time, int scene, String message) {
+	public Store(String name, String categorycode1, String categorycode2, String address, String tel, int budget,
+			int time, int scene, String message) {
 		this.name = name;
 		this.categorycode1 = categorycode1;
 		this.categorycode2 = categorycode2;
@@ -46,7 +44,8 @@ public class Store {
 		this.message = message;
 	}
 
-	public Store (int code, String name, String categorycode1, String categorycode2, String address, String tel, int budget, int time, int scene, String message) {
+	public Store(int code, String name, String categorycode1, String categorycode2, String address, String tel,
+			int budget, int time, int scene, String message) {
 		this.code = code;
 		this.name = name;
 		this.categorycode1 = categorycode1;
@@ -59,7 +58,8 @@ public class Store {
 		this.message = message;
 	}
 
-	public Store (int code, String name, String categorycode1, String categorycode2, String address, String tel, int budget, int time, int scene, String message, int rank, float rankave) {
+	public Store(int code, String name, String categorycode1, String categorycode2, String address, String tel,
+			int budget, int time, int scene, String message, int rank, float rankave) {
 		this.code = code;
 		this.name = name;
 		this.categorycode1 = categorycode1;
@@ -74,10 +74,7 @@ public class Store {
 		this.rankave = rankave;
 	}
 
-
-
-
-	public Store (int code) {
+	public Store(int code) {
 
 	}
 
@@ -177,20 +174,4 @@ public class Store {
 		this.rankave = rankave;
 	}
 
-
-//	//メソッド
-//	public Store HashList(Store list) {
-//
-//		List<Store> timelist4;
-//		timelist4 = timelist01.stream()
-//                .distinct()
-//                .collect(Collectors.toList());
-//
-//
-//		List<Store> list2 = new ArrayList<Store>(HashSet<>list);
-//		return list;
-	}
-
-
-
-
+}
