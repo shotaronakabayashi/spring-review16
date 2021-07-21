@@ -29,7 +29,7 @@
   transition: .4s;
 }
 
-.btn-circle-border-simple:hover {
+.a:hover {
   background: #b3e1ff;
 }
  </style>
@@ -52,9 +52,10 @@
 <div th:each="rev:${list}">
  <b th:text="${rev.reviewname}"></b>:<a>　星</a><a th:text="${rev.star}"></a><a>つ</a>
  <form action="/good" method="POST">
- <input type="hidden" th:value="rev.reviewname" name="name">
- <input type="hidden" th:value="rev.storename" name="storename">
- <button type="submit" class="a" th:value="1" name="flag">👍</button>
+ <input type="hidden" th:value="${rev.reviewname}" name="name">
+ <input type="hidden" th:value="${rev.storename}" name="storename">
+ <input type="hidden" th:value="1" name="flag">
+ <button type="submit">aa</button>
  </form>
  <p th:text="${rev.review}"></p>
  <p>-------------------------------------------------------------------------------------------------------</p>
