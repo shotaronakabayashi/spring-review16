@@ -442,7 +442,7 @@ public class StoreController {
 		return mv;
 	}
 
-	//レビューのもっと見るが押された
+	//レビューのもっと見るが押された----------------------------------------
 	@GetMapping("/review/{code}")
 	public ModelAndView reviewMore(
 			@PathVariable("code") int code,

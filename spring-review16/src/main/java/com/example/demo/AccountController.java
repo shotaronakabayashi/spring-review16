@@ -81,9 +81,20 @@ public class AccountController {
 		mv.addObject("picturelist3", picturelist3);
 
 
-//		//ユーザーランキング
+		//ユーザーランキング
 		List<Account> userlist = accountRepository.findAllByOrderByRankDesc();
 
+		Account account1 = userlist.get(0);
+		mv.addObject("user1", account1.getNickname());
+		mv.addObject("rank1", account1.getRank());
+
+		Account account2 = userlist.get(1);
+		mv.addObject("user2", account2.getNickname());
+		mv.addObject("rank2", account2.getRank());
+
+		Account account3 = userlist.get(2);
+		mv.addObject("user3", account3.getNickname());
+		mv.addObject("rank3", account3.getRank());
 
 		mv.setViewName("top");
 		return mv;
