@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StoreRepository extends JpaRepository<Store, Integer>{
+
+	List<Store> findAllByOrderByRankaveDescRankDesc();
+
 	Optional<Store> findByName(String name);
 
 	List<Store> findByNameLike(String keyword);

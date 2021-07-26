@@ -38,36 +38,27 @@ public class AccountController {
 	public ModelAndView index(ModelAndView mv) {
 
 		//トップページのランキング表示------------------------
-		List<Store> list = storeRepository.findAll();
 
-		float best1 = 0;
-		float best2 = 0;
-		float best3 = 0;
-		float other = 0;
-		for (Store st : list) {
-			for (Store s : list) {
-				float a = s.getRankave();
-				if (a >= best1) {
-					best1 = a;
-				} else if (a < best1 && a >= best2) {
-					best2 = a;
-				} else if (a < best2 && a >= best3) {
-					best3 = a;
-				} else {
-					other = a;
-				}
-			}
-		}
+		List<Store> list = storeRepository.findAllByOrderByRankaveDescRankDesc();
 
 		//ランクの情報から店舗情報を取得
 		//1位
-		List<Store> list1 = storeRepository.findByRankave(best1);
+		//List<Store> list1 = storeRepository.findByRankave(best1);
+		List<Store> list1 = new ArrayList<>();
+		Store store01 = list.get(0);
+		list1.add(store01);
 
 		//2位
-		List<Store> list2 = storeRepository.findByRankave(best2);
+		//List<Store> list2 = storeRepository.findByRankave(best2);
+		List<Store> list2 = new ArrayList<>();
+		Store store02 = list.get(1);
+		list2.add(store02);
 
 		//3位
-		List<Store> list3 = storeRepository.findByRankave(best3);
+		//List<Store> list3 = storeRepository.findByRankave(best3);
+		List<Store> list3 = new ArrayList<>();
+		Store store03 = list.get(2);
+		list3.add(store03);
 
 		mv.addObject("list1", list1);
 		mv.addObject("list2", list2);
@@ -88,6 +79,11 @@ public class AccountController {
 		int storecode3 = store3.getCode();
 		List<Picture> picturelist3 = pictureRepository.findByPicturecode(storecode3);
 		mv.addObject("picturelist3", picturelist3);
+
+
+//		//ユーザーランキング
+		List<Account> userlist = accountRepository.findAllByOrderByRankDesc();
+
 
 		mv.setViewName("top");
 		return mv;
