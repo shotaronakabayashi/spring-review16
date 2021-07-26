@@ -100,6 +100,22 @@ public class AccountController {
 		return mv;
 	}
 
+
+	//ユーザーランキングからユーザー詳細ページへの遷移
+	@GetMapping("/userpage/{nickname}")
+	public ModelAndView userpage (
+			@PathVariable("nickname") String nickname,
+			ModelAndView mv) {
+		mv.addObject("nickname", nickname);
+
+		List<Review> reviewlist = reviewRepository.findByReviewname(nickname);
+		mv.addObject("reviewlist", reviewlist);
+
+		mv.setViewName("userpage");
+		return mv;
+	}
+
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// 新規会員登録がクリックされた
