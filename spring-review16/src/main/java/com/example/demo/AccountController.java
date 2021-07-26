@@ -108,8 +108,8 @@ public class AccountController {
 			ModelAndView mv) {
 		mv.addObject("nickname", nickname);
 
-		List<Review> reviewlist = reviewRepository.findByReviewname(nickname);
-		mv.addObject("reviewlist", reviewlist);
+		List<Review> list = reviewRepository.findByReviewname(nickname);
+		mv.addObject("list", list);
 
 		mv.setViewName("userpage");
 		return mv;
